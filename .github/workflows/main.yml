@@ -1,15 +1,16 @@
 name: aggiorna-dati
 
 on:
-  # Permette di avviare lo script manualmente dal tasto "Run workflow"
   workflow_dispatch: 
-  # Avvia lo script in automatico ogni 15 minuti (puoi modificare questo valore)
   schedule:
     - cron: '*/15 * * * *'
 
 jobs:
   aggiornamento:
     runs-on: ubuntu-latest
+    # Queste sono le autorizzazioni che permettono al bot di scrivere sul repository
+    permissions:
+      contents: write
 
     steps:
       - name: Clona il repository
@@ -30,8 +31,8 @@ jobs:
 
       - name: Salva i nuovi dati
         run: |
-          git config --global user.name "Bot"
-          git config --global user.email "bot@example.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add database_h2h.json
-          git commit -m "Aggiornamento dati API" || echo "Nessun nuovo dato da salvare, salto il commit."
-          git push || echo "Niente da pushare al momento."
+          git commit -m "Aggiornamento dati API" || echo "Nessun nuovo dato da salvare"
+          git push
