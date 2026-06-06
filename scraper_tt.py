@@ -4,30 +4,34 @@ import os
 
 def main():
     API_KEY = "247481-2D476S3VQDJuAj"
-    # Usiamo l'endpoint per la lista degli eventi
+    # URL ufficiale
     url = f"https://api.betsapi.com/v1/events/tt/list?token={API_KEY}&sport_id=29128"
     
-    print(f"Tentativo di connessione a: {url}")
+    print("--- INIZIO SCRIPT ---")
     
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()
+    response = requests.get(url)
+    print(f"Stato risposta API: {response.status_code}")
+    
+    if response.status_code == 200:
+        data = response.json()
+        
+        # Definiamo il percorso esatto nella cartella dove viene eseguito lo script
+        # Usiamo os.getcwd() per vedere dove siamo
+        cartella_corrente = os.getcwd()
+        file_path = os.path.join(cartella_corrente, "database_h2h.json")
+        
+        print(f"Sto salvando il file in: {file_path}")
+        
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
             
-            # Percorso assoluto per sicurezza
-            file_path = "database_h2h.json"
-            
-            with open(file_path, "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=4)
-            
-            if os.path.exists(file_path):
-                print(f"File creato con successo: {os.path.abspath(file_path)}")
-            else:
-                print("Errore: Il file non è stato creato!")
+        if os.path.exists(file_path):
+            print("CONFERMA: Il file esiste ed è stato scritto.")
         else:
-            print(f"Errore API: {response.status_code} - {response.text}")
-    except Exception as e:
-        print(f"Errore nello script: {e}")
+            print("ERRORE CRITICO: Il file non è stato scritto.")
+            
+    else:
+        print(f"Errore API: {response.text}")
 
 if __name__ == "__main__":
     main()
