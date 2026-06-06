@@ -3,169 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Pong - Statistiche H2H</title>
+    <title>Super Pong - Archivio H2H</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 24px;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-        select {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .stats-box {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e8f4f8;
-            border-left: 5px solid #3498db;
-            border-radius: 4px;
-            display: none; /* Nascosto finché non si seleziona un match */
-        }
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        .stat-value {
-            font-weight: bold;
-            color: #2980b9;
-        }
+        body { font-family: sans-serif; background-color: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; font-size: 22px; }
+        select { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+        .stats-box { margin-top: 20px; padding: 15px; background-color: #e8f4f8; border-left: 5px solid #3498db; border-radius: 4px; display: none; }
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 16px; }
+        .stat-value { font-weight: bold; color: #2980b9; }
+        #error-msg { color: red; text-align: center; font-size: 14px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🏓 Super Pong Mobile</h1>
+    <h1>🏓 Archivio H2H Aggiornato</h1>
     
-    <label for="matchSelect">Seleziona il Testa a Testa (H2H):</label>
     <select id="matchSelect" onchange="calcolaStatistiche()">
-        <option value="">Seleziona due giocatori...</option>
-        </select>
+        <option value="">Seleziona una sfida...</option>
+    </select>
+    
+    <div id="error-msg"></div>
 
     <div id="risultati" class="stats-box">
-        <div class="stat-row">
-            <span>Vittorie Giocatore 1:</span>
-            <span id="winG1" class="stat-value">0</span>
-        </div>
-        <div class="stat-row">
-            <span>Vittorie Giocatore 2:</span>
-            <span id="winG2" class="stat-value">0</span>
-        </div>
-        <div class="stat-row">
-            <span>Media Punti Totali:</span>
-            <span id="avgPoints" class="stat-value">0.0</span>
-        </div>
-        <div class="stat-row" style="margin-top: 15px; font-size: 14px; color: #666;">
-            <span>Match analizzati:</span>
-            <span id="totMatches" class="stat-value">0</span>
-        </div>
+        <div class="stat-row"><span>Vittorie G1:</span> <span id="winG1" class="stat-value">0</span></div>
+        <div class="stat-row"><span>Vittorie G2:</span> <span id="winG2" class="stat-value">0</span></div>
+        <div class="stat-row"><span>Media Punti:</span> <span id="avgPoints" class="stat-value">0.0</span></div>
+        <div class="stat-row"><span>Totale Match:</span> <span id="totMatches" class="stat-value">0</span></div>
     </div>
 </div>
 
 <script>
-    // Questa variabile conterrà i dati caricati dal file JSON
     let storicoMatch = [];
 
-    // Carica il file database_h2h.json creato dal nostro scraper Python
-    fetch('database_h2h.json')
-        .then(response => response.json())
+    // Caricamento dati con timestamp per evitare la cache
+    fetch('database_h2h.json?t=' + new Date().getTime())
+        .then(response => {
+            if (!response.ok) throw new Error("File JSON non trovato!");
+            return response.json();
+        })
         .then(data => {
             storicoMatch = data;
-            popolaMenuTendina(data);
+            const select = document.getElementById('matchSelect');
+            const coppie = new Set();
+            
+            data.forEach(m => coppie.add([m.g1, m.g2].sort().join(" vs ")));
+            
+            coppie.forEach(c => {
+                let opt = document.createElement('option');
+                opt.value = c; opt.textContent = c;
+                select.appendChild(opt);
+            });
         })
-        .catch(error => {
-            console.error("Errore nel caricamento dei dati:", error);
-            // Fallback con dati di test per farti vedere come funziona la grafica
-            storicoMatch = [
-                {"g1": "Jadam", "g2": "Pietraszko", "vincitore": "Jadam", "punti_totali": 76},
-                {"g1": "Jadam", "g2": "Pietraszko", "vincitore": "Pietraszko", "punti_totali": 72},
-                {"g1": "Jadam", "g2": "Pietraszko", "vincitore": "Jadam", "punti_totali": 78}
-            ];
-            popolaMenuTendina(storicoMatch);
+        .catch(err => {
+            document.getElementById('error-msg').textContent = "Errore: " + err.message + ". Verifica che il file JSON sia stato creato.";
         });
-
-    function popolaMenuTendina(dati) {
-        const select = document.getElementById('matchSelect');
-        const accoppiamentiUnici = new Set();
-
-        dati.forEach(match => {
-            // Crea una stringa univoca per la coppia di giocatori
-            const coppia = [match.g1, match.g2].sort().join(" vs ");
-            accoppiamentiUnici.add(coppia);
-        });
-
-        accoppiamentiUnici.forEach(coppia => {
-            const option = document.createElement('option');
-            option.value = coppia;
-            option.textContent = coppia;
-            select.appendChild(option);
-        });
-    }
 
     function calcolaStatistiche() {
         const selezione = document.getElementById('matchSelect').value;
-        const boxRisultati = document.getElementById('risultati');
-        
-        if (!selezione) {
-            boxRisultati.style.display = 'none';
-            return;
-        }
+        const box = document.getElementById('risultati');
+        if (!selezione) { box.style.display = 'none'; return; }
 
-        const [giocatoreA, giocatoreB] = selezione.split(" vs ");
-        
-        let vittorieA = 0;
-        let vittorieB = 0;
-        let sommaPunti = 0;
-        let matchGiocati = 0;
+        const [gA, gB] = selezione.split(" vs ");
+        let vA = 0, vB = 0, somma = 0, count = 0;
 
-        // Filtra e calcola i dati
-        storicoMatch.forEach(match => {
-            if ((match.g1 === giocatoreA && match.g2 === giocatoreB) || 
-                (match.g1 === giocatoreB && match.g2 === giocatoreA)) {
-                
-                matchGiocati++;
-                sommaPunti += match.punti_totali;
-
-                if (match.vincitore === giocatoreA) vittorieA++;
-                if (match.vincitore === giocatoreB) vittorieB++;
+        storicoMatch.forEach(m => {
+            if ((m.g1 === gA && m.g2 === gB) || (m.g1 === gB && m.g2 === gA)) {
+                count++;
+                somma += m.punti_totali;
+                if (m.vincitore === gA) vA++;
+                else vB++;
             }
         });
 
-        // Aggiorna la grafica a schermo
-        document.getElementById('winG1').textContent = `${giocatoreA}: ${vittorieA}`;
-        document.getElementById('winG2').textContent = `${giocatoreB}: ${vittorieB}`;
-        document.getElementById('avgPoints').textContent = (sommaPunti / matchGiocati).toFixed(1);
-        document.getElementById('totMatches').textContent = matchGiocati;
-        
-        // Mostra il box
-        boxRisultati.style.display = 'block';
+        document.getElementById('winG1').textContent = vA;
+        document.getElementById('winG2').textContent = vB;
+        document.getElementById('avgPoints').textContent = (somma / count).toFixed(1);
+        document.getElementById('totMatches').textContent = count;
+        box.style.display = 'block';
     }
 </script>
 
