@@ -1,4 +1,4 @@
-name: aggiorna-dati
+name: update-data
 
 on:
   workflow_dispatch: 
@@ -6,33 +6,32 @@ on:
     - cron: '*/15 * * * *'
 
 jobs:
-  aggiornamento:
+  build:
     runs-on: ubuntu-latest
-    # Queste sono le autorizzazioni che permettono al bot di scrivere sul repository
     permissions:
       contents: write
 
     steps:
-      - name: Clona il repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Installa Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Installa librerie
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Esegui lo Scraper
+      - name: Run scraper script
         run: python scraper_tt.py
 
-      - name: Salva i nuovi dati
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add database_h2h.json
-          git commit -m "Aggiornamento dati API" || echo "Nessun nuovo dato da salvare"
-          git push
+          git add ended.json upcoming.json
+          git commit -m "Automated data update from API" || echo "No changes to commit"
+          git push || echo "No changes to push"
