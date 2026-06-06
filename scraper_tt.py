@@ -1,27 +1,33 @@
 import requests
 import json
+import os
 
 def main():
-    # La tua chiave API
     API_KEY = "247481-2D476S3VQDJuAj"
-    
-    # URL per ottenere i match (Eventi) - Esempio per TT Elite Series
-    # Abbiamo tolto il limite di "finta navigazione", ora usiamo solo il token
+    # Usiamo l'endpoint per la lista degli eventi
     url = f"https://api.betsapi.com/v1/events/tt/list?token={API_KEY}&sport_id=29128"
+    
+    print(f"Tentativo di connessione a: {url}")
     
     try:
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
-            # Salviamo il file JSON grezzo per ora
-            with open("database_h2h.json", "w", encoding="utf-8") as f:
+            
+            # Percorso assoluto per sicurezza
+            file_path = "database_h2h.json"
+            
+            with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=4)
-            print("Dati API scaricati correttamente.")
+            
+            if os.path.exists(file_path):
+                print(f"File creato con successo: {os.path.abspath(file_path)}")
+            else:
+                print("Errore: Il file non è stato creato!")
         else:
-            print(f"Errore API: {response.status_code}")
+            print(f"Errore API: {response.status_code} - {response.text}")
     except Exception as e:
-        print(f"Errore nel collegamento API: {e}")
+        print(f"Errore nello script: {e}")
 
 if __name__ == "__main__":
     main()
-  
