@@ -15,7 +15,7 @@
         .time { font-size: 0.85em; color: #8d8d99; background: #121214; padding: 4px 8px; border-radius: 4px; }
         .players { font-size: 1em; color: #e1e1e6; flex-grow: 1; margin-left: 15px; }
         .stat-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .stat-box { flex: 1; min-width: 120px; background: #121214; pading: 12px; border-radius: 6px; text-align: center; border: 1px solid #323238; padding: 10px; }
+        .stat-box { flex: 1; min-width: 120px; background: #121214; padding: 12px; border-radius: 6px; text-align: center; border: 1px solid #323238; }
         .full-width { flex: 1 1 100%; }
         .stat-label { display: block; font-size: 0.8em; color: #8d8d99; margin-bottom: 5px; }
         .stat-value { font-size: 1.3em; font-weight: bold; }
@@ -56,10 +56,10 @@
                 const upcomingFetch = await fetch('upcoming.json');
                 const upcomingPayload = await upcomingFetch.json();
                 
-                const endedFetch = await fetch('ended.json');
-                const endedPayload = await endedFetch.json();
+                const h2hFetch = await fetch('h2h_data.json');
+                const h2hPayload = await h2hFetch.json();
                 
-                renderUpcomingContainer(upcomingPayload.results || [], endedPayload.results || []);
+                renderUpcomingContainer(upcomingPayload.results || [], h2hPayload || {});
             } catch (error) {
                 console.error("Data tracking reference error:", error);
                 document.getElementById('upcoming-list').innerHTML = 
@@ -67,7 +67,7 @@
             }
         }
 
-        function renderUpcomingContainer(upcomingList, endedList) {
+        function renderUpcomingContainer(upcomingList, h2hDictionary) {
             const listContainer = document.getElementById('upcoming-list');
             if (upcomingList.length === 0) {
                 listContainer.innerHTML = "<p style='text-align:center; color:#8d8d99;'>Nessun match imminente in archivio.</p>";
@@ -78,6 +78,7 @@
             upcomingList.forEach(matchObject => {
                 const homeTeamName = matchObject.home.name;
                 const awayTeamName = matchObject.away.name;
+                const matchId = matchObject.id;
                 
                 const unixTimestamp = parseInt(matchObject.time) * 1000;
                 const formattedTime = new Date(unixTimestamp).toLocaleString('it-IT', { hour: '2-digit', minute: '2-digit' });
@@ -90,18 +91,20 @@
                         <span class="players"><strong>${homeTeamName}</strong> vs <strong>${awayTeamName}</strong></span>
                     </div>
                 `;
+                
                 elementCard.addEventListener('click', function() {
-                    processHeadToHead(homeTeamName, awayTeamName, endedList);
+                    // Extract the specific history array for this exact match ID
+                    const specificHistory = h2hDictionary[matchId] || [];
+                    processHeadToHead(homeTeamName, awayTeamName, specificHistory);
                 });
+                
                 listContainer.appendChild(elementCard);
             });
         }
 
         function processHeadToHead(playerOne, playerTwo, historicalRecords) {
-            const filteredEncounters = historicalRecords.filter(item => 
-                (item.home.name === playerOne && item.away.name === playerTwo) || 
-                (item.home.name === playerTwo && item.away.name === playerOne)
-            ).slice(0, 15);
+            // Take up to 15 matches from the direct H2H history
+            const filteredEncounters = historicalRecords.slice(0, 15);
             
             const analysisView = document.getElementById('h2h-analysis');
             analysisView.style.display = 'block';
@@ -109,7 +112,7 @@
             document.getElementById('h2h-title').innerText = `${playerOne} vs ${playerTwo}`;
             
             if (filteredEncounters.length === 0) {
-                document.getElementById('h2h-stats').innerHTML = "<p style='text-align:center;'>Nessun precedente storico trovato tra i due atleti.</p>";
+                document.getElementById('h2h-stats').innerHTML = "<p style='text-align:center;'>Nessun precedente storico trovato su BetsAPI per questi due atleti.</p>";
                 document.getElementById('h2h-history').innerHTML = "";
                 return;
             }
@@ -118,7 +121,6 @@
             let playerTwoWinsCount = 0;
             let totalAggregatedPoints = 0;
             let validMatchesWithDetails = 0;
-            
             let htmlHistoryRows = "";
             
             filteredEncounters.forEach(record => {
@@ -192,7 +194,7 @@
                         <span class="stat-value text-blue">${playerTwoWinsCount}</span>
                     </div>
                     <div class="stat-box full-width">
-                        <span class="stat-label">Media Punti Totali (su ${validMatchesWithDetails} match dettagliati)</span>
+                        <span class="stat-label">Media Punti Totali (su ${validMatchesWithDetails} match con set)</span>
                         <span class="stat-value text-yellow">${calculatedFinalAverage} punti</span>
                     </div>
                 </div>
