@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard TT Elite Series</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121214;
+            color: #e1e1e6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #00b37e;
+            margin-bottom: 30px;
+        }
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            color: #8d8d99;
+        }
+        .error-message {
+            background-color: #f75a68;
+            color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #202024;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #29292e;
+            color: #00b37e;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        tr {
+            border-bottom: 1px solid #29292e;
+        }
+        tr:last-child {
+            border-bottom: none;
+        }
+        tr:hover {
+            background-color: #2b2b30;
+        }
+        .player-name {
+            font-weight: 500;
+        }
+        .vs {
+            color: #8d8d99;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        .score {
+            background-color: #29292e;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #00b37e;
+            display: inline-block;
+        }
+        .date {
+            color: #8d8d99;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>TT Elite Series Analytics</h1>
+    
+    <div id="error" class="error-message"></div>
+    <div id="loading" class="loading">Lettura del database in corso...</div>
+    
+    <table id="match-table" style="display: none;">
+        <thead>
+            <tr>
+                <th>Data e Ora</th>
+                <th>Incontro</th>
+                <th>Risultato (ss)</th>
+            </tr>
+        </thead>
+        <tbody id="match-list">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    async function caricaDati() {
+        try {
+            // Recupera il file JSON strutturato dall'API
+            const response = await fetch('database_h2h.json');
+            if (!response.ok) {
+                throw new Error("Impossibile trovare o leggere il file database_h2h.json.");
+            }
+            
+            const data = await response.json();
+            
+            // Le API di BetsAPI inseriscono l'elenco dei match dentro la proprietà "results"
+            if (!data || !data.results || data.results.length === 0) {
+                throw new Error("Il file JSON è presente ma non contiene match validi o la struttura è differente.");
+            }
+            
+            const matchList = document.getElementById('match-list');
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('match-table').style.display = 'table';
+            
+            // Analizza singolarmente ogni match presente nell'array dell'API
+            data.results.forEach(match => {
+                const row = document.createElement('tr');
+                
+                // Converte il timestamp Unix dell'API (in secondi) nel formato data/ora locale
+                const dataMatch = new Date(match.time * 1000).toLocaleString('it-IT', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Lettura dei campi corretti dall'oggetto JSON fornito dal server
+                const homePlayer = match.home ? match.home.name : 'Sconosciuto';
+                const awayPlayer = match.away ? match.away.name : 'Sconosciuto';
+                const punteggio = match.ss ? match.ss : '-';
+                
+                row.innerHTML = `
+                    <td class="date">${dataMatch}</td>
+                    <td>
+                        <span class="player-name">${homePlayer}</span>
+                        <span class="vs">vs</span>
+                        <span class="player-name">${awayPlayer}</span>
+                    </td>
+                    <td><span class="score">${punteggio}</span></td>
+                `;
+                
+                matchList.appendChild(row);
+            });
+            
+        } catch (error) {
+            document.getElementById('loading').style.display = 'none';
+            const errorDiv = document.getElementById('error');
+            errorDiv.style.display = 'block';
+            errorDiv.innerText = "Si è verificato un errore: " + error.message;
+        }
+    }
+
+    // Esegue la funzione all'apertura della pagina
+    caricaDati();
+</script>
+
+</body>
+</html>
