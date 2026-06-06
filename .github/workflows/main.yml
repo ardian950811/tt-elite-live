@@ -1,3 +1,28 @@
+name: Aggiornamento Dati TT
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  aggiorna-dati:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clona il repository
+        uses: actions/checkout@v4
+      
+      - name: Installa Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Installa librerie
+        run: pip install requests
+          
       - name: Esegui lo Scraper
         run: python scraper_tt.py
         
@@ -5,12 +30,12 @@
         run: |
           git config --global user.name "Bot"
           git config --global user.email "bot@github.com"
-          # Controlliamo se il file esiste davvero prima di aggiungerlo
-          if [ -f database_h2h.json ]; then
+          # Controlla se il file è stato creato correttamente dallo script
+          if [ -f "database_h2h.json" ]; then
             git add database_h2h.json
             git commit -m "Aggiornamento dati tramite API"
             git push origin main
           else
-            echo "Il file database_h2h.json non esiste, abortisco il commit."
+            echo "Errore: Il file database_h2h.json non è stato trovato."
             exit 1
           fi
