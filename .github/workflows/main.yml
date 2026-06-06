@@ -32,6 +32,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add upcoming.json h2h_data.json
-          git commit -m "Automated data update with direct H2H" || echo "No changes to commit"
+          git add upcoming.json h2h_data.json match_cache.json
+          git commit -m "Automated update with detailed point caching" || echo "No changes to commit"
           git push || echo "No changes to push"
