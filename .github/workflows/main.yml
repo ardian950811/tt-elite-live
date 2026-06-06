@@ -12,14 +12,24 @@ jobs:
   aggiorna-dati:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Clona il repository
+        uses: actions/checkout@v4
       
-      - uses: actions/setup-python@v5
+      - name: Installa Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           
-      - run: pip install cloudscraper
-      
-      - run: python scraper_tt.py
-      
-      - run: git config --global user.name "Bot" && git config --global user.email "bot@github.com" && git add database_h2h.json && git commit -m "Aggiornamento" || echo "Nessuna modifica" && git push origin main
+      - name: Installa librerie
+        run: pip install cloudscraper beautifulsoup4
+          
+      - name: Esegui lo Scraper
+        run: python scraper_tt.py
+        
+      - name: Salva i nuovi dati
+        run: |
+          git config --global user.name "Bot"
+          git config --global user.email "bot@github.com"
+          git add database_h2h.json
+          git commit -m "Aggiornamento dati match" || echo "Nessuna modifica"
+          git push origin main
