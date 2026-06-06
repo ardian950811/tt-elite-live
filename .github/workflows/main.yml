@@ -1,41 +1,37 @@
-name: Aggiornamento Dati TT
+name: aggiorna-dati
 
 on:
+  # Permette di avviare lo script manualmente dal tasto "Run workflow"
+  workflow_dispatch: 
+  # Avvia lo script in automatico ogni 15 minuti (puoi modificare questo valore)
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
-
-permissions:
-  contents: write
+    - cron: '*/15 * * * *'
 
 jobs:
-  aggiorna-dati:
+  aggiornamento:
     runs-on: ubuntu-latest
+
     steps:
       - name: Clona il repository
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@v3
+
       - name: Installa Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-          
+
       - name: Installa librerie
-        run: pip install requests
-          
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
       - name: Esegui lo Scraper
         run: python scraper_tt.py
-        
+
       - name: Salva i nuovi dati
         run: |
           git config --global user.name "Bot"
-          git config --global user.email "bot@github.com"
-          # Controlla se il file è stato creato correttamente dallo script
-          if [ -f "database_h2h.json" ]; then
-            git add database_h2h.json
-            git commit -m "Aggiornamento dati tramite API"
-            git push origin main
-          else
-            echo "Errore: Il file database_h2h.json non è stato trovato."
-            exit 1
-          fi
+          git config --global user.email "bot@example.com"
+          git add database_h2h.json
+          git commit -m "Aggiornamento dati API" || echo "Nessun nuovo dato da salvare, salto il commit."
+          git push || echo "Niente da pushare al momento."
