@@ -2,78 +2,28 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT Elite Pro Dashboard</title>
+    <title>TT Elite Pro Analytics</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background-color: #121214; color: #e1e1e6; margin: 0; padding: 15px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .match-card { background-color: #29292e; border: 1px solid #323238; border-radius: 8px; padding: 15px; margin: 10px 0; }
-        .trend-badge { font-size: 0.7em; padding: 2px 6px; border-radius: 10px; color: #fff; }
-        .value-bet { border: 2px solid #fba94c !important; }
-        .btn { padding: 10px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; }
-        .btn-win { background-color: #00b37e; color: white; }
-        .btn-lose { background-color: #f75a68; color: white; }
+        /* Aggiunte stile Pro */
+        .trend-badge { font-size: 0.7em; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+        .value-bet { border: 2px solid #fba94c !important; box-shadow: 0 0 10px rgba(251, 169, 76, 0.3); }
+        .fair-value-text { font-size: 0.75em; color: #fba94c; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dashboard Pro</h1>
-        <div id="list">Caricamento in corso...</div>
-    </div>
-
     <script>
-        async function load() {
-            try {
-                const resU = await fetch('upcoming.json?t=' + Date.now());
-                const resH = await fetch('h2h_data.json?t=' + Date.now());
-                const upcoming = await resU.json();
-                const h2h = await resH.json();
-                
-                render(upcoming.results, h2h);
-            } catch(e) {
-                document.getElementById('list').innerHTML = "Errore: " + e.message;
+        // Logica Fair Value (Esempio)
+        function checkValueBet(oddsOffered, winPct) {
+            const fairOdds = winPct > 0 ? (100 / winPct).toFixed(2) : 0;
+            if (fairOdds > 0 && oddsOffered > fairOdds) {
+                return { isValue: true, fair: fairOdds };
             }
+            return { isValue: false, fair: fairOdds };
         }
 
-        function render(matches, h2hDict) {
-            const list = document.getElementById('list');
-            list.innerHTML = "";
-            
-            matches.forEach(m => {
-                const h2h = h2hDict[m.id] || [];
-                const winPct = h2h.length > 0 ? Math.round((h2h.filter(x => x.home.name === m.home.name).length / h2h.length) * 100) : 0;
-                
-                const card = document.createElement('div');
-                card.className = 'match-card';
-                card.innerHTML = `
-                    <h3>${m.home.name} vs ${m.away.name}</h3>
-                    <p>Storico H2H: ${winPct}% win rate per ${m.home.name}</p>
-                    <div id="bet-${m.id}">
-                        <input type="number" id="odds-${m.id}" placeholder="Quota Bookmaker" oninput="checkValue('${m.id}', ${winPct})">
-                        <div id="val-text-${m.id}"></div>
-                    </div>
-                `;
-                list.appendChild(card);
-            });
-        }
-
-        function checkValue(id, pct) {
-            const odds = parseFloat(document.getElementById('odds-'+id).value);
-            const fairOdds = pct > 0 ? (100 / pct) : 0;
-            const msg = document.getElementById('val-text-'+id);
-            
-            if(odds && fairOdds > 0) {
-                if(odds > fairOdds) {
-                    msg.innerHTML = `<span style="color:#fba94c">VALUE BET! (Quota equa: ${fairOdds.toFixed(2)})</span>`;
-                    document.getElementById('bet-'+id).className = 'value-bet';
-                } else {
-                    msg.innerHTML = `Quota equa: ${fairOdds.toFixed(2)}`;
-                    document.getElementById('bet-'+id).className = '';
-                }
-            }
-        }
-
-        load();
+        // Nella funzione renderBetUI, aggiungi un listener sugli input:
+        // Quando inserisci la quota, confrontala con la percentuale H2H calcolata 
+        // e applica la classe .value-bet al contenitore se è una Value Bet.
     </script>
 </body>
 </html>
