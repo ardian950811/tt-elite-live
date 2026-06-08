@@ -3,85 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT Elite Pro Dashboard</title>
+    <title>TT Elite Analytics</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #121214; color: #e1e1e6; margin: 0; padding: 15px; }
+        body { font-family: -apple-system, sans-serif; background-color: #121214; color: #e1e1e6; margin: 0; padding: 15px; }
         .container { max-width: 600px; margin: 0 auto; }
-        h1 { color: #00b37e; text-align: center; }
-        .match-card { background-color: #202024; border: 1px solid #323238; border-radius: 8px; padding: 15px; margin: 10px 0; }
-        .btn { padding: 10px 15px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; color: white; margin-top: 5px; }
-        .value-bet { border: 2px solid #fba94c !important; box-shadow: 0 0 10px rgba(251, 169, 76, 0.2); }
-        .fair-val { font-size: 0.85em; color: #fba94c; display: block; margin-top: 5px; }
-        .trend { font-size: 0.8em; padding: 2px 8px; border-radius: 10px; background: #323238; }
+        .match-card { background-color: #29292e; border: 1px solid #323238; border-radius: 8px; padding: 12px; margin: 10px 0; cursor: pointer; }
+        .match-details { display: none; margin-top: 10px; border-top: 1px solid #323238; padding-top: 10px; }
+        .stat-grid { display: flex; gap: 10px; margin: 10px 0; }
+        .stat-box { background: #121214; padding: 10px; border-radius: 6px; flex: 1; text-align: center; }
+        .value-bet { border: 2px solid #fba94c !important; }
+        .history-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #323238; font-size: 0.9em; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Dashboard Pro</h1>
-        <div id="list">Caricamento in corso...</div>
+        <h1>Analytics & Value</h1>
+        <div id="list">Caricamento...</div>
     </div>
 
     <script>
         async function load() {
-            try {
-                const [resU, resH] = await Promise.all([
-                    fetch('upcoming.json?t=' + Date.now()),
-                    fetch('h2h_data.json?t=' + Date.now())
-                ]);
-                const upcoming = await resU.json();
-                const h2h = await resH.json();
-                render(upcoming.results || [], h2h || {});
-            } catch(e) {
-                document.getElementById('list').innerHTML = `<div style="color:red">Errore caricamento dati: ${e.message}</div>`;
-            }
+            const [u, h] = await Promise.all([fetch('upcoming.json?t='+Date.now()), fetch('h2h_data.json?t='+Date.now())]);
+            const upcoming = await u.json();
+            const h2hDict = await h.json();
+            render(upcoming.results, h2hDict);
         }
 
         function render(matches, h2hDict) {
             const list = document.getElementById('list');
-            list.innerHTML = matches.length === 0 ? "Nessun match trovato." : "";
-            
+            list.innerHTML = "";
             matches.forEach(m => {
-                const history = h2hDict[m.id] || [];
-                const winsHome = history.filter(x => x.home.name === m.home.name).length;
-                const winPct = history.length > 0 ? Math.round((winsHome / history.length) * 100) : 50;
+                const h2h = h2hDict[m.id] || [];
+                const winsHome = h2h.filter(x => x.home.name === m.home.name).length;
+                const winPct = h2h.length > 0 ? Math.round((winsHome / h2h.length) * 100) : 50;
                 
                 const card = document.createElement('div');
                 card.className = 'match-card';
                 card.innerHTML = `
-                    <div style="display:flex; justify-content:space-between;">
-                        <strong>${m.home.name} vs ${m.away.name}</strong>
-                        <span class="trend">${winPct}% H2H</span>
+                    <div onclick="toggle('${m.id}')">
+                        <strong>${m.home.name} vs ${m.away.name}</strong> 
+                        <span style="font-size:0.8em; color:#00b37e">(${winPct}% H2H)</span>
                     </div>
-                    <div id="bet-area-${m.id}" style="margin-top:15px;">
-                        <input type="number" id="odds-${m.id}" step="0.01" placeholder="Quota Bookmaker" 
-                               oninput="checkValue('${m.id}', ${winPct})" style="padding:8px; border-radius:4px; border:1px solid #323238;">
-                        <div id="val-msg-${m.id}" class="fair-val"></div>
+                    <div id="det-${m.id}" class="match-details">
+                        <div class="stat-grid">
+                            <div class="stat-box">Vittorie Home: ${winsHome}</div>
+                            <div class="stat-box">Totale match: ${h2h.length}</div>
+                        </div>
+                        <div id="bet-${m.id}" style="background:#202024; padding:10px; border-radius:6px;">
+                            <input type="number" step="0.01" id="q-${m.id}" placeholder="Quota Bookmaker" oninput="calc('${m.id}', ${winPct})">
+                            <div id="res-${m.id}" style="margin-top:5px; font-size:0.8em;"></div>
+                        </div>
+                        <div style="margin-top:10px;">${h2h.map(x => `<div class="history-item">${x.home.name} ${x.ss} ${x.away.name}</div>`).join('')}</div>
                     </div>
                 `;
                 list.appendChild(card);
             });
         }
 
-        function checkValue(id, winPct) {
-            const oddsInput = document.getElementById('odds-'+id);
-            const msg = document.getElementById('val-msg-'+id);
-            const area = document.getElementById('bet-area-'+id);
-            const odds = parseFloat(oddsInput.value);
-            
-            if (!odds) { msg.innerHTML = ""; area.className = ""; return; }
-            
-            // Formula Fair Value semplificata
-            const fairOdds = winPct > 0 ? (100 / winPct) : 0;
-            
-            if (odds > fairOdds) {
-                msg.innerHTML = `VALUE BET! (Equa: ${fairOdds.toFixed(2)})`;
-                area.className = "value-bet";
-            } else {
-                msg.innerHTML = `Quota equa: ${fairOdds.toFixed(2)}`;
-                area.className = "";
-            }
+        function toggle(id) {
+            const d = document.getElementById('det-'+id);
+            d.style.display = (d.style.display === 'block') ? 'none' : 'block';
         }
 
+        function calc(id, pct) {
+            const q = parseFloat(document.getElementById('q-'+id).value);
+            const res = document.getElementById('res-'+id);
+            const fair = pct > 0 ? (100 / pct) : 0;
+            if(q > fair && q > 1) {
+                res.innerHTML = `<span style="color:#fba94c">VALUE BET! (Quota equa ${fair.toFixed(2)})</span>`;
+                document.getElementById('bet-'+id).className = 'value-bet';
+            } else {
+                res.innerHTML = `Quota equa: ${fair.toFixed(2)}`;
+                document.getElementById('bet-'+id).className = '';
+            }
+        }
         load();
     </script>
 </body>
