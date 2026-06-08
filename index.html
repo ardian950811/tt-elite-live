@@ -2,28 +2,36 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>TT Elite Pro Analytics</title>
+    <title>TT Elite Dashboard</title>
     <style>
-        /* Aggiunte stile Pro */
-        .trend-badge { font-size: 0.7em; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
-        .value-bet { border: 2px solid #fba94c !important; box-shadow: 0 0 10px rgba(251, 169, 76, 0.3); }
-        .fair-value-text { font-size: 0.75em; color: #fba94c; margin-top: 5px; display: block; }
+        body { background-color: #121214; color: #e1e1e6; font-family: sans-serif; padding: 20px; }
+        .error-box { border: 1px solid #f75a68; color: #f75a68; padding: 20px; border-radius: 8px; text-align: center; }
     </style>
 </head>
 <body>
-    <script>
-        // Logica Fair Value (Esempio)
-        function checkValueBet(oddsOffered, winPct) {
-            const fairOdds = winPct > 0 ? (100 / winPct).toFixed(2) : 0;
-            if (fairOdds > 0 && oddsOffered > fairOdds) {
-                return { isValue: true, fair: fairOdds };
-            }
-            return { isValue: false, fair: fairOdds };
-        }
+    <div id="app">Caricamento in corso...</div>
 
-        // Nella funzione renderBetUI, aggiungi un listener sugli input:
-        // Quando inserisci la quota, confrontala con la percentuale H2H calcolata 
-        // e applica la classe .value-bet al contenitore se è una Value Bet.
+    <script>
+        async function init() {
+            try {
+                // Caricamento sicuro con gestione errori
+                const resUpcoming = await fetch('upcoming.json?t=' + Date.now());
+                if (!resUpcoming.ok) throw new Error("File upcoming.json non trovato");
+                const upcoming = await resUpcoming.json();
+
+                const resH2H = await fetch('h2h_data.json?t=' + Date.now());
+                if (!resH2H.ok) throw new Error("File h2h_data.json non trovato");
+                const h2h = await resH2H.json();
+
+                // Se arriviamo qui, i dati sono validi
+                document.getElementById('app').innerHTML = "Dati caricati con successo!";
+                // ... (qui andrebbe la tua logica di render)
+                
+            } catch (e) {
+                document.getElementById('app').innerHTML = `<div class="error-box">Errore di caricamento: ${e.message}. Controlla i file JSON su GitHub.</div>`;
+            }
+        }
+        init();
     </script>
 </body>
 </html>
