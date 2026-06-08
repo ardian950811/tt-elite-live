@@ -14,11 +14,8 @@
         .match-info { display: flex; justify-content: space-between; align-items: center; }
         .time { font-size: 0.85em; color: #8d8d99; background: #121214; padding: 4px 8px; border-radius: 4px; }
         .players { font-size: 1em; color: #e1e1e6; flex-grow: 1; margin-left: 15px; }
-        
-        /* Nuovi stili per il menu a tendina */
         .match-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #323238; animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-        
         .stat-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
         .stat-box { flex: 1; min-width: 120px; background: #121214; padding: 12px; border-radius: 6px; text-align: center; border: 1px solid #323238; }
         .full-width { flex: 1 1 100%; }
@@ -85,7 +82,6 @@
                 const elementCard = document.createElement('div');
                 elementCard.className = 'match-card';
                 
-                // Creiamo la struttura con il riquadro dettagli nascosto
                 elementCard.innerHTML = `
                     <div class="match-info">
                         <span class="time">${formattedTime}</span>
@@ -94,23 +90,18 @@
                     <div class="match-details" id="details-${matchId}"></div>
                 `;
                 
-                // Gestione del click (effetto a tendina)
                 elementCard.addEventListener('click', function(event) {
                     const detailsContainer = document.getElementById(`details-${matchId}`);
                     
-                    // Se è già aperto, lo chiudiamo
                     if (detailsContainer.style.display === 'block') {
                         detailsContainer.style.display = 'none';
                     } else {
-                        // Chiudiamo tutti gli altri dettagli aperti
                         document.querySelectorAll('.match-details').forEach(el => {
                             el.style.display = 'none';
                         });
                         
-                        // Apriamo quello cliccato
                         detailsContainer.style.display = 'block';
                         
-                        // Generiamo i dati solo se il div è vuoto
                         if (detailsContainer.innerHTML.trim() === "") {
                             const specificHistory = h2hDictionary[matchId] || [];
                             processHeadToHead(homeTeamName, awayTeamName, specificHistory, detailsContainer);
@@ -123,7 +114,8 @@
         }
 
         function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement) {
-            const filteredEncounters = historicalRecords.slice(0, 15);
+            // MODIFICATO QUI: Prende fino a 18 match dalla lista scaricata
+            const filteredEncounters = historicalRecords.slice(0, 18);
             
             if (filteredEncounters.length === 0) {
                 containerElement.innerHTML = "<p style='text-align:center; color:#8d8d99;'>Nessun precedente storico trovato su BetsAPI per questi due atleti.</p>";
