@@ -2,36 +2,78 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>TT Elite Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TT Elite Pro Dashboard</title>
     <style>
-        body { background-color: #121214; color: #e1e1e6; font-family: sans-serif; padding: 20px; }
-        .error-box { border: 1px solid #f75a68; color: #f75a68; padding: 20px; border-radius: 8px; text-align: center; }
+        body { font-family: -apple-system, sans-serif; background-color: #121214; color: #e1e1e6; margin: 0; padding: 15px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .match-card { background-color: #29292e; border: 1px solid #323238; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .trend-badge { font-size: 0.7em; padding: 2px 6px; border-radius: 10px; color: #fff; }
+        .value-bet { border: 2px solid #fba94c !important; }
+        .btn { padding: 10px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; }
+        .btn-win { background-color: #00b37e; color: white; }
+        .btn-lose { background-color: #f75a68; color: white; }
     </style>
 </head>
 <body>
-    <div id="app">Caricamento in corso...</div>
+    <div class="container">
+        <h1>Dashboard Pro</h1>
+        <div id="list">Caricamento in corso...</div>
+    </div>
 
     <script>
-        async function init() {
+        async function load() {
             try {
-                // Caricamento sicuro con gestione errori
-                const resUpcoming = await fetch('upcoming.json?t=' + Date.now());
-                if (!resUpcoming.ok) throw new Error("File upcoming.json non trovato");
-                const upcoming = await resUpcoming.json();
-
-                const resH2H = await fetch('h2h_data.json?t=' + Date.now());
-                if (!resH2H.ok) throw new Error("File h2h_data.json non trovato");
-                const h2h = await resH2H.json();
-
-                // Se arriviamo qui, i dati sono validi
-                document.getElementById('app').innerHTML = "Dati caricati con successo!";
-                // ... (qui andrebbe la tua logica di render)
+                const resU = await fetch('upcoming.json?t=' + Date.now());
+                const resH = await fetch('h2h_data.json?t=' + Date.now());
+                const upcoming = await resU.json();
+                const h2h = await resH.json();
                 
-            } catch (e) {
-                document.getElementById('app').innerHTML = `<div class="error-box">Errore di caricamento: ${e.message}. Controlla i file JSON su GitHub.</div>`;
+                render(upcoming.results, h2h);
+            } catch(e) {
+                document.getElementById('list').innerHTML = "Errore: " + e.message;
             }
         }
-        init();
+
+        function render(matches, h2hDict) {
+            const list = document.getElementById('list');
+            list.innerHTML = "";
+            
+            matches.forEach(m => {
+                const h2h = h2hDict[m.id] || [];
+                const winPct = h2h.length > 0 ? Math.round((h2h.filter(x => x.home.name === m.home.name).length / h2h.length) * 100) : 0;
+                
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.innerHTML = `
+                    <h3>${m.home.name} vs ${m.away.name}</h3>
+                    <p>Storico H2H: ${winPct}% win rate per ${m.home.name}</p>
+                    <div id="bet-${m.id}">
+                        <input type="number" id="odds-${m.id}" placeholder="Quota Bookmaker" oninput="checkValue('${m.id}', ${winPct})">
+                        <div id="val-text-${m.id}"></div>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function checkValue(id, pct) {
+            const odds = parseFloat(document.getElementById('odds-'+id).value);
+            const fairOdds = pct > 0 ? (100 / pct) : 0;
+            const msg = document.getElementById('val-text-'+id);
+            
+            if(odds && fairOdds > 0) {
+                if(odds > fairOdds) {
+                    msg.innerHTML = `<span style="color:#fba94c">VALUE BET! (Quota equa: ${fairOdds.toFixed(2)})</span>`;
+                    document.getElementById('bet-'+id).className = 'value-bet';
+                } else {
+                    msg.innerHTML = `Quota equa: ${fairOdds.toFixed(2)}`;
+                    document.getElementById('bet-'+id).className = '';
+                }
+            }
+        }
+
+        load();
     </script>
 </body>
 </html>
