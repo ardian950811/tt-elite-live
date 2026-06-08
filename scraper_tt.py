@@ -19,26 +19,36 @@ def fetch_data_with_details():
     else:
         score_cache = {}
 
-    # 1. Fetch upcoming matches
-    upcoming_url = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}"
+    # 1. Fetch upcoming matches with pagination
     print("Fetching upcoming matches...")
+    all_upcoming_matches = []
     
-    try:
-        response = requests.get(upcoming_url, timeout=30)
-        upcoming_data = response.json()
-        with open("upcoming.json", "w", encoding="utf-8") as f:
-            json.dump(upcoming_data, f, indent=4)
-    except Exception as e:
-        print(f"Error fetching upcoming: {e}")
-        return
+    for page_num in range(1, 4):
+        upcoming_url = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page_num}"
+        print(f"Fetching upcoming page {page_num}...")
+        try:
+            response = requests.get(upcoming_url, timeout=30)
+            data = response.json()
+            if 'results' in data and data['results']:
+                all_upcoming_matches.extend(data['results'])
+            else:
+                break 
+        except Exception as e:
+            print(f"Error fetching upcoming page {page_num}: {e}")
+            break
+        time.sleep(1) 
+        
+    upcoming_data = {"results": all_upcoming_matches}
+    
+    with open("upcoming.json", "w", encoding="utf-8") as f:
+        json.dump(upcoming_data, f, indent=4)
 
     # 2. Fetch H2H and precise point details
     h2h_dictionary = {}
     
-    if 'results' in upcoming_data and upcoming_data['results']:
-        matches = upcoming_data['results']
-        
-        for match in matches:
+    if all_upcoming_matches:
+        print(f"Total upcoming matches found: {len(all_upcoming_matches)}")
+        for match in all_upcoming_matches:
             event_id = match['id']
             home_name = match['home']['name']
             away_name = match['away']['name']
@@ -53,17 +63,14 @@ def fetch_data_with_details():
                 if 'results' in h2h_response and 'h2h' in h2h_response['results']:
                     raw_h2h = h2h_response['results']['h2h']
                     
-                    # Process up to 15 past matches
-                    for past_match in raw_h2h[:15]:
+                    # MODIFICATO QUI: Ora prende fino a 18 match
+                    for past_match in raw_h2h[:18]:
                         past_id = past_match['id']
                         
-                        # Check if specific point scores are missing
                         if 'scores' not in past_match:
-                            # Use internal cache if available
                             if past_id in score_cache:
                                 past_match['scores'] = score_cache[past_id]
                             else:
-                                # Fetch exact points from event/view API
                                 print(f"  -> Fetching exact points for past match {past_id}...")
                                 view_url = f"https://api.betsapi.com/v1/event/view?token={api_key}&event_id={past_id}"
                                 view_response = requests.get(view_url, timeout=30).json()
@@ -72,9 +79,9 @@ def fetch_data_with_details():
                                     detailed_data = view_response['results'][0]
                                     if 'scores' in detailed_data:
                                         past_match['scores'] = detailed_data['scores']
-                                        score_cache[past_id] = detailed_data['scores'] # Store in cache
+                                        score_cache[past_id] = detailed_data['scores']
                                 
-                                time.sleep(1) # Delay to respect API limits
+                                time.sleep(1)
                         
                         history_list.append(past_match)
                         
@@ -86,7 +93,6 @@ def fetch_data_with_details():
             
             time.sleep(1)
             
-    # Save the updated cache and the final H2H dataset
     with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(score_cache, f, indent=4)
         
