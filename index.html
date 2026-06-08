@@ -10,11 +10,16 @@
         .container { max-width: 600px; margin: 0 auto; }
         .section-box { background-color: #202024; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .match-card { background-color: #29292e; border: 1px solid #323238; border-radius: 6px; padding: 12px; margin: 8px 0; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
-        .match-card:hover { transform: translateY(-2px); border-color: #00b37e; }
+        .match-card:hover { border-color: #00b37e; }
         .match-info { display: flex; justify-content: space-between; align-items: center; }
         .time { font-size: 0.85em; color: #8d8d99; background: #121214; padding: 4px 8px; border-radius: 4px; }
         .players { font-size: 1em; color: #e1e1e6; flex-grow: 1; margin-left: 15px; }
-        .stat-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        
+        /* Nuovi stili per il menu a tendina */
+        .match-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #323238; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .stat-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
         .stat-box { flex: 1; min-width: 120px; background: #121214; padding: 12px; border-radius: 6px; text-align: center; border: 1px solid #323238; }
         .full-width { flex: 1 1 100%; }
         .stat-label { display: block; font-size: 0.8em; color: #8d8d99; margin-bottom: 5px; }
@@ -37,12 +42,6 @@
         <div class="section-box">
             <h2>Partite in Programma</h2>
             <div id="upcoming-list">Caricamento in corso...</div>
-        </div>
-
-        <div id="h2h-analysis" class="section-box" style="display: none;">
-            <h2 id="h2h-title">Analisi Scontri Diretti</h2>
-            <div id="h2h-stats"></div>
-            <div id="h2h-history" class="history-list"></div>
         </div>
     </div>
 
@@ -85,35 +84,49 @@
                 
                 const elementCard = document.createElement('div');
                 elementCard.className = 'match-card';
+                
+                // Creiamo la struttura con il riquadro dettagli nascosto
                 elementCard.innerHTML = `
                     <div class="match-info">
                         <span class="time">${formattedTime}</span>
                         <span class="players"><strong>${homeTeamName}</strong> vs <strong>${awayTeamName}</strong></span>
                     </div>
+                    <div class="match-details" id="details-${matchId}"></div>
                 `;
                 
-                elementCard.addEventListener('click', function() {
-                    // Extract the specific history array for this exact match ID
-                    const specificHistory = h2hDictionary[matchId] || [];
-                    processHeadToHead(homeTeamName, awayTeamName, specificHistory);
+                // Gestione del click (effetto a tendina)
+                elementCard.addEventListener('click', function(event) {
+                    const detailsContainer = document.getElementById(`details-${matchId}`);
+                    
+                    // Se è già aperto, lo chiudiamo
+                    if (detailsContainer.style.display === 'block') {
+                        detailsContainer.style.display = 'none';
+                    } else {
+                        // Chiudiamo tutti gli altri dettagli aperti
+                        document.querySelectorAll('.match-details').forEach(el => {
+                            el.style.display = 'none';
+                        });
+                        
+                        // Apriamo quello cliccato
+                        detailsContainer.style.display = 'block';
+                        
+                        // Generiamo i dati solo se il div è vuoto
+                        if (detailsContainer.innerHTML.trim() === "") {
+                            const specificHistory = h2hDictionary[matchId] || [];
+                            processHeadToHead(homeTeamName, awayTeamName, specificHistory, detailsContainer);
+                        }
+                    }
                 });
                 
                 listContainer.appendChild(elementCard);
             });
         }
 
-        function processHeadToHead(playerOne, playerTwo, historicalRecords) {
-            // Take up to 15 matches from the direct H2H history
+        function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement) {
             const filteredEncounters = historicalRecords.slice(0, 15);
             
-            const analysisView = document.getElementById('h2h-analysis');
-            analysisView.style.display = 'block';
-            
-            document.getElementById('h2h-title').innerText = `${playerOne} vs ${playerTwo}`;
-            
             if (filteredEncounters.length === 0) {
-                document.getElementById('h2h-stats').innerHTML = "<p style='text-align:center;'>Nessun precedente storico trovato su BetsAPI per questi due atleti.</p>";
-                document.getElementById('h2h-history').innerHTML = "";
+                containerElement.innerHTML = "<p style='text-align:center; color:#8d8d99;'>Nessun precedente storico trovato su BetsAPI per questi due atleti.</p>";
                 return;
             }
             
@@ -183,7 +196,7 @@
             
             const calculatedFinalAverage = validMatchesWithDetails > 0 ? (totalAggregatedPoints / validMatchesWithDetails).toFixed(1) : "N/D";
             
-            document.getElementById('h2h-stats').innerHTML = `
+            containerElement.innerHTML = `
                 <div class="stat-grid">
                     <div class="stat-box">
                         <span class="stat-label">Vittorie ${playerOne}</span>
@@ -198,11 +211,10 @@
                         <span class="stat-value text-yellow">${calculatedFinalAverage} punti</span>
                     </div>
                 </div>
-            `;
-            
-            document.getElementById('h2h-history').innerHTML = `
-                <h3>Storico ultimi ${filteredEncounters.length} incontri</h3>
-                ${htmlHistoryRows}
+                <div class="history-list">
+                    <h3 style="font-size: 1.1em; color: #8d8d99;">Storico ultimi ${filteredEncounters.length} incontri</h3>
+                    ${htmlHistoryRows}
+                </div>
             `;
         }
     </script>
