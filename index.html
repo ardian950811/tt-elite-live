@@ -21,6 +21,7 @@
         .full-width { flex: 1 1 100%; }
         .stat-label { display: block; font-size: 0.8em; color: #8d8d99; margin-bottom: 5px; }
         .stat-value { font-size: 1.3em; font-weight: bold; }
+        .pct-value { font-size: 0.6em; color: #8d8d99; font-weight: normal; margin-left: 4px; }
         .text-green { color: #00b37e; }
         .text-blue { color: #4ea8de; }
         .text-yellow { color: #fba94c; }
@@ -114,7 +115,6 @@
         }
 
         function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement) {
-            // MODIFICATO QUI: Prende fino a 18 match dalla lista scaricata
             const filteredEncounters = historicalRecords.slice(0, 18);
             
             if (filteredEncounters.length === 0) {
@@ -186,17 +186,22 @@
                 `;
             });
             
+            // Calcolo percentuali
+            const totalPlayed = filteredEncounters.length;
+            const p1WinPct = totalPlayed > 0 ? Math.round((playerOneWinsCount / totalPlayed) * 100) : 0;
+            const p2WinPct = totalPlayed > 0 ? Math.round((playerTwoWinsCount / totalPlayed) * 100) : 0;
+            
             const calculatedFinalAverage = validMatchesWithDetails > 0 ? (totalAggregatedPoints / validMatchesWithDetails).toFixed(1) : "N/D";
             
             containerElement.innerHTML = `
                 <div class="stat-grid">
                     <div class="stat-box">
                         <span class="stat-label">Vittorie ${playerOne}</span>
-                        <span class="stat-value text-green">${playerOneWinsCount}</span>
+                        <span class="stat-value text-green">${playerOneWinsCount} <span class="pct-value">(${p1WinPct}%)</span></span>
                     </div>
                     <div class="stat-box">
                         <span class="stat-label">Vittorie ${playerTwo}</span>
-                        <span class="stat-value text-blue">${playerTwoWinsCount}</span>
+                        <span class="stat-value text-blue">${playerTwoWinsCount} <span class="pct-value">(${p2WinPct}%)</span></span>
                     </div>
                     <div class="stat-box full-width">
                         <span class="stat-label">Media Punti Totali (su ${validMatchesWithDetails} match con set)</span>
@@ -204,7 +209,7 @@
                     </div>
                 </div>
                 <div class="history-list">
-                    <h3 style="font-size: 1.1em; color: #8d8d99;">Storico ultimi ${filteredEncounters.length} incontri</h3>
+                    <h3 style="font-size: 1.1em; color: #8d8d99;">Storico ultimi ${totalPlayed} incontri</h3>
                     ${htmlHistoryRows}
                 </div>
             `;
