@@ -14,6 +14,11 @@
         .tracker-grid { display: flex; justify-content: space-around; margin-top: 10px; }
         .tracker-val { font-size: 1.5em; font-weight: bold; }
         
+        /* Pulsanti Filtro Orario */
+        .filter-container { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
+        .filter-btn { background-color: #202024; border: 1px solid #323238; color: #8d8d99; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85em; font-weight: bold; transition: all 0.2s; }
+        .filter-btn.active { background-color: #00b37e; border-color: #00b37e; color: #fff; }
+
         .section-box { background-color: #202024; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .match-card { background-color: #29292e; border: 1px solid #323238; border-radius: 6px; padding: 12px; margin: 8px 0; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
         .match-card:hover { border-color: #00b37e; }
@@ -36,8 +41,12 @@
         .text-yellow { color: #fba94c; }
         .text-red { color: #f75a68; }
         
+        /* Modifiche per i bordi dinamici del valore */
+        .value-medium { border: 2px solid #fba94c !important; box-shadow: 0 0 8px rgba(251, 169, 76, 0.15); }
+        .value-high { border: 2px solid #00b37e !important; box-shadow: 0 0 10px rgba(0, 179, 126, 0.25); }
+
         /* Betting UI Elements */
-        .bet-section { background-color: #121214; padding: 12px; border-radius: 6px; margin-top: 15px; border: 1px solid #323238; }
+        .bet-section { background-color: #121214; padding: 12px; border-radius: 6px; margin-top: 15px; border: 1px solid #323238; transition: border 0.2s; }
         .bet-title { font-size: 0.9em; color: #8d8d99; margin-bottom: 10px; text-align: center; display: block; }
         .bet-inputs { display: flex; gap: 10px; margin-bottom: 10px; }
         .bet-input-group { flex: 1; display: flex; flex-direction: column; }
@@ -61,7 +70,6 @@
         .history-points { color: #fba94c; }
         .error-box { background-color: #f75a68; color: #fff; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold; }
         
-        /* New Styles per Trend Ultime 5 */
         .trend-box { background-color: #1a1a1e; padding: 10px; border-radius: 6px; margin-bottom: 10px; text-align: center; border: 1px dashed #323238; }
         .trend-title { display: block; font-size: 0.75em; color: #8d8d99; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
         .value-indicator { margin-top: 8px; text-align: center; font-size: 0.85em; padding: 6px; border-radius: 4px; background: #1a1a1e; border: 1px solid #323238; }
@@ -90,6 +98,12 @@
             <button onclick="clearAllBets()" class="btn btn-reset" style="margin-top:15px; width: 100%; font-size: 0.8em; padding: 6px;">Azzera Storico Scommesse</button>
         </div>
 
+        <div class="filter-container">
+            <button id="filter-all" class="filter-btn active" onclick="filterTime('all')">Tutti i Match</button>
+            <button id="filter-1h" class="filter-btn" onclick="filterTime(1)">Prossima Ora</button>
+            <button id="filter-3h" class="filter-btn" onclick="filterTime(3)">Prossime 3 Ore</button>
+        </div>
+
         <div class="section-box">
             <h2>Partite in Programma</h2>
             <div id="upcoming-list">Caricamento in corso...</div>
@@ -97,8 +111,8 @@
     </div>
 
     <script>
-        // Gestione Dati Scommesse (LocalStorage)
         let betsCache = JSON.parse(localStorage.getItem('tt_bets')) || {};
+        let currentFilterMode = 'all'; // Stato globale del filtro orario
 
         function saveBet(matchId, amount, odds, status) {
             betsCache[matchId] = {
@@ -182,12 +196,15 @@
                 const homeTeamName = matchObject.home.name;
                 const awayTeamName = matchObject.away.name;
                 const matchId = matchObject.id;
+                const matchTimestamp = parseInt(matchObject.time);
                 
-                const unixTimestamp = parseInt(matchObject.time) * 1000;
+                const unixTimestamp = matchTimestamp * 1000;
                 const formattedTime = new Date(unixTimestamp).toLocaleString('it-IT', { hour: '2-digit', minute: '2-digit' });
                 
                 const elementCard = document.createElement('div');
                 elementCard.className = 'match-card';
+                // Aggiungiamo il timestamp come attributo per permettere il filtraggio orario orario lato client
+                elementCard.setAttribute('data-timestamp', matchTimestamp);
                 
                 elementCard.innerHTML = `
                     <div class="match-info" onclick="toggleDetails('${matchId}', '${homeTeamName}', '${awayTeamName}')">
@@ -203,7 +220,40 @@
                 listContainer.appendChild(elementCard);
                 window[`h2h_${matchId}`] = h2hDictionary[matchId] || [];
             });
+
+            // Riapplica il filtro attivo in caso di ricaricamento dati
+            filterTime(currentFilterMode);
         }
+
+        // Nuova Logica: Filtro Orario Dinamico
+        window.filterTime = function(mode) {
+            currentFilterMode = mode;
+            
+            // Gestione classi attive sui bottoni UI
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if(mode === 'all') document.getElementById('filter-all').classList.add('active');
+            if(mode === 1) document.getElementById('filter-1h').classList.add('active');
+            if(mode === 3) document.getElementById('filter-3h').classList.add('active');
+
+            const nowUnix = Math.floor(Date.now() / 1000);
+            const cards = document.querySelectorAll('.match-card');
+
+            cards.forEach(card => {
+                const cardTime = parseInt(card.getAttribute('data-timestamp'));
+                
+                if (mode === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const maxTimeWindow = nowUnix + (mode * 3600);
+                    // Mostra il match se è nel range orario stabilito (e non è iniziato da più di 2 ore per i live pendenti)
+                    if (cardTime >= (nowUnix - 7200) && cardTime <= maxTimeWindow) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        };
 
         window.toggleDetails = function(matchId, homeTeam, awayTeam) {
             const detailsContainer = document.getElementById(`details-${matchId}`);
@@ -216,7 +266,6 @@
                 detailsContainer.style.display = 'block';
                 
                 if (statsContainer.innerHTML.trim() === "") {
-                    // Passiamo anche il matchId per poter salvare i dati calcolati
                     processHeadToHead(homeTeam, awayTeam, window[`h2h_${matchId}`], statsContainer, matchId);
                     renderBetUI(matchId);
                 }
@@ -237,7 +286,7 @@
         window.renderBetUI = function(matchId) {
             const betContainer = document.getElementById(`bet-ui-${matchId}`);
             const existingBet = betsCache[matchId];
-            const stats = window[`stats_${matchId}`]; // Recuperiamo le stats salvate
+            const stats = window[`stats_${matchId}`];
             
             let fairText = "N/D";
             if (stats) {
@@ -265,7 +314,7 @@
                 `;
             } else {
                 betContainer.innerHTML = `
-                    <div class="bet-section">
+                    <div class="bet-section" id="bet-section-wrapper-${matchId}">
                         <span class="bet-title">Registra Scommessa & Calcola Valore</span>
                         <div class="bet-inputs">
                             <div class="bet-input-group">
@@ -289,46 +338,56 @@
             }
         };
 
-        // Nuova funzione per calcolare il Value in tempo reale
+        // Nuova Logica: Calcolo Margine ROI Atteso & Bordi Dinamici
         window.checkFairValue = function(matchId) {
             const oddsInput = document.getElementById(`odds-${matchId}`).value.replace(',', '.');
             const odds = parseFloat(oddsInput);
             const stats = window[`stats_${matchId}`];
             const indicator = document.getElementById(`value-indicator-${matchId}`);
+            const wrapper = document.getElementById(`bet-section-wrapper-${matchId}`);
             
             if (!stats) return;
 
             const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct) : 999;
             const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct) : 999;
 
+            // Reset classi
+            wrapper.className = "bet-section";
+
             if (!odds) {
                 indicator.innerHTML = `Quote eque H2H: ${stats.p1Name} (<strong>${f1 === 999 ? '-' : f1.toFixed(2)}</strong>) | ${stats.p2Name} (<strong>${f2 === 999 ? '-' : f2.toFixed(2)}</strong>)`;
-                indicator.style.border = "1px solid #323238";
+                indicator.style.color = "#8d8d99";
                 return;
             }
 
             if (odds > f1 && odds > f2) {
-                indicator.innerHTML = `<span style="color:#fba94c">⚠️ Valore su entrambi (controlla i dati)</span>`;
-                indicator.style.border = "1px solid #fba94c";
+                indicator.innerHTML = `<span style="color:#fba94c">⚠️ Valore anomalo su entrambi i giocatori</span>`;
+                wrapper.classList.add("value-medium");
             } else if (odds > f1) {
-                indicator.innerHTML = `🔥 <strong style="color:#fba94c">VALUE BET</strong> se giochi <strong>${stats.p1Name}</strong>! (Equa: ${f1.toFixed(2)})`;
-                indicator.style.border = "1px solid #fba94c";
+                const margin = (((odds - f1) / f1) * 100).toFixed(1);
+                const isHighValue = margin >= 10;
+                
+                indicator.innerHTML = `🔥 <strong>VALUE BET</strong> su <strong>${stats.p1Name}</strong>! Margine: <strong>+${margin}%</strong> (Equa: ${f1.toFixed(2)})`;
+                wrapper.classList.add(isHighValue ? "value-high" : "value-medium");
+                indicator.style.color = isHighValue ? "#00b37e" : "#fba94c";
             } else if (odds > f2) {
-                indicator.innerHTML = `🔥 <strong style="color:#fba94c">VALUE BET</strong> se giochi <strong>${stats.p2Name}</strong>! (Equa: ${f2.toFixed(2)})`;
-                indicator.style.border = "1px solid #fba94c";
+                const margin = (((odds - f2) / f2) * 100).toFixed(1);
+                const isHighValue = margin >= 10;
+                
+                indicator.innerHTML = `🔥 <strong>VALUE BET</strong> su <strong>${stats.p2Name}</strong>! Margine: <strong>+${margin}%</strong> (Equa: ${f2.toFixed(2)})`;
+                wrapper.classList.add(isHighValue ? "value-high" : "value-medium");
+                indicator.style.color = isHighValue ? "#00b37e" : "#fba94c";
             } else {
-                indicator.innerHTML = `<span style="color:#f75a68">Nessun valore matematico.</span> Quote eque: ${f1 === 999 ? '-' : f1.toFixed(2)} e ${f2 === 999 ? '-' : f2.toFixed(2)}`;
-                indicator.style.border = "1px solid #f75a68";
+                indicator.innerHTML = `<span style="color:#f75a68">Nessun valore.</span> Quote eque: ${f1 === 999 ? '-' : f1.toFixed(2)} | ${f2 === 999 ? '-' : f2.toFixed(2)}`;
+                indicator.style.color = "#f75a68";
             }
         };
 
-        // Aggiunto matchId ai parametri
         function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement, matchId) {
             const filteredEncounters = historicalRecords.slice(0, 18);
             
             if (filteredEncounters.length === 0) {
                 containerElement.innerHTML = "<p style='text-align:center; color:#8d8d99; margin-bottom:15px;'>Nessun precedente storico su BetsAPI.</p>";
-                // Salviamo le stats vuote per evitare errori
                 window[`stats_${matchId}`] = { p1WinPct: 0, p2WinPct: 0, p1Name: playerOne, p2Name: playerTwo };
                 return;
             }
@@ -339,7 +398,6 @@
             let validMatchesWithDetails = 0;
             let htmlHistoryRows = "";
             
-            // Variabili per le ultime 5 partite
             const last5Encounters = filteredEncounters.slice(0, 5);
             let p1Last5Wins = 0;
             let p2Last5Wins = 0;
@@ -356,7 +414,7 @@
                 
                 if (winningSideName === playerOne) { 
                     playerOneWinsCount++; 
-                    if(index < 5) p1Last5Wins++; // Conta se è tra le prime 5 (più recenti)
+                    if(index < 5) p1Last5Wins++;
                 } 
                 else if (winningSideName === playerTwo) { 
                     playerTwoWinsCount++; 
@@ -407,7 +465,6 @@
             const p2WinPct = totalPlayed > 0 ? Math.round((playerTwoWinsCount / totalPlayed) * 100) : 0;
             const calculatedFinalAverage = validMatchesWithDetails > 0 ? (totalAggregatedPoints / validMatchesWithDetails).toFixed(1) : "N/D";
             
-            // Salviamo le percentuali in memoria per il calcolatore scommesse
             window[`stats_${matchId}`] = {
                 p1WinPct: p1WinPct,
                 p2WinPct: p2WinPct,
