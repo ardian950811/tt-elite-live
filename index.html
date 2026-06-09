@@ -60,6 +60,11 @@
         .history-score { font-weight: bold; }
         .history-points { color: #fba94c; }
         .error-box { background-color: #f75a68; color: #fff; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold; }
+        
+        /* New Styles per Trend Ultime 5 */
+        .trend-box { background-color: #1a1a1e; padding: 10px; border-radius: 6px; margin-bottom: 10px; text-align: center; border: 1px dashed #323238; }
+        .trend-title { display: block; font-size: 0.75em; color: #8d8d99; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .value-indicator { margin-top: 8px; text-align: center; font-size: 0.85em; padding: 6px; border-radius: 4px; background: #1a1a1e; border: 1px solid #323238; }
     </style>
 </head>
 <body>
@@ -99,7 +104,7 @@
             betsCache[matchId] = {
                 amount: parseFloat(amount) || 0,
                 odds: parseFloat(odds) || 1,
-                status: status // 'win' or 'lose'
+                status: status
             };
             localStorage.setItem('tt_bets', JSON.stringify(betsCache));
             updateSummary();
@@ -118,7 +123,6 @@
                 betsCache = {};
                 localStorage.removeItem('tt_bets');
                 updateSummary();
-                // Ricarica la pagina per resettare la UI
                 location.reload();
             }
         }
@@ -136,7 +140,6 @@
             }
 
             const profit = returned - invested;
-
             document.getElementById('total-invested').innerText = invested.toFixed(2) + " €";
             document.getElementById('total-returned').innerText = returned.toFixed(2) + " €";
             
@@ -145,7 +148,6 @@
             profitEl.className = "tracker-val " + (profit > 0 ? "text-green" : (profit < 0 ? "text-red" : "text-yellow"));
         }
 
-        // Setup Iniziale
         document.addEventListener("DOMContentLoaded", function() {
             updateSummary();
             loadDashboardData();
@@ -153,7 +155,6 @@
 
         async function loadDashboardData() {
             try {
-                // Aggiungiamo un parametro random per forzare il ricaricamento ed evitare la cache del browser sui JSON
                 const nocache = new Date().getTime();
                 const upcomingFetch = await fetch(`upcoming.json?v=${nocache}`);
                 const upcomingPayload = await upcomingFetch.json();
@@ -200,8 +201,6 @@
                 `;
                 
                 listContainer.appendChild(elementCard);
-                
-                // Pre-salviamo i dati storici nell'oggetto window per poterli chiamare quando si clicca
                 window[`h2h_${matchId}`] = h2hDictionary[matchId] || [];
             });
         }
@@ -213,12 +212,12 @@
             if (detailsContainer.style.display === 'block') {
                 detailsContainer.style.display = 'none';
             } else {
-                // Chiude tutti gli altri
                 document.querySelectorAll('.match-details').forEach(el => el.style.display = 'none');
                 detailsContainer.style.display = 'block';
                 
                 if (statsContainer.innerHTML.trim() === "") {
-                    processHeadToHead(homeTeam, awayTeam, window[`h2h_${matchId}`], statsContainer);
+                    // Passiamo anche il matchId per poter salvare i dati calcolati
+                    processHeadToHead(homeTeam, awayTeam, window[`h2h_${matchId}`], statsContainer, matchId);
                     renderBetUI(matchId);
                 }
             }
@@ -238,6 +237,14 @@
         window.renderBetUI = function(matchId) {
             const betContainer = document.getElementById(`bet-ui-${matchId}`);
             const existingBet = betsCache[matchId];
+            const stats = window[`stats_${matchId}`]; // Recuperiamo le stats salvate
+            
+            let fairText = "N/D";
+            if (stats) {
+                const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct).toFixed(2) : '-';
+                const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct).toFixed(2) : '-';
+                fairText = `Quote eque H2H: ${stats.p1Name} (<strong>${f1}</strong>) | ${stats.p2Name} (<strong>${f2}</strong>)`;
+            }
 
             if (existingBet) {
                 const profitText = existingBet.status === 'win' 
@@ -259,18 +266,21 @@
             } else {
                 betContainer.innerHTML = `
                     <div class="bet-section">
-                        <span class="bet-title">Registra Scommessa</span>
+                        <span class="bet-title">Registra Scommessa & Calcola Valore</span>
                         <div class="bet-inputs">
                             <div class="bet-input-group">
                                 <label>Importo (€)</label>
                                 <input type="number" id="amount-${matchId}" step="0.50" placeholder="Es. 10">
                             </div>
                             <div class="bet-input-group">
-                                <label>Quota</label>
-                                <input type="number" id="odds-${matchId}" step="0.01" placeholder="Es. 1.85">
+                                <label>Quota Bookmaker</label>
+                                <input type="number" id="odds-${matchId}" step="0.01" placeholder="Es. 1.85" oninput="checkFairValue('${matchId}')">
                             </div>
                         </div>
-                        <div class="bet-buttons">
+                        <div id="value-indicator-${matchId}" class="value-indicator" style="color: #8d8d99;">
+                            ${fairText}
+                        </div>
+                        <div class="bet-buttons" style="margin-top: 10px;">
                             <button onclick="handleBetAction('${matchId}', 'win')" class="btn btn-win">VINTO</button>
                             <button onclick="handleBetAction('${matchId}', 'lose')" class="btn btn-lose">PERSA</button>
                         </div>
@@ -279,11 +289,47 @@
             }
         };
 
-        function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement) {
+        // Nuova funzione per calcolare il Value in tempo reale
+        window.checkFairValue = function(matchId) {
+            const oddsInput = document.getElementById(`odds-${matchId}`).value.replace(',', '.');
+            const odds = parseFloat(oddsInput);
+            const stats = window[`stats_${matchId}`];
+            const indicator = document.getElementById(`value-indicator-${matchId}`);
+            
+            if (!stats) return;
+
+            const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct) : 999;
+            const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct) : 999;
+
+            if (!odds) {
+                indicator.innerHTML = `Quote eque H2H: ${stats.p1Name} (<strong>${f1 === 999 ? '-' : f1.toFixed(2)}</strong>) | ${stats.p2Name} (<strong>${f2 === 999 ? '-' : f2.toFixed(2)}</strong>)`;
+                indicator.style.border = "1px solid #323238";
+                return;
+            }
+
+            if (odds > f1 && odds > f2) {
+                indicator.innerHTML = `<span style="color:#fba94c">⚠️ Valore su entrambi (controlla i dati)</span>`;
+                indicator.style.border = "1px solid #fba94c";
+            } else if (odds > f1) {
+                indicator.innerHTML = `🔥 <strong style="color:#fba94c">VALUE BET</strong> se giochi <strong>${stats.p1Name}</strong>! (Equa: ${f1.toFixed(2)})`;
+                indicator.style.border = "1px solid #fba94c";
+            } else if (odds > f2) {
+                indicator.innerHTML = `🔥 <strong style="color:#fba94c">VALUE BET</strong> se giochi <strong>${stats.p2Name}</strong>! (Equa: ${f2.toFixed(2)})`;
+                indicator.style.border = "1px solid #fba94c";
+            } else {
+                indicator.innerHTML = `<span style="color:#f75a68">Nessun valore matematico.</span> Quote eque: ${f1 === 999 ? '-' : f1.toFixed(2)} e ${f2 === 999 ? '-' : f2.toFixed(2)}`;
+                indicator.style.border = "1px solid #f75a68";
+            }
+        };
+
+        // Aggiunto matchId ai parametri
+        function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement, matchId) {
             const filteredEncounters = historicalRecords.slice(0, 18);
             
             if (filteredEncounters.length === 0) {
                 containerElement.innerHTML = "<p style='text-align:center; color:#8d8d99; margin-bottom:15px;'>Nessun precedente storico su BetsAPI.</p>";
+                // Salviamo le stats vuote per evitare errori
+                window[`stats_${matchId}`] = { p1WinPct: 0, p2WinPct: 0, p1Name: playerOne, p2Name: playerTwo };
                 return;
             }
             
@@ -293,7 +339,12 @@
             let validMatchesWithDetails = 0;
             let htmlHistoryRows = "";
             
-            filteredEncounters.forEach(record => {
+            // Variabili per le ultime 5 partite
+            const last5Encounters = filteredEncounters.slice(0, 5);
+            let p1Last5Wins = 0;
+            let p2Last5Wins = 0;
+
+            filteredEncounters.forEach((record, index) => {
                 const rawScoreString = record.ss || "0-0";
                 const absoluteScoreParts = rawScoreString.split('-');
                 const homeScoreInt = parseInt(absoluteScoreParts[0]) || 0;
@@ -303,8 +354,14 @@
                 if (homeScoreInt > awayScoreInt) { winningSideName = record.home.name; } 
                 else if (awayScoreInt > homeScoreInt) { winningSideName = record.away.name; }
                 
-                if (winningSideName === playerOne) { playerOneWinsCount++; } 
-                else if (winningSideName === playerTwo) { playerTwoWinsCount++; }
+                if (winningSideName === playerOne) { 
+                    playerOneWinsCount++; 
+                    if(index < 5) p1Last5Wins++; // Conta se è tra le prime 5 (più recenti)
+                } 
+                else if (winningSideName === playerTwo) { 
+                    playerTwoWinsCount++; 
+                    if(index < 5) p2Last5Wins++;
+                }
                 
                 let specificMatchSum = 0;
                 let calculationFlag = false;
@@ -350,7 +407,25 @@
             const p2WinPct = totalPlayed > 0 ? Math.round((playerTwoWinsCount / totalPlayed) * 100) : 0;
             const calculatedFinalAverage = validMatchesWithDetails > 0 ? (totalAggregatedPoints / validMatchesWithDetails).toFixed(1) : "N/D";
             
+            // Salviamo le percentuali in memoria per il calcolatore scommesse
+            window[`stats_${matchId}`] = {
+                p1WinPct: p1WinPct,
+                p2WinPct: p2WinPct,
+                p1Name: playerOne,
+                p2Name: playerTwo
+            };
+
+            const htmlTrendLast5 = `
+                <div class="trend-box">
+                    <span class="trend-title">Stato di forma (Ultime ${last5Encounters.length} dirette)</span>
+                    <span style="color: #00b37e; font-weight: bold;">${playerOne}: ${p1Last5Wins} Vinte</span>
+                    <span style="color: #8d8d99; margin: 0 10px;">|</span>
+                    <span style="color: #4ea8de; font-weight: bold;">${playerTwo}: ${p2Last5Wins} Vinte</span>
+                </div>
+            `;
+            
             containerElement.innerHTML = `
+                ${last5Encounters.length > 0 ? htmlTrendLast5 : ''}
                 <div class="stat-grid">
                     <div class="stat-box">
                         <span class="stat-label">Vittorie ${playerOne}</span>
