@@ -1,144 +1,148 @@
-import os
-import sys
+import requests
 import json
-import urllib.parse
-import urllib.request
+import time
+import os
 from datetime import datetime
 
-def log_message(msg):
-    print(f"[*] {msg}")
+def fetch_data_with_details():
+    api_key = "247481-2D476S3VQDJuAj"
+    sport_id = "92"
+    league_id = "29128"
+    
+    # Load cache to avoid redundant API calls and save tokens
+    cache_file = "match_cache.json"
+    if os.path.exists(cache_file):
+        with open(cache_file, "r", encoding="utf-8") as f:
+            try:
+                score_cache = json.load(f)
+            except:
+                score_cache = {}
+    else:
+        score_cache = {}
 
-def fetch_api_data(api_url):
-    """
-    Fetches the live schedule and results from your sports API.
-    """
-    # Se hai l'URL reale dell'API configurato, rimuovi i '#' dalle righe sotto:
-    # req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
-    # try:
-    #     with urllib.request.urlopen(req, timeout=10) as response:
-    #         return json.loads(response.read())
-    # except Exception as e:
-    #     log_message(f"API Error: {e}")
-    #     return {}
+    # 1. Fetch upcoming matches with pagination
+    print("Fetching upcoming matches...")
+    all_upcoming_matches = []
     
-    # DATI DI SIMULAZIONE (Sostituisci o attiva la chiamata reale qui sopra)
-    # Questo serve per testare il comportamento quando ci sono più match lo stesso giorno
-    return {
-        "results": [
-            {
-                "time": f"{datetime.now().strftime('%Y-%m-%d')} 09:30:00",
-                "status": "ended",
-                "home": {"name": "Jan Zandecki"},
-                "away": {"name": "Jaime Lama"},
-                "scores": {"home": "3", "away": "1"}
-            },
-            {
-                "time": f"{datetime.now().strftime('%Y-%m-%d')} 10:15:00",
-                "status": "ended",
-                "home": {"name": "Alex Moreno"},
-                "away": {"name": "Jan Zandecki"},
-                "scores": {"home": "3", "away": "2"}
-            },
-            {
-                "time": f"{datetime.now().strftime('%Y-%m-%d')} 14:00:00",
-                "status": "notstarted",
-                "home": {"name": "Jaime Lama"},
-                "away": {"name": "Jan Zandecki"},
-                "scores": {"home": "0", "away": "0"}
-            }
-        ]
-    }
+    for page_num in range(1, 4):
+        upcoming_url = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page_num}"
+        print(f"Fetching upcoming page {page_num}...")
+        try:
+            response = requests.get(upcoming_url, timeout=30)
+            data = response.json()
+            if 'results' in data and data['results']:
+                all_upcoming_matches.extend(data['results'])
+            else:
+                break 
+        except Exception as e:
+            print(f"Error fetching upcoming page {page_num}: {e}")
+            break
+        time.sleep(1) 
+        
+    upcoming_data = {"results": all_upcoming_matches}
+    
+    with open("upcoming.json", "w", encoding="utf-8") as f:
+        json.dump(upcoming_data, f, indent=4)
 
-def analyze_tt_elite_series():
-    # Inserisci qui l'indirizzo della tua API (es. BetsAPI o AiScore)
-    api_url = "INSERISCI_QUI_IL_TUO_URL_API" 
+    # 1B. NUOVO: Fetch dei match terminati OGGI per recuperare gli scontri diretti quotidiani
+    print("Fetching today's ended matches to catch daily encounters...")
+    today_ended_matches = []
+    today_date_str = datetime.utcnow().strftime('%Y%m%d') # Formato AAAAMMGG richiesto da BetsAPI
     
-    api_response = fetch_api_data(api_url)
-    matches = api_response.get("results", [])
-    
-    if not matches:
-        log_message("No data received from API. Exiting.")
-        sys.exit(0)
+    ended_today_url = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}&day={today_date_str}"
+    try:
+        ended_response = requests.get(ended_today_url, timeout=30).json()
+        if 'results' in ended_response and ended_response['results']:
+            today_ended_matches = ended_response['results']
+            print(f"Found {len(today_ended_matches)} matches already ended today.")
+    except Exception as e:
+        print(f"Error fetching today's ended matches: {e}")
 
-    daily_stats = {}
-    played_today = {}
+    # 2. Fetch H2H and precise point details
+    h2h_dictionary = {}
     
-    finished_matches = []
-    upcoming_matches = []
-    
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    
-    # 1. Separa i match finiti da quelli da giocare (solo relativi a oggi)
-    for match in matches:
-        match_time = match.get("time", "")
-        if current_date not in match_time:
-            continue
+    if all_upcoming_matches:
+        print(f"Total upcoming matches found: {len(all_upcoming_matches)}")
+        for match in all_upcoming_matches:
+            event_id = match['id']
+            home_name = match['home']['name']
+            away_name = match['away']['name']
+            print(f"Processing H2H for: {home_name} vs {away_name}")
             
-        status = match.get("status", "")
-        if status == "ended":
-            finished_matches.append(match)
-        else:
-            upcoming_matches.append(match)
-
-    # 2. Elabora i match conclusi per aggiornare la forma e registrare i scontrati del giorno
-    for match in finished_matches:
-        home_player = match["home"]["name"]
-        away_player = match["away"]["name"]
-        home_score = int(match["scores"]["home"])
-        away_score = int(match["scores"]["away"])
-        
-        winner = home_player if home_score > away_score else away_player
-        
-        for player in [home_player, away_player]:
-            if player not in daily_stats:
-                daily_stats[player] = {"wins": 0, "losses": 0}
+            # Prepariamo la lista finale degli H2H partendo da quelli giocati OGGI
+            history_list = []
+            seen_match_ids = set() # Per evitare duplicati se BetsAPI aggiorna velocemente
+            
+            # Cerca se si sono già sfidati OGGI
+            for t_match in today_ended_matches:
+                t_home = t_match.get('home', {}).get('name', '')
+                t_away = t_match.get('away', {}).get('name', '')
+                t_id = t_match.get('id')
                 
-        if winner == home_player:
-            daily_stats[home_player]["wins"] += 1
-            daily_stats[away_player]["losses"] += 1
-        else:
-            daily_stats[away_player]["wins"] += 1
-            daily_stats[home_player]["losses"] += 1
-            
-        # Genera una chiave unica per la coppia di giocatori (indipendentemente da chi gioca in casa)
-        matchup_key = tuple(sorted([home_player, away_player]))
-        if matchup_key not in played_today:
-            played_today[matchup_key] = []
-        
-        played_today[matchup_key].append({
-            "winner": winner,
-            "score": f"{home_score}-{away_score}",
-            "time": match_time.split(" ")[1]
-        })
+                # Se i due giocatori coincidono (in qualsiasi ordine)
+                if ((t_home == home_name and t_away == away_name) or (t_home == away_name and t_away == home_name)):
+                    if t_id not in seen_match_ids:
+                        print(f"  -> Found a match played TODAY ({t_id}). Injecting into H2H.")
+                        # Salviamo i punteggi dei set in cache se presenti
+                        if 'scores' in t_match:
+                            score_cache[t_id] = t_match['scores']
+                        history_list.append(t_match)
+                        seen_match_ids.add(t_id)
 
-    # 3. Analizza e stampa i match in arrivo o live nel terminale delle Actions
-    print(f"\n=======================================================")
-    print(f"   TT ELITE SERIES DAILY RADAR REPORT ({current_date})")
-    print(f"=======================================================")
-    
-    for match in upcoming_matches:
-        p1 = match["home"]["name"]
-        p2 = match["away"]["name"]
-        match_time = match.get("time", "").split(" ")[1]
-        
-        rec_1 = daily_stats.get(p1, {"wins": 0, "losses": 0})
-        rec_2 = daily_stats.get(p2, {"wins": 0, "losses": 0})
-        
-        matchup_key = tuple(sorted([p1, p2]))
-        
-        print(f"\n[MATCH] Time: {match_time} | {p1} vs {p2}")
-        print(f"   -> Form {p1}: {rec_1['wins']}W - {rec_1['losses']}L")
-        print(f"   -> Form {p2}: {rec_2['wins']}W - {rec_2['losses']}L")
-        
-        # Verifica se la coppia ha già giocato oggi
-        if matchup_key in played_today:
-            print(f"   ⚠️ ALERT: SAME-DAY REMATCH DETECTED!")
-            for previous in played_today[matchup_key]:
-                print(f"      - Played earlier: Winner was {previous['winner']} ({previous['score']}) at {previous['time']}")
-        else:
-            print("   ✅ First meeting today.")
+            # Ora scarichiamo lo storico H2H standard dall'API
+            h2h_url = f"https://api.betsapi.com/v1/event/history?token={api_key}&event_id={event_id}"
             
-    print("\n=======================================================")
+            try:
+                h2h_response = requests.get(h2h_url, timeout=30).json()
+                
+                if 'results' in h2h_response and 'h2h' in h2h_response['results']:
+                    raw_h2h = h2h_response['results']['h2h']
+                    
+                    # Prendiamo i match storici (fino a riempirne un massimo di 18 totali)
+                    for past_match in raw_h2h:
+                        past_id = past_match['id']
+                        
+                        # Se abbiamo già inserito questo match tramite il controllo "di oggi", saltalo
+                        if past_id in seen_match_ids:
+                            continue
+                            
+                        if len(history_list) >= 18:
+                            break
+                        
+                        if 'scores' not in past_match:
+                            if past_id in score_cache:
+                                past_match['scores'] = score_cache[past_id]
+                            else:
+                                print(f"  -> Fetching exact points for past match {past_id}...")
+                                view_url = f"https://api.betsapi.com/v1/event/view?token={api_key}&event_id={past_id}"
+                                view_response = requests.get(view_url, timeout=30).json()
+                                
+                                if 'results' in view_response and len(view_response['results']) > 0:
+                                    detailed_data = view_response['results'][0]
+                                    if 'scores' in detailed_data:
+                                        past_match['scores'] = detailed_data['scores']
+                                        score_cache[past_id] = detailed_data['scores']
+                                
+                                time.sleep(1)
+                        
+                        history_list.append(past_match)
+                        seen_match_ids.add(past_id)
+                        
+                h2h_dictionary[event_id] = history_list
+                
+            except Exception as e:
+                print(f"Error on event {event_id}: {e}")
+                # Se fallisce la chiamata H2H, teniamo almeno quelli di oggi intercettati prima
+                h2h_dictionary[event_id] = history_list
+            
+            time.sleep(1)
+            
+    with open(cache_file, "w", encoding="utf-8") as f:
+        json.dump(score_cache, f, indent=4)
+        
+    with open("h2h_data.json", "w", encoding="utf-8") as f:
+        json.dump(h2h_dictionary, f, indent=4)
+    print("All extraction processes completed successfully.")
 
 if __name__ == "__main__":
-    analyze_tt_elite_series()
+    fetch_data_with_details()
