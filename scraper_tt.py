@@ -44,7 +44,7 @@ def fetch_data_with_details():
     with open("upcoming.json", "w", encoding="utf-8") as f:
         json.dump(upcoming_data, f, indent=4)
 
-    # 1B. NUOVO: Fetch dei match terminati OGGI per recuperare gli scontri diretti quotidiani
+    # 1B. Fetch dei match terminati OGGI per recuperare gli scontri diretti quotidiani
     print("Fetching today's ended matches to catch daily encounters...")
     today_ended_matches = []
     today_date_str = datetime.utcnow().strftime('%Y%m%d') # Formato AAAAMMGG richiesto da BetsAPI
@@ -58,6 +58,44 @@ def fetch_data_with_details():
     except Exception as e:
         print(f"Error fetching today's ended matches: {e}")
 
+    # --- NUOVA LOGICA: CALCOLO STATO FORMA GIORNALIERO COMPLETO ---
+    player_today_form = {}
+    
+    for match in today_ended_matches:
+        home_name = match.get('home', {}).get('name')
+        away_name = match.get('away', {}).get('name')
+        if not home_name or not away_name:
+            continue
+            
+        ss = match.get('ss', '') # Punteggio es. "3-1" o "2-3"
+        if not ss or '-' not in ss:
+            continue
+            
+        try:
+            home_score, away_score = map(int, ss.split('-'))
+        except:
+            continue
+            
+        # Calcola l'orario italiano del match
+        try:
+            timestamp = int(match.get('time', 0))
+            time_str = datetime.fromtimestamp(timestamp).strftime('%H:%M')
+        except:
+            time_str = "--:--"
+            
+        if home_name not in player_today_form:
+            player_today_form[home_name] = []
+        if away_name not in player_today_form:
+            player_today_form[away_name] = []
+            
+        # Determina chi ha vinto e aggiunge alla cronologia odierna del giocatore
+        if home_score > away_score:
+            player_today_form[home_name].append({'res': 'V', 'opp': away_name, 'score': ss, 'time': time_str})
+            player_today_form[away_name].append({'res': 'R', 'opp': home_name, 'score': ss, 'time': time_str})
+        else:
+            player_today_form[home_name].append({'res': 'R', 'opp': away_name, 'score': ss, 'time': time_str})
+            player_today_form[away_name].append({'res': 'V', 'opp': home_name, 'score': ss, 'time': time_str})
+
     # 2. Fetch H2H and precise point details
     h2h_dictionary = {}
     
@@ -69,43 +107,31 @@ def fetch_data_with_details():
             away_name = match['away']['name']
             print(f"Processing H2H for: {home_name} vs {away_name}")
             
-            # Prepariamo la lista finale degli H2H partendo da quelli giocati OGGI
             history_list = []
-            seen_match_ids = set() # Per evitare duplicati se BetsAPI aggiorna velocemente
+            seen_match_ids = set() 
             
-            # Cerca se si sono già sfidati OGGI
             for t_match in today_ended_matches:
                 t_home = t_match.get('home', {}).get('name', '')
                 t_away = t_match.get('away', {}).get('name', '')
                 t_id = t_match.get('id')
                 
-                # Se i due giocatori coincidono (in qualsiasi ordine)
                 if ((t_home == home_name and t_away == away_name) or (t_home == away_name and t_away == home_name)):
                     if t_id not in seen_match_ids:
-                        print(f"  -> Found a match played TODAY ({t_id}). Injecting into H2H.")
-                        # Salviamo i punteggi dei set in cache se presenti
                         if 'scores' in t_match:
                             score_cache[t_id] = t_match['scores']
                         history_list.append(t_match)
                         seen_match_ids.add(t_id)
 
-            # Ora scarichiamo lo storico H2H standard dall'API
             h2h_url = f"https://api.betsapi.com/v1/event/history?token={api_key}&event_id={event_id}"
             
             try:
                 h2h_response = requests.get(h2h_url, timeout=30).json()
-                
                 if 'results' in h2h_response and 'h2h' in h2h_response['results']:
                     raw_h2h = h2h_response['results']['h2h']
-                    
-                    # Prendiamo i match storici (fino a riempirne un massimo di 18 totali)
                     for past_match in raw_h2h:
                         past_id = past_match['id']
-                        
-                        # Se abbiamo già inserito questo match tramite il controllo "di oggi", saltalo
                         if past_id in seen_match_ids:
                             continue
-                            
                         if len(history_list) >= 18:
                             break
                         
@@ -113,16 +139,13 @@ def fetch_data_with_details():
                             if past_id in score_cache:
                                 past_match['scores'] = score_cache[past_id]
                             else:
-                                print(f"  -> Fetching exact points for past match {past_id}...")
                                 view_url = f"https://api.betsapi.com/v1/event/view?token={api_key}&event_id={past_id}"
                                 view_response = requests.get(view_url, timeout=30).json()
-                                
                                 if 'results' in view_response and len(view_response['results']) > 0:
                                     detailed_data = view_response['results'][0]
                                     if 'scores' in detailed_data:
                                         past_match['scores'] = detailed_data['scores']
                                         score_cache[past_id] = detailed_data['scores']
-                                
                                 time.sleep(1)
                         
                         history_list.append(past_match)
@@ -132,7 +155,6 @@ def fetch_data_with_details():
                 
             except Exception as e:
                 print(f"Error on event {event_id}: {e}")
-                # Se fallisce la chiamata H2H, teniamo almeno quelli di oggi intercettati prima
                 h2h_dictionary[event_id] = history_list
             
             time.sleep(1)
@@ -142,7 +164,103 @@ def fetch_data_with_details():
         
     with open("h2h_data.json", "w", encoding="utf-8") as f:
         json.dump(h2h_dictionary, f, indent=4)
-    print("All extraction processes completed successfully.")
+
+    # --- NUOVA LOGICA: GENERAZIONE FILE HTML VISIVO ---
+    print("Generating HTML visualization...")
+    
+    html_content = """<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TT Elite Series - Radar Stato Forma</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333; }
+        h2 { text-align: center; color: #222; margin-bottom: 30px; }
+        .match-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); max-width: 700px; margin: 0 auto 25px auto; }
+        .match-header { font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; color: #0056b3; text-align: center; }
+        .players-container { display: flex; justify-content: space-between; }
+        .player-column { width: 48%; background: #fafafa; padding: 12px; border-radius: 6px; border: 1px solid #eef0f2; }
+        .player-title { font-weight: bold; font-size: 16px; margin-bottom: 12px; color: #111; text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+        .history-row { display: flex; align-items: center; margin-bottom: 8px; font-size: 14px; }
+        .box-v { background-color: #28a745; color: white; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 14px; border-radius: 4px; margin-right: 10px; flex-shrink: 0; }
+        .box-r { background-color: #dc3545; color: white; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 14px; border-radius: 4px; margin-right: 10px; flex-shrink: 0; }
+        .no-matches { color: #888; font-style: italic; text-align: center; font-size: 14px; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>🏓 TT Elite Series - Palinsesto & Stato Forma Giornaliero</h2>
+"""
+
+    if not all_upcoming_matches:
+        html_content += "<p style='text-align:center; color:#666;'>Nessun match in programma al momento.</p>"
+    else:
+        for match in all_upcoming_matches:
+            home_name = match.get('home', {}).get('name', 'Unknown')
+            away_name = match.get('away', {}).get('name', 'Unknown')
+            
+            try:
+                timestamp = int(match.get('time', 0))
+                time_str = datetime.fromtimestamp(timestamp).strftime('%H:%M')
+            except:
+                time_str = "--:--"
+                
+            html_content += f"""
+            <div class="match-card">
+                <div class="match-header">Ore {time_str} | {home_name} vs {away_name}</div>
+                <div class="players-container">
+                    <div class="player-column">
+                        <div class="player-title">{home_name}</div>
+            """
+            
+            home_history = player_today_form.get(home_name, [])
+            if home_history:
+                for h in home_history:
+                    box_class = "box-v" if h['res'] == 'V' else "box-r"
+                    html_content += f"""
+                        <div class="history-row">
+                            <div class="{box_class}">{h['res']}</div>
+                            <div>vs {h['opp']} ({h['score']}) alle {h['time']}</div>
+                        </div>
+                    """
+            else:
+                html_content += "<div class='no-matches'>Nessun match giocato oggi</div>"
+                
+            html_content += f"""
+                    </div>
+                    
+                    <div class="player-column">
+                        <div class="player-title">{away_name}</div>
+            """
+            
+            away_history = player_today_form.get(away_name, [])
+            if away_history:
+                for a in away_history:
+                    box_class = "box-v" if a['res'] == 'V' else "box-r"
+                    html_content += f"""
+                        <div class="history-row">
+                            <div class="{box_class}">{a['res']}</div>
+                            <div>vs {a['opp']} ({a['score']}) alle {a['time']}</div>
+                        </div>
+                    """
+            else:
+                html_content += "<div class='no-matches'>Nessun match giocato oggi</div>"
+                
+            html_content += """
+                    </div>
+                </div>
+            </div>
+            """
+            
+    html_content += """
+</body>
+</html>
+"""
+
+    with open("pingpong.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print("All extraction processes and HTML generation completed successfully.")
 
 if __name__ == "__main__":
     fetch_data_with_details()
