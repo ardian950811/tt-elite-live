@@ -3,127 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT Elite Series - Stato di Forma</title>
+    <title>TT Elite Series - Dashboard Analitica</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #1e1e24;
+            color: #f5f5f5;
             padding: 20px;
+            margin: 0;
         }
 
-        .player-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            max-width: 450px;
+        h2, h3 {
+            color: #fff;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #3a3a42;
+            padding-bottom: 10px;
+            margin-top: 30px;
             margin-bottom: 20px;
         }
 
-        .player-name {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
+        /* SCHEDA GIOCATORE / MATCH */
+        .card {
+            background-color: #2a2a35;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 440px;
+            box-sizing: border-box;
+            border: 1px solid #3a3a42;
+        }
+
+        .card-active {
+            border: 1px solid #10b981; /* Bordo verde per il match selezionato/in rilievo */
+        }
+
+        .match-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        .time-badge {
+            background-color: #3b82f6;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* METRICHE STATISTICHE */
+        .metric-box {
+            background-color: #1e1e24;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .metric-title {
+            font-size: 13px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .pts-orange { color: #f59e0b; }
+        .win-green { color: #10b981; }
+        .win-blue { color: #3b82f6; }
+
+        /* VALUE BET BADGE */
+        .value-badge {
+            display: inline-block;
+            background-color: #10b981;
+            color: #000;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* COMPONENTI FORM DI OGGI */
         .match-row {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            font-size: 16px;
-            color: #555;
+            margin-bottom: 8px;
+            font-size: 15px;
         }
 
         .box-v {
-            background-color: #28a745; 
-            color: white;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 4px;
-            margin-right: 15px;
+            background-color: #10b981; color: white;
+            width: 32px; height: 32px; display: flex;
+            justify-content: center; align-items: center;
+            font-weight: bold; border-radius: 4px; margin-right: 12px;
         }
 
         .box-r {
-            background-color: #dc3545; 
-            color: white;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 4px;
-            margin-right: 15px;
+            background-color: #ef4444; color: white;
+            width: 32px; height: 32px; display: flex;
+            justify-content: center; align-items: center;
+            font-weight: bold; border-radius: 4px; margin-right: 12px;
         }
 
-        .no-data {
-            color: #888;
-            font-style: italic;
-            font-size: 15px;
+        /* STORICO H2H LISTA */
+        .h2h-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ccc;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .h2h-item {
+            font-size: 13px;
+            color: #9ca3af;
+            border-bottom: 1px solid #3a3a42;
+            padding: 4px 0;
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
 <body>
 
-    <h2>🏓 Stato di Forma - Partite di Oggi</h2>
-    <div id="loading">Caricamento dati aggiornati...</div>
-    <div id="container"></div>
+    <h2 class="section-title">🏓 Stato di Forma - Partite di Oggi</h2>
+    <div class="grid-container" id="form-container">Caricamento stato di forma...</div>
+
+    <h2 class="section-title">📊 Analisi Prossimi Match & Value Radar</h2>
+    <div class="grid-container" id="upcoming-container">Caricamento analisi statistiche...</div>
 
     <script>
-        async function loadWebData() {
-            const container = document.getElementById('container');
-            const loading = document.getElementById('loading');
-            
+        async function loadDashboardData() {
+            // 1. CARICAMENTO STATO DI FORMA DI OGGI
             try {
-                const response = await fetch('today_form.json');
-                const formData = await response.json();
-                
-                loading.style.display = 'none';
-                container.innerHTML = ""; 
+                const resForm = await fetch('today_form.json');
+                const formData = await resForm.json();
+                const formContainer = document.getElementById('form-container');
+                formContainer.innerHTML = "";
 
-                const players = Object.keys(formData);
-                
-                if (players.length === 0) {
-                    container.innerHTML = "<p class='no-data'>Nessun match giocato nelle ultime ore.</p>";
+                Object.keys(formData).forEach(player => {
+                    let cardHtml = `<div class="card"><div class="match-header" style="color:#10b981;">${player}</div>`;
+                    formData[player].forEach(m => {
+                        const bClass = m.res === 'V' ? 'box-v' : 'box-r';
+                        cardHtml += `
+                            <div class="match-row">
+                                <div class="${bClass}">${m.res}</div>
+                                <div>vs ${m.opp} (${m.score}) — <span style="color:#aaa;">Ore ${m.time}</span></div>
+                            </div>`;
+                    });
+                    cardHtml += `</div>`;
+                    formContainer.innerHTML += cardHtml;
+                });
+            } catch(e) {
+                document.getElementById('form-container').innerHTML = "<p>Nessun dato di forma disponibile al momento.</p>";
+            }
+
+            // 2. CARICAMENTO PROSSIMI MATCH + H2H + MEDIA PUNTI + VALUE BETS
+            try {
+                const resUp = await fetch('upcoming.json');
+                const upData = await resUp.json();
+                const upContainer = document.getElementById('upcoming-container');
+                upContainer.innerHTML = "";
+
+                if(!upData.results || upData.results.length === 0) {
+                    upContainer.innerHTML = "<p>Nessun match in programma nelle prossime ore.</p>";
                     return;
                 }
 
-                players.forEach(playerName => {
-                    const matches = formData[playerName];
-                    
-                    let cardHtml = `
-                        <div class="player-card">
-                            <div class="player-name">${playerName}</div>
-                    `;
-                    
-                    matches.forEach(m => {
-                        const boxClass = m.res === 'V' ? 'box-v' : 'box-r';
-                        cardHtml += `
-                            <div class="match-row">
-                                <div class="${boxClass}">${m.res}</div>
-                                <div>vs ${m.opp} (${m.score}) - Ore ${m.time}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    cardHtml += `</div>`;
-                    container.innerHTML += cardHtml;
-                });
+                upData.results.forEach(m => {
+                    // Calcolo percentuali vittorie reali nello scontro diretto
+                    const totalH2h = m.p1_wins + m.p2_wins;
+                    const p1Pct = totalH2h > 0 ? Math.round((m.p1_wins / totalH2h) * 100) : 50;
+                    const p2Pct = totalH2h > 0 ? Math.round((m.p2_wins / totalH2h) * 100) : 50;
 
-            } catch (e) {
-                loading.innerHTML = "<p style='color:red;'>In attesa che lo script generi i primi dati di oggi...</p>";
-                console.error("Errore lettura JSON:", e);
+                    let cardHtml = `
+                        <div class="card card-active">
+                            <div class="match-header">
+                                <span>${m.home} vs ${m.away}</span>
+                                <span class="time-badge">${m.time}</span>
+                            </div>
+
+                            <div class="metric-box">
+                                <div class="metric-title">Vittorie ${m.p1_name}</div>
+                                <div class="metric-value win-green">${m.p1_wins} <span style="font-size:14px; color:#aaa;">(${p1Pct}%)</span></div>
+                            </div>
+                            <div class="metric-box">
+                                <div class="metric-title">Vittorie ${m.p2_name}</div>
+                                <div class="metric-value win-blue">${m.p2_wins} <span style="font-size:14px; color:#aaa;">(${p2Pct}%)</span></div>
+                            </div>
+
+                            <div class="metric-box">
+                                <div class="metric-title">Media Punti Totali (su ${m.h2h_matches_count} match con set)</div>
+                                <div class="metric-value pts-orange">${m.avg_points > 0 ? m.avg_points + ' punti' : 'Nessun precedente'}</div>
+                            </div>
+
+                            <div style="margin-top:10px; font-size:14px;">
+                                <div>Quota ${m.home}: <b>${m.odds_home}</b> ${m.value_home ? '<span class="value-badge">⚠️ VALUE BET!</span>' : ''}</div>
+                                <div style="margin-top:4px;">Quota ${m.away}: <b>${m.odds_away}</b> ${m.value_away ? '<span class="value-badge">⚠️ VALUE BET!</span>' : ''}</div>
+                            </div>
+
+                            <div class="h2h-title">Storico ultimi incontri H2H</div>
+                    `;
+
+                    if(m.h2h_history && m.h2h_history.length > 0) {
+                        m.h2h_history.forEach(hist => {
+                            cardHtml += `
+                                <div class="h2h-item">
+                                    <span>📅 ${hist.date}</span>
+                                    <span>${hist.home} <b>${hist.score}</b> ${hist.away}</span>
+                                    <span class="pts-orange">(${hist.pts} pts)</span>
+                                </div>`;
+                        });
+                    } else {
+                        cardHtml += `<div style="font-size:13px; color:#777; italic;">Nessun testa a testa memorizzato.</div>`;
+                    }
+
+                    cardHtml += `</div>`;
+                    upContainer.innerHTML += cardHtml;
+                });
+            } catch(e) {
+                document.getElementById('upcoming-container').innerHTML = "<p>In attesa che l'azione generi i file di calcolo statistico delle quote...</p>";
             }
         }
-        
-        loadWebData();
+
+        // Avvia la Dashboard aggiornata
+        loadDashboardData();
     </script>
 </body>
 </html>
