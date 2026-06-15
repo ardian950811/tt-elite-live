@@ -3,139 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT Elite Series - Dashboard Analitica</title>
+    <title>TT Elite Series - Match Radar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #1e1e24;
-            color: #f5f5f5;
-            padding: 20px;
+            background-color: #121214;
+            color: #e2e8f0;
+            padding: 15px;
             margin: 0;
         }
 
-        h2, h3 {
-            color: #fff;
-        }
-
-        .section-title {
-            border-bottom: 2px solid #3a3a42;
-            padding-bottom: 10px;
-            margin-top: 30px;
+        h2 {
+            font-size: 22px;
+            text-align: center;
             margin-bottom: 20px;
-        }
-
-        .grid-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        /* SCHEDA GIOCATORE / MATCH */
-        .card {
-            background-color: #2a2a35;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 440px;
-            box-sizing: border-box;
-            border: 1px solid #3a3a42;
-        }
-
-        .card-active {
-            border: 1px solid #10b981; /* Bordo verde per il match selezionato/in rilievo */
-        }
-
-        .match-header {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
             color: #fff;
         }
 
-        .time-badge {
-            background-color: #3b82f6;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 14px;
+        .match-list {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        /* METRICHE STATISTICHE */
-        .metric-box {
+        /* CARD COMPATTA DELLA PARTITA */
+        .match-card {
             background-color: #1e1e24;
-            padding: 12px;
+            border: 1px solid #2d2d34;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        /* QUANDO SELEZIONATA DIVENTA VERDE COME IERI */
+        .match-card.active {
+            border-color: #10b981;
+        }
+
+        .match-summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .match-time {
+            background-color: #2d2d34;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .match-teams {
+            font-size: 16px;
+            font-weight: bold;
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        /* PANNELLO DETTAGLI NASCOSTO DI DEFAULT */
+        .match-details {
+            display: none;
+            margin-top: 15px;
+            border-top: 1px solid #2d2d34;
+            padding-top: 15px;
+        }
+
+        .match-card.active .match-details {
+            display: block; /* Si mostra solo se la card è attiva */
+        }
+
+        /* BLOCCHI STATISTICHE INTERNE */
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .stat-box {
+            background-color: #121214;
+            padding: 10px;
             border-radius: 6px;
             margin-bottom: 10px;
             text-align: center;
         }
 
-        .metric-title {
-            font-size: 13px;
-            color: #aaa;
-            text-transform: uppercase;
-        }
-
-        .metric-value {
-            font-size: 20px;
+        .stat-value {
+            font-size: 18px;
             font-weight: bold;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
-        .pts-orange { color: #f59e0b; }
-        .win-green { color: #10b981; }
-        .win-blue { color: #3b82f6; }
+        .txt-green { color: #10b981; }
+        .txt-blue { color: #3b82f6; }
+        .txt-orange { color: #f59e0b; }
 
-        /* VALUE BET BADGE */
-        .value-badge {
+        /* FORMA DI OGGI (I QUADRATINI) */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            background-color: #121214;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .form-player {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 48%;
+        }
+
+        .badge-form {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
             display: inline-block;
+        }
+        .dot-v { background-color: #10b981; }
+        .dot-r { background-color: #ef4444; }
+
+        /* VALUE BET SIGNALS */
+        .odds-container {
+            font-size: 14px;
+            margin-bottom: 12px;
+            background-color: #121214;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .value-tag {
             background-color: #10b981;
             color: #000;
+            font-size: 11px;
             font-weight: bold;
-            padding: 4px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
-            font-size: 12px;
-            margin-top: 5px;
-            text-transform: uppercase;
+            margin-left: 5px;
         }
 
-        /* COMPONENTI FORM DI OGGI */
-        .match-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
-        .box-v {
-            background-color: #10b981; color: white;
-            width: 32px; height: 32px; display: flex;
-            justify-content: center; align-items: center;
-            font-weight: bold; border-radius: 4px; margin-right: 12px;
-        }
-
-        .box-r {
-            background-color: #ef4444; color: white;
-            width: 32px; height: 32px; display: flex;
-            justify-content: center; align-items: center;
-            font-weight: bold; border-radius: 4px; margin-right: 12px;
-        }
-
-        /* STORICO H2H LISTA */
-        .h2h-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #ccc;
-            margin-top: 15px;
-            margin-bottom: 8px;
-        }
-
-        .h2h-item {
+        /* STORICO COMPATTO */
+        .history-item {
             font-size: 13px;
-            color: #9ca3af;
-            border-bottom: 1px solid #3a3a42;
-            padding: 4px 0;
+            color: #94a3b8;
+            padding: 5px 0;
+            border-bottom: 1px solid #2d2d34;
             display: flex;
             justify-content: space-between;
         }
@@ -143,108 +170,125 @@
 </head>
 <body>
 
-    <h2 class="section-title">🏓 Stato di Forma - Partite di Oggi</h2>
-    <div class="grid-container" id="form-container">Caricamento stato di forma...</div>
-
-    <h2 class="section-title">📊 Analisi Prossimi Match & Value Radar</h2>
-    <div class="grid-container" id="upcoming-container">Caricamento analisi statistiche...</div>
+    <h2>🏓 Radar Prossimi Match & Analisi</h2>
+    
+    <div class="match-list" id="match-list-container">
+        <p style="text-align:center; color:#94a3b8;">Caricamento palinsesto di oggi...</p>
+    </div>
 
     <script>
-        async function loadDashboardData() {
-            // 1. CARICAMENTO STATO DI FORMA DI OGGI
+        async function loadDashboard() {
             try {
-                const resForm = await fetch('today_form.json');
-                const formData = await resForm.json();
-                const formContainer = document.getElementById('form-container');
-                formContainer.innerHTML = "";
-
-                Object.keys(formData).forEach(player => {
-                    let cardHtml = `<div class="card"><div class="match-header" style="color:#10b981;">${player}</div>`;
-                    formData[player].forEach(m => {
-                        const bClass = m.res === 'V' ? 'box-v' : 'box-r';
-                        cardHtml += `
-                            <div class="match-row">
-                                <div class="${bClass}">${m.res}</div>
-                                <div>vs ${m.opp} (${m.score}) — <span style="color:#aaa;">Ore ${m.time}</span></div>
-                            </div>`;
-                    });
-                    cardHtml += `</div>`;
-                    formContainer.innerHTML += cardHtml;
-                });
-            } catch(e) {
-                document.getElementById('form-container').innerHTML = "<p>Nessun dato di forma disponibile al momento.</p>";
-            }
-
-            // 2. CARICAMENTO PROSSIMI MATCH + H2H + MEDIA PUNTI + VALUE BETS
-            try {
-                const resUp = await fetch('upcoming.json');
+                // Carichiamo i due file generati dallo script Python
+                const [resUp, resForm] = await Promise.all([
+                    fetch('upcoming.json'),
+                    fetch('today_form.json')
+                ]);
+                
                 const upData = await resUp.json();
-                const upContainer = document.getElementById('upcoming-container');
-                upContainer.innerHTML = "";
+                const formData = await resForm.json();
+                
+                const container = document.getElementById('match-list-container');
+                container.innerHTML = "";
 
-                if(!upData.results || upData.results.length === 0) {
-                    upContainer.innerHTML = "<p>Nessun match in programma nelle prossime ore.</p>";
+                if (!upData.results || upData.results.length === 0) {
+                    container.innerHTML = "<p style='text-align:center; color:#ef4444;'>Nessun match in programma.</p>";
                     return;
                 }
 
                 upData.results.forEach(m => {
-                    // Calcolo percentuali vittorie reali nello scontro diretto
+                    // Estraggo lo stato di forma di oggi per i due giocatori dal secondo file JSON
+                    const formP1 = formData[m.home] || [];
+                    const formP2 = formData[m.away] || [];
+
+                    // Calcolo vittorie totali di oggi per il riepilogo rapido
+                    const winsP1Today = formP1.filter(x => x.res === 'V').length;
+                    const winsP2Today = formP2.filter(x => x.res === 'V').length;
+
+                    // Calcolo percentuali H2H storiche
                     const totalH2h = m.p1_wins + m.p2_wins;
                     const p1Pct = totalH2h > 0 ? Math.round((m.p1_wins / totalH2h) * 100) : 50;
                     const p2Pct = totalH2h > 0 ? Math.round((m.p2_wins / totalH2h) * 100) : 50;
 
+                    // Creazione della card interattiva
+                    const card = document.createElement('div');
+                    card.className = 'match-card';
+                    
+                    // Gestione del CLIC per aprire/chiudere
+                    card.onclick = function() {
+                        const isAlreadyActive = card.classList.contains('active');
+                        document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active'));
+                        if (!isAlreadyActive) {
+                            card.classList.add('active');
+                        }
+                    };
+
                     let cardHtml = `
-                        <div class="card card-active">
-                            <div class="match-header">
-                                <span>${m.home} vs ${m.away}</span>
-                                <span class="time-badge">${m.time}</span>
+                        <div class="match-summary">
+                            <span class="match-time">${m.time}</span>
+                            <span class="match-teams">${m.home} vs ${m.away}</span>
+                        </div>
+                        
+                        <div class="match-details">
+                            <div class="section-label">Stato di Forma (Ultime Dirette di Oggi)</div>
+                            <div class="form-row">
+                                <div class="form-player">
+                                    <span style="font-weight:bold; color:#10b981;">${m.home}: ${winsP1Today} Vinte</span>
+                                    ${formP1.slice(0,3).map(x => `<span class='badge-form'><span class='dot ${x.res==='V'?'dot-v':'dot-r'}'></span> vs ${x.opp} (${x.score})</span>`).join('')}
+                                </div>
+                                <div class="form-player">
+                                    <span style="font-weight:bold; color:#3b82f6;">${m.away}: ${winsP2Today} Vinte</span>
+                                    ${formP2.slice(0,3).map(x => `<span class='badge-form'><span class='dot ${x.res==='V'?'dot-v':'dot-r'}'></span> vs ${x.opp} (${x.score})</span>`).join('')}
+                                </div>
                             </div>
 
-                            <div class="metric-box">
-                                <div class="metric-title">Vittorie ${m.p1_name}</div>
-                                <div class="metric-value win-green">${m.p1_wins} <span style="font-size:14px; color:#aaa;">(${p1Pct}%)</span></div>
+                            <div class="stat-box">
+                                <div class="section-label" style="margin:0;">Vittorie ${m.p1_name}</div>
+                                <div class="stat-value txt-green">${m.p1_wins} <span style="font-size:13px; color:#aaa;">(${p1Pct}%)</span></div>
                             </div>
-                            <div class="metric-box">
-                                <div class="metric-title">Vittorie ${m.p2_name}</div>
-                                <div class="metric-value win-blue">${m.p2_wins} <span style="font-size:14px; color:#aaa;">(${p2Pct}%)</span></div>
-                            </div>
-
-                            <div class="metric-box">
-                                <div class="metric-title">Media Punti Totali (su ${m.h2h_matches_count} match con set)</div>
-                                <div class="metric-value pts-orange">${m.avg_points > 0 ? m.avg_points + ' punti' : 'Nessun precedente'}</div>
+                            <div class="stat-box">
+                                <div class="section-label" style="margin:0;">Vittorie ${m.p2_name}</div>
+                                <div class="stat-value txt-blue">${m.p2_wins} <span style="font-size:13px; color:#aaa;">(${p2Pct}%)</span></div>
                             </div>
 
-                            <div style="margin-top:10px; font-size:14px;">
-                                <div>Quota ${m.home}: <b>${m.odds_home}</b> ${m.value_home ? '<span class="value-badge">⚠️ VALUE BET!</span>' : ''}</div>
-                                <div style="margin-top:4px;">Quota ${m.away}: <b>${m.odds_away}</b> ${m.value_away ? '<span class="value-badge">⚠️ VALUE BET!</span>' : ''}</div>
+                            <div class="stat-box">
+                                <div class="section-label" style="margin:0;">Media Punti Totali (su ${m.h2h_matches_count} match con set)</div>
+                                <div class="stat-value txt-orange">${m.avg_points > 0 ? m.avg_points + ' punti' : 'Nessun precedente'}</div>
                             </div>
 
-                            <div class="h2h-title">Storico ultimi incontri H2H</div>
+                            <div class="odds-container">
+                                <div>Quota ${m.home}: <b>${m.odds_home}</b> ${m.value_home ? '<span class="value-tag">VALUE BET</span>' : ''}</div>
+                                <div style="margin-top:4px;">Quota ${m.away}: <b>${m.odds_away}</b> ${m.value_away ? '<span class="value-tag">VALUE BET</span>' : ''}</div>
+                            </div>
+
+                            <div class="section-label">Storico Ultimi Incontri H2H</div>
                     `;
 
-                    if(m.h2h_history && m.h2h_history.length > 0) {
+                    if (m.h2h_history && m.h2h_history.length > 0) {
                         m.h2h_history.forEach(hist => {
                             cardHtml += `
-                                <div class="h2h-item">
-                                    <span>📅 ${hist.date}</span>
+                                <div class="history-item">
+                                    <span>${hist.date}</span>
                                     <span>${hist.home} <b>${hist.score}</b> ${hist.away}</span>
-                                    <span class="pts-orange">(${hist.pts} pts)</span>
+                                    <span class="txt-orange">(${hist.pts} pts)</span>
                                 </div>`;
                         });
                     } else {
-                        cardHtml += `<div style="font-size:13px; color:#777; italic;">Nessun testa a testa memorizzato.</div>`;
+                        cardHtml += `<div style="font-size:12px; color:#666; text-align:center; font-style:italic;">Nessun precedente trovato.</div>`;
                     }
 
-                    cardHtml += `</div>`;
-                    upContainer.innerHTML += cardHtml;
+                    cardHtml += `</div>`; // Fine match-details
+                    card.innerHTML = cardHtml;
+                    container.appendChild(card);
                 });
-            } catch(e) {
-                document.getElementById('upcoming-container').innerHTML = "<p>In attesa che l'azione generi i file di calcolo statistico delle quote...</p>";
+
+            } catch (e) {
+                document.getElementById('match-list-container').innerHTML = "<p style='color:#ef4444; text-align:center;'>Errore nel caricamento dei dati interattivi.</p>";
+                console.error(e);
             }
         }
 
-        // Avvia la Dashboard aggiornata
-        loadDashboardData();
+        loadDashboard();
     </script>
 </body>
 </html>
