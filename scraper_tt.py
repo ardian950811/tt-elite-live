@@ -21,16 +21,14 @@ def send_telegram_alert(token, chat_id, message):
         log_message(f"Failed to send Telegram message: {e}")
 
 def fetch_api_data():
-    """
-    Scarica i match reali direttamente da BetsAPI usando i tuoi parametri.
-    """
+    """Scarica i match reali direttamente da BetsAPI."""
     api_key = "247481-2D476S3VQDJuAj"
     sport_id = "92"
     league_id = "29128"
     
     all_matches = []
     
-    # 1. Recupera i match in programma (Prossimi)
+    # 1. Match in programma
     log_message("Fetching upcoming matches from BetsAPI...")
     for page in range(1, 3):
         url = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page}"
@@ -47,7 +45,7 @@ def fetch_api_data():
             break
         time.sleep(1)
 
-    # 2. Recupera i match appena terminati
+    # 2. Match conclusi
     log_message("Fetching recently ended matches from BetsAPI...")
     for page in range(1, 3):
         url = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page}"
@@ -83,22 +81,19 @@ def analyze_tt_elite_series():
     
     finished_matches = []
     upcoming_matches = []
-    
     current_timestamp = time.time()
 
-    # Suddividiamo i match usando la logica temporale delle ultime 15 ore (svincolata dal fuso orario)
     for match in matches:
         status = match.get("time_status", "")
         match_time = int(match.get("time", 0))
         
-        # Se il match è finito ed è avvenuto nelle ultime 15 ore (54000 secondi), lo consideriamo di oggi
-        if status == "3":  # "3" su BetsAPI significa terminato
+        # Filtro infallibile basato sulle ultime 15 ore
+        if status == "3":  
             if current_timestamp - match_time < 54000:
                 finished_matches.append(match)
-        elif status == "0":  # "0" significa non ancora iniziato
+        elif status == "0":  
             upcoming_matches.append(match)
 
-    # Elaborazione dei match terminati per lo Stato di Forma Giornaliero
     for match in finished_matches:
         home_player = match.get("home", {}).get("name")
         away_player = match.get("away", {}).get("name")
@@ -111,13 +106,11 @@ def analyze_tt_elite_series():
             home_score, away_score = map(int, ss.split('-'))
             time_str = datetime.fromtimestamp(int(match.get('time', 0))).strftime('%H:%M')
             
-            # Inizializza i dizionari se vuoti
             if home_player not in daily_stats: daily_stats[home_player] = {"wins": 0, "losses": 0}
             if away_player not in daily_stats: daily_stats[away_player] = {"wins": 0, "losses": 0}
             if home_player not in player_today_form: player_today_form[home_player] = []
             if away_player not in player_today_form: player_today_form[away_player] = []
             
-            # Calcolo vincitore e aggiunta dati per la pagina Web e per Telegram
             if home_score > away_score:
                 daily_stats[home_player]["wins"] += 1
                 daily_stats[away_player]["losses"] += 1
@@ -134,25 +127,20 @@ def analyze_tt_elite_series():
             matchup_key = tuple(sorted([home_player, away_player]))
             if matchup_key not in played_today:
                 played_today[matchup_key] = []
-            
-            played_today[matchup_key].append({
-                "winner": winner,
-                "score": ss,
-                "time": time_str
-            })
+            played_today[matchup_key].append({"winner": winner, "score": ss, "time": time_str})
         except:
             continue
 
-    # SALVATAGGIO DEI FILE JSON PER LA PAGINA WEB
+    # SALVATAGGIO DEI FILE JSON IN LOCALE
     with open("today_form.json", "w", encoding="utf-8") as f:
         json.dump(player_today_form, f, indent=4)
         
     with open("upcoming.json", "w", encoding="utf-8") as f:
         json.dump({"results": upcoming_matches}, f, indent=4)
         
-    log_message("JSON data saved successfully for the web page.")
+    log_message("JSON files written locally.")
 
-    # Analisi dei match imminenti e invio notifiche Telegram
+    # NOTIFICHE TELEGRAM
     for match in upcoming_matches:
         p1 = match.get("home", {}).get("name")
         p2 = match.get("away", {}).get("name")
@@ -177,7 +165,7 @@ def analyze_tt_elite_series():
         if matchup_key in played_today:
             report += "\n⚠️ *REMATCH RILEVATO OGGI!*\n"
             for previous in played_today[matchup_key]:
-                report += f"➡️ Già giocata oggi: vito da {previous['winner']} ({previous['score']}) alle {previous['time']}\n"
+                report += f"➡️ Già giocata oggi: vinta da {previous['winner']} ({previous['score']}) alle {previous['time']}\n"
         else:
             report += "\n✅ Primo scontro diretto oggi."
 
