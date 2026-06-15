@@ -165,6 +165,10 @@ def fetch_data_with_details():
     with open("h2h_data.json", "w", encoding="utf-8") as f:
         json.dump(h2h_dictionary, f, indent=4)
 
+    # ---> SALVATAGGIO STATO FORMA OGGI (Aggiunto per l'interfaccia scura) <---
+    with open("today_form.json", "w", encoding="utf-8") as f:
+        json.dump(player_today_form, f, indent=4)
+
     # --- NUOVA LOGICA: GENERAZIONE FILE HTML VISIVO ---
     print("Generating HTML visualization...")
     
