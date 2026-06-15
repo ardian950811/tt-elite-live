@@ -20,55 +20,66 @@
 <body>
 
     <h2>Prossimi Match & Forma</h2>
-    <div id="app"></div>
+    <div id="app">Caricamento in corso...</div>
 
     <script>
-        // Simulazione caricamento dati (nel tuo progetto questi file vengono letti dal server)
-        async function loadData() {
+        async function fetchJSON(url) {
             try {
-                const [upcoming, form, h2h] = await Promise.all([
-                    fetch('upcoming.json').then(r => r.json()),
-                    fetch('today_form.json').then(r => r.json()),
-                    fetch('h2h_data.json').then(r => r.json())
-                ]);
+                const response = await fetch(url);
+                return await response.json();
+            } catch (e) {
+                console.warn("Impossibile caricare " + url, e);
+                return null; // Restituisce null invece di bloccare tutto
+            }
+        }
 
-                const app = document.getElementById('app');
-                upcoming.results.forEach(match => {
-                    const home = match.home.name;
-                    const away = match.away.name;
-                    const hHistory = form[home] || [];
-                    const aHistory = form[away] || [];
+        async function loadData() {
+            const app = document.getElementById('app');
+            
+            // Carica i file singolarmente
+            const upcoming = await fetchJSON('upcoming.json');
+            const form = await fetchJSON('today_form.json');
+            
+            if (!upcoming || !upcoming.results) {
+                app.innerHTML = "Errore: Dati non disponibili. Attendi il prossimo aggiornamento.";
+                return;
+            }
 
-                    let html = `
-                        <div class="match-card">
-                            <div class="match-header">${home} vs ${away}</div>
-                            <div class="history-container">
-                                <div class="player-box">
-                                    <div class="player-name">${home} (Oggi)</div>
-                                    ${hHistory.length > 0 ? hHistory.map(m => `
-                                        <div class="history-row">
-                                            <div class="${m.res === 'V' ? 'box-v' : 'box-r'}">${m.res}</div>
-                                            <span>vs ${m.opp} (${m.score})</span>
-                                        </div>
-                                    `).join('') : '<div class="no-data">Nessun match oggi</div>'}
-                                </div>
-                                <div class="player-box">
-                                    <div class="player-name">${away} (Oggi)</div>
-                                    ${aHistory.length > 0 ? aHistory.map(m => `
-                                        <div class="history-row">
-                                            <div class="${m.res === 'V' ? 'box-v' : 'box-r'}">${m.res}</div>
-                                            <span>vs ${m.opp} (${m.score})</span>
-                                        </div>
-                                    `).join('') : '<div class="no-data">Nessun match oggi</div>'}
-                                </div>
+            app.innerHTML = ""; // Pulisce il testo "Caricamento..."
+            
+            upcoming.results.forEach(match => {
+                const home = match.home.name;
+                const away = match.away.name;
+                const hHistory = (form && form[home]) ? form[home] : [];
+                const aHistory = (form && form[away]) ? form[away] : [];
+
+                let html = `
+                    <div class="match-card">
+                        <div class="match-header">${home} vs ${away}</div>
+                        <div class="history-container">
+                            <div class="player-box">
+                                <div class="player-name">${home} (Oggi)</div>
+                                ${hHistory.length > 0 ? hHistory.map(m => `
+                                    <div class="history-row">
+                                        <div class="${m.res === 'V' ? 'box-v' : 'box-r'}">${m.res}</div>
+                                        <span>vs ${m.opp} (${m.score})</span>
+                                    </div>
+                                `).join('') : '<div class="no-data">Nessun match oggi</div>'}
+                            </div>
+                            <div class="player-box">
+                                <div class="player-name">${away} (Oggi)</div>
+                                ${aHistory.length > 0 ? aHistory.map(m => `
+                                    <div class="history-row">
+                                        <div class="${m.res === 'V' ? 'box-v' : 'box-r'}">${m.res}</div>
+                                        <span>vs ${m.opp} (${m.score})</span>
+                                    </div>
+                                `).join('') : '<div class="no-data">Nessun match oggi</div>'}
                             </div>
                         </div>
-                    `;
-                    app.innerHTML += html;
-                });
-            } catch (e) {
-                console.error("Errore caricamento:", e);
-            }
+                    </div>
+                `;
+                app.innerHTML += html;
+            });
         }
         loadData();
     </script>
