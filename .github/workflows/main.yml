@@ -32,6 +32,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add upcoming.json h2h_data.json match_cache.json
+          # CORREZIONE 1: Aggiunto oggi_form.json all'elenco dei file da salvare online
+          git add upcoming.json h2h_data.json match_cache.json today_form.json
           git commit -m "Automated update with detailed point caching" || echo "No changes to commit"
-          git push || echo "No changes to push"
+          # CORREZIONE 2: Push forzato sul ramo principale origin per evitare blocchi silenziosi
+          git push origin main || git push origin master || echo "No changes to push"
