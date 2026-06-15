@@ -1,4 +1,192 @@
 {
+    "Rafal Idaczyk": [
+        {
+            "res": "R",
+            "opp": "Grzegorz Wichowski",
+            "score": "0-3",
+            "time": "12:20"
+        }
+    ],
+    "Grzegorz Wichowski": [
+        {
+            "res": "V",
+            "opp": "Rafal Idaczyk",
+            "score": "0-3",
+            "time": "12:20"
+        },
+        {
+            "res": "V",
+            "opp": "Patryk Mecik",
+            "score": "3-1",
+            "time": "11:05"
+        },
+        {
+            "res": "V",
+            "opp": "Rafal Skotniczny",
+            "score": "3-1",
+            "time": "09:30"
+        }
+    ],
+    "Bartosz Sulkowski": [
+        {
+            "res": "V",
+            "opp": "Bartosz Kwodawski",
+            "score": "3-0",
+            "time": "12:15"
+        },
+        {
+            "res": "R",
+            "opp": "Kamil Rudomina",
+            "score": "2-3",
+            "time": "10:35"
+        },
+        {
+            "res": "V",
+            "opp": "Wojciech Gluszek",
+            "score": "1-3",
+            "time": "09:50"
+        }
+    ],
+    "Bartosz Kwodawski": [
+        {
+            "res": "R",
+            "opp": "Bartosz Sulkowski",
+            "score": "3-0",
+            "time": "12:15"
+        },
+        {
+            "res": "V",
+            "opp": "Wojciech Gluszek",
+            "score": "1-3",
+            "time": "11:00"
+        },
+        {
+            "res": "R",
+            "opp": "Aleksander Lilien",
+            "score": "3-1",
+            "time": "09:25"
+        }
+    ],
+    "Oskar Sokolowski": [
+        {
+            "res": "R",
+            "opp": "Wojciech Wojtaszczyk",
+            "score": "1-3",
+            "time": "12:15"
+        },
+        {
+            "res": "V",
+            "opp": "Pawel Kurek",
+            "score": "3-2",
+            "time": "10:35"
+        },
+        {
+            "res": "V",
+            "opp": "Krzysztof Hetnar",
+            "score": "2-3",
+            "time": "09:50"
+        }
+    ],
+    "Wojciech Wojtaszczyk": [
+        {
+            "res": "V",
+            "opp": "Oskar Sokolowski",
+            "score": "1-3",
+            "time": "12:15"
+        },
+        {
+            "res": "V",
+            "opp": "Krzysztof Hetnar",
+            "score": "1-3",
+            "time": "11:00"
+        },
+        {
+            "res": "R",
+            "opp": "Sebastian Szostok",
+            "score": "3-0",
+            "time": "09:25"
+        }
+    ],
+    "Josef Braun": [
+        {
+            "res": "V",
+            "opp": "Tomas Martinko",
+            "score": "3-2",
+            "time": "12:10"
+        },
+        {
+            "res": "V",
+            "opp": "Patrik Klos",
+            "score": "3-2",
+            "time": "10:30"
+        },
+        {
+            "res": "V",
+            "opp": "Kacper Glazowski",
+            "score": "0-3",
+            "time": "09:45"
+        }
+    ],
+    "Tomas Martinko": [
+        {
+            "res": "R",
+            "opp": "Josef Braun",
+            "score": "3-2",
+            "time": "12:10"
+        },
+        {
+            "res": "V",
+            "opp": "Kacper Glazowski",
+            "score": "2-3",
+            "time": "10:55"
+        },
+        {
+            "res": "R",
+            "opp": "Dmitrij Prokopcov",
+            "score": "3-1",
+            "time": "09:20"
+        }
+    ],
+    "Piotr Cyrnek": [
+        {
+            "res": "V",
+            "opp": "Adrian Wiecek",
+            "score": "3-2",
+            "time": "12:05"
+        },
+        {
+            "res": "V",
+            "opp": "Martin Olejnik",
+            "score": "3-1",
+            "time": "10:25"
+        },
+        {
+            "res": "R",
+            "opp": "Grzegorz Felkel",
+            "score": "3-1",
+            "time": "09:40"
+        }
+    ],
+    "Adrian Wiecek": [
+        {
+            "res": "R",
+            "opp": "Piotr Cyrnek",
+            "score": "3-2",
+            "time": "12:05"
+        },
+        {
+            "res": "V",
+            "opp": "Grzegorz Felkel",
+            "score": "0-3",
+            "time": "10:50"
+        },
+        {
+            "res": "V",
+            "opp": "Jakub Kosowski",
+            "score": "1-3",
+            "time": "09:20"
+        }
+    ],
     "Wojciech Tobiasz": [
         {
             "res": "V",
@@ -17,24 +205,6 @@
             "opp": "Jakub Kaczmarek",
             "score": "2-3",
             "time": "09:05"
-        },
-        {
-            "res": "R",
-            "opp": "Yurij Fomin",
-            "score": "0-3",
-            "time": "07:55"
-        },
-        {
-            "res": "R",
-            "opp": "Grzegorz Wichowski",
-            "score": "3-0",
-            "time": "06:45"
-        },
-        {
-            "res": "V",
-            "opp": "Patryk Mecik",
-            "score": "3-1",
-            "time": "05:55"
         }
     ],
     "Patryk Mecik": [
@@ -61,18 +231,6 @@
             "opp": "Rafal Skotniczny",
             "score": "3-0",
             "time": "08:45"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kaczmarek",
-            "score": "2-3",
-            "time": "07:30"
-        },
-        {
-            "res": "R",
-            "opp": "Wojciech Tobiasz",
-            "score": "3-1",
-            "time": "05:55"
         }
     ],
     "Karol Sulkowski": [
@@ -133,24 +291,6 @@
             "opp": "Pawel Kurek",
             "score": "0-3",
             "time": "09:00"
-        },
-        {
-            "res": "R",
-            "opp": "Sebastian Szostok",
-            "score": "3-1",
-            "time": "07:45"
-        },
-        {
-            "res": "R",
-            "opp": "Oskar Sokolowski",
-            "score": "3-2",
-            "time": "06:55"
-        },
-        {
-            "res": "R",
-            "opp": "Wojciech Wojtaszczyk",
-            "score": "1-3",
-            "time": "06:05"
         }
     ],
     "Krzysztof Hetnar": [
@@ -171,30 +311,6 @@
             "opp": "Oskar Sokolowski",
             "score": "2-3",
             "time": "09:50"
-        },
-        {
-            "res": "R",
-            "opp": "Pawel Kurek",
-            "score": "1-3",
-            "time": "08:10"
-        },
-        {
-            "res": "R",
-            "opp": "Sebastian Szostok",
-            "score": "3-1",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Oskar Sokolowski",
-            "score": "1-3",
-            "time": "05:40"
-        },
-        {
-            "res": "V",
-            "opp": "Wojciech Wojtaszczyk",
-            "score": "3-1",
-            "time": "04:55"
         }
     ],
     "Michal Benes": [
@@ -235,30 +351,6 @@
             "opp": "Josef Braun",
             "score": "0-3",
             "time": "09:45"
-        },
-        {
-            "res": "R",
-            "opp": "Patrik Klos",
-            "score": "2-3",
-            "time": "08:05"
-        },
-        {
-            "res": "R",
-            "opp": "Josef Braun",
-            "score": "1-3",
-            "time": "07:15"
-        },
-        {
-            "res": "R",
-            "opp": "Dmitrij Prokopcov",
-            "score": "0-3",
-            "time": "06:25"
-        },
-        {
-            "res": "R",
-            "opp": "Patrik Klos",
-            "score": "1-3",
-            "time": "05:35"
         }
     ],
     "Artur Grela": [
@@ -279,24 +371,6 @@
             "opp": "Martin Olejnik",
             "score": "1-3",
             "time": "09:00"
-        },
-        {
-            "res": "V",
-            "opp": "Adrian Wiecek",
-            "score": "2-3",
-            "time": "07:45"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kosowski",
-            "score": "1-3",
-            "time": "06:55"
-        },
-        {
-            "res": "R",
-            "opp": "Piotr Cyrnek",
-            "score": "2-3",
-            "time": "06:05"
         }
     ],
     "Grzegorz Felkel": [
@@ -317,24 +391,6 @@
             "opp": "Piotr Cyrnek",
             "score": "3-1",
             "time": "09:40"
-        },
-        {
-            "res": "R",
-            "opp": "Martin Olejnik",
-            "score": "3-1",
-            "time": "08:05"
-        },
-        {
-            "res": "R",
-            "opp": "Piotr Cyrnek",
-            "score": "3-0",
-            "time": "07:20"
-        },
-        {
-            "res": "R",
-            "opp": "Adrian Wiecek",
-            "score": "3-1",
-            "time": "05:15"
         }
     ],
     "Rafal Skotniczny": [
@@ -361,18 +417,6 @@
             "opp": "Patryk Mecik",
             "score": "3-0",
             "time": "08:45"
-        },
-        {
-            "res": "R",
-            "opp": "Yurij Fomin",
-            "score": "1-3",
-            "time": "07:10"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kaczmarek",
-            "score": "0-3",
-            "time": "06:20"
         }
     ],
     "Yurij Fomin": [
@@ -393,24 +437,6 @@
             "opp": "Patryk Mecik",
             "score": "3-2",
             "time": "09:55"
-        },
-        {
-            "res": "V",
-            "opp": "Wojciech Tobiasz",
-            "score": "0-3",
-            "time": "07:55"
-        },
-        {
-            "res": "V",
-            "opp": "Rafal Skotniczny",
-            "score": "1-3",
-            "time": "07:10"
-        },
-        {
-            "res": "R",
-            "opp": "Grzegorz Wichowski",
-            "score": "3-0",
-            "time": "05:30"
         }
     ],
     "Aleksander Lilien": [
@@ -431,30 +457,6 @@
             "opp": "Bartosz Kwodawski",
             "score": "3-1",
             "time": "09:25"
-        },
-        {
-            "res": "R",
-            "opp": "Maciej Kolek",
-            "score": "3-2",
-            "time": "07:20"
-        },
-        {
-            "res": "R",
-            "opp": "Grzegorz Poliniewicz",
-            "score": "1-3",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Bartosz Czerwinski",
-            "score": "2-3",
-            "time": "05:15"
-        },
-        {
-            "res": "V",
-            "opp": "Maciej Kolek",
-            "score": "1-3",
-            "time": "04:55"
         }
     ],
     "Kamil Rudomina": [
@@ -495,24 +497,6 @@
             "opp": "Wojciech Wojtaszczyk",
             "score": "3-0",
             "time": "09:25"
-        },
-        {
-            "res": "V",
-            "opp": "Adam Ruszkiewicz",
-            "score": "3-1",
-            "time": "07:45"
-        },
-        {
-            "res": "V",
-            "opp": "Krzysztof Hetnar",
-            "score": "3-1",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Pawel Kurek",
-            "score": "3-0",
-            "time": "05:15"
         }
     ],
     "Pawel Kurek": [
@@ -533,24 +517,6 @@
             "opp": "Adam Ruszkiewicz",
             "score": "0-3",
             "time": "09:00"
-        },
-        {
-            "res": "V",
-            "opp": "Krzysztof Hetnar",
-            "score": "1-3",
-            "time": "08:10"
-        },
-        {
-            "res": "R",
-            "opp": "Wojciech Wojtaszczyk",
-            "score": "3-1",
-            "time": "07:20"
-        },
-        {
-            "res": "R",
-            "opp": "Sebastian Szostok",
-            "score": "3-0",
-            "time": "05:15"
         }
     ],
     "Dmitrij Prokopcov": [
@@ -571,36 +537,6 @@
             "opp": "Tomas Martinko",
             "score": "3-1",
             "time": "09:20"
-        },
-        {
-            "res": "R",
-            "opp": "Josef Braun",
-            "score": "3-1",
-            "time": "08:30"
-        },
-        {
-            "res": "R",
-            "opp": "Patrik Klos",
-            "score": "0-3",
-            "time": "07:40"
-        },
-        {
-            "res": "V",
-            "opp": "Kacper Glazowski",
-            "score": "0-3",
-            "time": "06:25"
-        },
-        {
-            "res": "V",
-            "opp": "Josef Braun",
-            "score": "2-3",
-            "time": "06:00"
-        },
-        {
-            "res": "R",
-            "opp": "Patrik Klos",
-            "score": "2-3",
-            "time": "05:15"
         }
     ],
     "Patrik Klos": [
@@ -621,36 +557,6 @@
             "opp": "Michal Benes",
             "score": "3-2",
             "time": "09:00"
-        },
-        {
-            "res": "V",
-            "opp": "Kacper Glazowski",
-            "score": "2-3",
-            "time": "08:05"
-        },
-        {
-            "res": "V",
-            "opp": "Dmitrij Prokopcov",
-            "score": "0-3",
-            "time": "07:40"
-        },
-        {
-            "res": "V",
-            "opp": "Josef Braun",
-            "score": "3-2",
-            "time": "06:50"
-        },
-        {
-            "res": "V",
-            "opp": "Kacper Glazowski",
-            "score": "1-3",
-            "time": "05:35"
-        },
-        {
-            "res": "V",
-            "opp": "Dmitrij Prokopcov",
-            "score": "2-3",
-            "time": "05:15"
         }
     ],
     "Jakub Kosowski": [
@@ -671,24 +577,6 @@
             "opp": "Adrian Wiecek",
             "score": "1-3",
             "time": "09:20"
-        },
-        {
-            "res": "R",
-            "opp": "Piotr Cyrnek",
-            "score": "1-3",
-            "time": "08:30"
-        },
-        {
-            "res": "R",
-            "opp": "Artur Grela",
-            "score": "1-3",
-            "time": "06:55"
-        },
-        {
-            "res": "R",
-            "opp": "Martin Olejnik",
-            "score": "0-3",
-            "time": "05:40"
         }
     ],
     "Martin Olejnik": [
@@ -709,154 +597,6 @@
             "opp": "Artur Grela",
             "score": "1-3",
             "time": "09:00"
-        },
-        {
-            "res": "V",
-            "opp": "Grzegorz Felkel",
-            "score": "3-1",
-            "time": "08:05"
-        },
-        {
-            "res": "V",
-            "opp": "Adrian Wiecek",
-            "score": "2-3",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kosowski",
-            "score": "0-3",
-            "time": "05:40"
-        }
-    ],
-    "Grzegorz Wichowski": [
-        {
-            "res": "V",
-            "opp": "Patryk Mecik",
-            "score": "3-1",
-            "time": "11:05"
-        },
-        {
-            "res": "V",
-            "opp": "Rafal Skotniczny",
-            "score": "3-1",
-            "time": "09:30"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kaczmarek",
-            "score": "3-1",
-            "time": "08:20"
-        },
-        {
-            "res": "V",
-            "opp": "Wojciech Tobiasz",
-            "score": "3-0",
-            "time": "06:45"
-        },
-        {
-            "res": "V",
-            "opp": "Yurij Fomin",
-            "score": "3-0",
-            "time": "05:30"
-        }
-    ],
-    "Wojciech Wojtaszczyk": [
-        {
-            "res": "V",
-            "opp": "Krzysztof Hetnar",
-            "score": "1-3",
-            "time": "11:00"
-        },
-        {
-            "res": "R",
-            "opp": "Sebastian Szostok",
-            "score": "3-0",
-            "time": "09:25"
-        },
-        {
-            "res": "V",
-            "opp": "Oskar Sokolowski",
-            "score": "0-3",
-            "time": "08:35"
-        },
-        {
-            "res": "V",
-            "opp": "Pawel Kurek",
-            "score": "3-1",
-            "time": "07:20"
-        },
-        {
-            "res": "V",
-            "opp": "Adam Ruszkiewicz",
-            "score": "1-3",
-            "time": "06:05"
-        },
-        {
-            "res": "R",
-            "opp": "Krzysztof Hetnar",
-            "score": "3-1",
-            "time": "04:55"
-        }
-    ],
-    "Bartosz Kwodawski": [
-        {
-            "res": "V",
-            "opp": "Wojciech Gluszek",
-            "score": "1-3",
-            "time": "11:00"
-        },
-        {
-            "res": "R",
-            "opp": "Aleksander Lilien",
-            "score": "3-1",
-            "time": "09:25"
-        }
-    ],
-    "Tomas Martinko": [
-        {
-            "res": "V",
-            "opp": "Kacper Glazowski",
-            "score": "2-3",
-            "time": "10:55"
-        },
-        {
-            "res": "R",
-            "opp": "Dmitrij Prokopcov",
-            "score": "3-1",
-            "time": "09:20"
-        }
-    ],
-    "Adrian Wiecek": [
-        {
-            "res": "V",
-            "opp": "Grzegorz Felkel",
-            "score": "0-3",
-            "time": "10:50"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kosowski",
-            "score": "1-3",
-            "time": "09:20"
-        },
-        {
-            "res": "R",
-            "opp": "Artur Grela",
-            "score": "2-3",
-            "time": "07:45"
-        },
-        {
-            "res": "R",
-            "opp": "Martin Olejnik",
-            "score": "2-3",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Grzegorz Felkel",
-            "score": "3-1",
-            "time": "05:15"
         }
     ],
     "Jakub Kaczmarek": [
@@ -871,140 +611,6 @@
             "opp": "Wojciech Tobiasz",
             "score": "2-3",
             "time": "09:05"
-        },
-        {
-            "res": "R",
-            "opp": "Grzegorz Wichowski",
-            "score": "3-1",
-            "time": "08:20"
-        },
-        {
-            "res": "R",
-            "opp": "Patryk Mecik",
-            "score": "2-3",
-            "time": "07:30"
-        },
-        {
-            "res": "R",
-            "opp": "Rafal Skotniczny",
-            "score": "0-3",
-            "time": "06:20"
-        }
-    ],
-    "Oskar Sokolowski": [
-        {
-            "res": "V",
-            "opp": "Pawel Kurek",
-            "score": "3-2",
-            "time": "10:35"
-        },
-        {
-            "res": "V",
-            "opp": "Krzysztof Hetnar",
-            "score": "2-3",
-            "time": "09:50"
-        },
-        {
-            "res": "R",
-            "opp": "Wojciech Wojtaszczyk",
-            "score": "0-3",
-            "time": "08:35"
-        },
-        {
-            "res": "V",
-            "opp": "Adam Ruszkiewicz",
-            "score": "3-2",
-            "time": "06:55"
-        },
-        {
-            "res": "R",
-            "opp": "Krzysztof Hetnar",
-            "score": "1-3",
-            "time": "05:40"
-        }
-    ],
-    "Bartosz Sulkowski": [
-        {
-            "res": "R",
-            "opp": "Kamil Rudomina",
-            "score": "2-3",
-            "time": "10:35"
-        },
-        {
-            "res": "V",
-            "opp": "Wojciech Gluszek",
-            "score": "1-3",
-            "time": "09:50"
-        }
-    ],
-    "Josef Braun": [
-        {
-            "res": "V",
-            "opp": "Patrik Klos",
-            "score": "3-2",
-            "time": "10:30"
-        },
-        {
-            "res": "V",
-            "opp": "Kacper Glazowski",
-            "score": "0-3",
-            "time": "09:45"
-        },
-        {
-            "res": "V",
-            "opp": "Dmitrij Prokopcov",
-            "score": "3-1",
-            "time": "08:30"
-        },
-        {
-            "res": "V",
-            "opp": "Kacper Glazowski",
-            "score": "1-3",
-            "time": "07:15"
-        },
-        {
-            "res": "R",
-            "opp": "Patrik Klos",
-            "score": "3-2",
-            "time": "06:50"
-        },
-        {
-            "res": "R",
-            "opp": "Dmitrij Prokopcov",
-            "score": "2-3",
-            "time": "06:00"
-        }
-    ],
-    "Piotr Cyrnek": [
-        {
-            "res": "V",
-            "opp": "Martin Olejnik",
-            "score": "3-1",
-            "time": "10:25"
-        },
-        {
-            "res": "R",
-            "opp": "Grzegorz Felkel",
-            "score": "3-1",
-            "time": "09:40"
-        },
-        {
-            "res": "V",
-            "opp": "Jakub Kosowski",
-            "score": "1-3",
-            "time": "08:30"
-        },
-        {
-            "res": "V",
-            "opp": "Grzegorz Felkel",
-            "score": "3-0",
-            "time": "07:20"
-        },
-        {
-            "res": "V",
-            "opp": "Artur Grela",
-            "score": "2-3",
-            "time": "06:05"
         }
     ],
     "Witold Stechly": [
@@ -1013,30 +619,6 @@
             "opp": "Jerzy Michalik",
             "score": "3-0",
             "time": "09:50"
-        },
-        {
-            "res": "R",
-            "opp": "Slawomir Janus",
-            "score": "3-0",
-            "time": "08:10"
-        },
-        {
-            "res": "R",
-            "opp": "Aleksander Barton",
-            "score": "3-0",
-            "time": "06:50"
-        },
-        {
-            "res": "R",
-            "opp": "Andriej Fomin",
-            "score": "3-0",
-            "time": "06:10"
-        },
-        {
-            "res": "R",
-            "opp": "Kazimierz Rybak",
-            "score": "2-3",
-            "time": "05:10"
         }
     ],
     "Jerzy Michalik": [
@@ -1045,30 +627,6 @@
             "opp": "Witold Stechly",
             "score": "3-0",
             "time": "09:50"
-        },
-        {
-            "res": "V",
-            "opp": "Kazimierz Rybak",
-            "score": "3-2",
-            "time": "08:30"
-        },
-        {
-            "res": "V",
-            "opp": "Slawomir Janus",
-            "score": "0-3",
-            "time": "07:10"
-        },
-        {
-            "res": "V",
-            "opp": "Arkadiusz Skupinski",
-            "score": "3-0",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Aleksander Barton",
-            "score": "2-3",
-            "time": "05:30"
         }
     ],
     "Andriej Fomin": [
@@ -1083,18 +641,6 @@
             "opp": "Arkadiusz Skupinski",
             "score": "3-2",
             "time": "08:50"
-        },
-        {
-            "res": "V",
-            "opp": "Aleksander Barton",
-            "score": "1-3",
-            "time": "07:50"
-        },
-        {
-            "res": "V",
-            "opp": "Witold Stechly",
-            "score": "3-0",
-            "time": "06:10"
         }
     ],
     "Kazimierz Rybak": [
@@ -1103,24 +649,6 @@
             "opp": "Andriej Fomin",
             "score": "1-3",
             "time": "09:30"
-        },
-        {
-            "res": "R",
-            "opp": "Jerzy Michalik",
-            "score": "3-2",
-            "time": "08:30"
-        },
-        {
-            "res": "R",
-            "opp": "Arkadiusz Skupinski",
-            "score": "1-3",
-            "time": "07:30"
-        },
-        {
-            "res": "V",
-            "opp": "Witold Stechly",
-            "score": "2-3",
-            "time": "05:10"
         }
     ],
     "Aleksander Barton": [
@@ -1129,24 +657,6 @@
             "opp": "Slawomir Janus",
             "score": "1-3",
             "time": "09:10"
-        },
-        {
-            "res": "R",
-            "opp": "Andriej Fomin",
-            "score": "1-3",
-            "time": "07:50"
-        },
-        {
-            "res": "V",
-            "opp": "Witold Stechly",
-            "score": "3-0",
-            "time": "06:50"
-        },
-        {
-            "res": "R",
-            "opp": "Jerzy Michalik",
-            "score": "2-3",
-            "time": "05:30"
         }
     ],
     "Slawomir Janus": [
@@ -1155,24 +665,6 @@
             "opp": "Aleksander Barton",
             "score": "1-3",
             "time": "09:10"
-        },
-        {
-            "res": "V",
-            "opp": "Witold Stechly",
-            "score": "3-0",
-            "time": "08:10"
-        },
-        {
-            "res": "R",
-            "opp": "Jerzy Michalik",
-            "score": "0-3",
-            "time": "07:10"
-        },
-        {
-            "res": "V",
-            "opp": "Arkadiusz Skupinski",
-            "score": "3-1",
-            "time": "05:50"
         }
     ],
     "Arkadiusz Skupinski": [
@@ -1181,106 +673,6 @@
             "opp": "Andriej Fomin",
             "score": "3-2",
             "time": "08:50"
-        },
-        {
-            "res": "V",
-            "opp": "Kazimierz Rybak",
-            "score": "1-3",
-            "time": "07:30"
-        },
-        {
-            "res": "R",
-            "opp": "Jerzy Michalik",
-            "score": "3-0",
-            "time": "06:30"
-        },
-        {
-            "res": "R",
-            "opp": "Slawomir Janus",
-            "score": "3-1",
-            "time": "05:50"
-        }
-    ],
-    "Maciej Kolek": [
-        {
-            "res": "V",
-            "opp": "Aleksander Lilien",
-            "score": "3-2",
-            "time": "07:20"
-        },
-        {
-            "res": "V",
-            "opp": "Bartosz Czerwinski",
-            "score": "2-3",
-            "time": "06:05"
-        },
-        {
-            "res": "R",
-            "opp": "Grzegorz Poliniewicz",
-            "score": "3-2",
-            "time": "05:40"
-        },
-        {
-            "res": "R",
-            "opp": "Aleksander Lilien",
-            "score": "1-3",
-            "time": "04:55"
-        }
-    ],
-    "Bartosz Czerwinski": [
-        {
-            "res": "R",
-            "opp": "Grzegorz Poliniewicz",
-            "score": "0-3",
-            "time": "06:55"
-        },
-        {
-            "res": "R",
-            "opp": "Maciej Kolek",
-            "score": "2-3",
-            "time": "06:05"
-        },
-        {
-            "res": "R",
-            "opp": "Aleksander Lilien",
-            "score": "2-3",
-            "time": "05:15"
-        }
-    ],
-    "Grzegorz Poliniewicz": [
-        {
-            "res": "V",
-            "opp": "Bartosz Czerwinski",
-            "score": "0-3",
-            "time": "06:55"
-        },
-        {
-            "res": "V",
-            "opp": "Aleksander Lilien",
-            "score": "1-3",
-            "time": "06:30"
-        },
-        {
-            "res": "V",
-            "opp": "Maciej Kolek",
-            "score": "3-2",
-            "time": "05:40"
-        }
-    ],
-    "Jakub Pruszkowski": [
-        {
-            "res": "R",
-            "opp": "Piotr Gumulinski",
-            "score": "0-3",
-            "time": "05:05"
-        }
-    ],
-    "Piotr Gumulinski": [
-        {
-            "res": "V",
-            "opp": "Jakub Pruszkowski",
-            "score": "0-3",
-            "time": "05:05"
         }
     ]
 }
