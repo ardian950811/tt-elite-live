@@ -11,7 +11,6 @@
             padding: 20px;
         }
 
-        /* Contenitore per ogni giocatore */
         .player-card {
             background-color: white;
             padding: 20px;
@@ -28,7 +27,6 @@
             color: #333;
         }
 
-        /* Riga della singola partita */
         .match-row {
             display: flex;
             align-items: center;
@@ -37,7 +35,6 @@
             color: #555;
         }
 
-        /* QUADRATO VERDE - VITTORIA */
         .box-v {
             background-color: #28a745; 
             color: white;
@@ -52,7 +49,6 @@
             margin-right: 15px;
         }
 
-        /* QUADRATO ROSSO - SCONFITTA */
         .box-r {
             background-color: #dc3545; 
             color: white;
@@ -66,44 +62,68 @@
             border-radius: 4px;
             margin-right: 15px;
         }
+
+        .no-data {
+            color: #888;
+            font-style: italic;
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
 
     <h2>🏓 Stato di Forma - Partite di Oggi</h2>
+    <div id="loading">Caricamento dati aggiornati...</div>
+    <div id="container"></div>
 
-    <div class="player-card">
-        <div class="player-name">Jan Zandecki</div>
-        
-        <div class="match-row">
-            <div class="box-v">V</div>
-            <div>vs Jaime Lama (3-1) - Ore 09:30</div>
-        </div>
-        
-        <div class="match-row">
-            <div class="box-r">R</div>
-            <div>vs Alex Moreno (2-3) - Ore 11:15</div>
-        </div>
+    <script>
+        async function loadWebData() {
+            const container = document.getElementById('container');
+            const loading = document.getElementById('loading');
+            
+            try {
+                const response = await fetch('today_form.json');
+                const formData = await response.json();
+                
+                loading.style.display = 'none';
+                container.innerHTML = ""; 
 
-        <div class="match-row">
-            <div class="box-v">V</div>
-            <div>vs Dawid Pelc (3-0) - Ore 14:00</div>
-        </div>
-    </div>
+                const players = Object.keys(formData);
+                
+                if (players.length === 0) {
+                    container.innerHTML = "<p class='no-data'>Nessun match giocato nelle ultime ore.</p>";
+                    return;
+                }
 
-    <div class="player-card">
-        <div class="player-name">Jaime Lama</div>
-        
-        <div class="match-row">
-            <div class="box-r">R</div>
-            <div>vs Jan Zandecki (1-3) - Ore 09:30</div>
-        </div>
-        
-        <div class="match-row">
-            <div class="box-r">R</div>
-            <div>vs Dawid Pelc (1-3) - Ore 12:00</div>
-        </div>
-    </div>
+                players.forEach(playerName => {
+                    const matches = formData[playerName];
+                    
+                    let cardHtml = `
+                        <div class="player-card">
+                            <div class="player-name">${playerName}</div>
+                    `;
+                    
+                    matches.forEach(m => {
+                        const boxClass = m.res === 'V' ? 'box-v' : 'box-r';
+                        cardHtml += `
+                            <div class="match-row">
+                                <div class="${boxClass}">${m.res}</div>
+                                <div>vs ${m.opp} (${m.score}) - Ore ${m.time}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    cardHtml += `</div>`;
+                    container.innerHTML += cardHtml;
+                });
 
+            } catch (e) {
+                loading.innerHTML = "<p style='color:red;'>In attesa che lo script generi i primi dati di oggi...</p>";
+                console.error("Errore lettura JSON:", e);
+            }
+        }
+        
+        loadWebData();
+    </script>
 </body>
 </html>
