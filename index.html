@@ -3,292 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT Elite Series - Match Radar</title>
+    <title>TT Elite Series - Stato di Forma</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121214;
-            color: #e2e8f0;
-            padding: 15px;
-            margin: 0;
+            background-color: #f4f4f9;
+            padding: 20px;
         }
 
-        h2 {
-            font-size: 22px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .match-list {
-            max-width: 480px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* CARD COMPATTA DELLA PARTITA */
-        .match-card {
-            background-color: #1e1e24;
-            border: 1px solid #2d2d34;
+        /* Contenitore per ogni giocatore */
+        .player-card {
+            background-color: white;
+            padding: 20px;
             border-radius: 8px;
-            padding: 15px;
-            cursor: pointer;
-            transition: border-color 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 450px;
+            margin-bottom: 20px;
         }
 
-        /* QUANDO SELEZIONATA DIVENTA VERDE COME IERI */
-        .match-card.active {
-            border-color: #10b981;
+        .player-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
         }
 
-        .match-summary {
+        /* Riga della singola partita */
+        .match-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-
-        .match-time {
-            background-color: #2d2d34;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .match-teams {
-            font-size: 16px;
-            font-weight: bold;
-            flex-grow: 1;
-            margin-left: 15px;
-        }
-
-        /* PANNELLO DETTAGLI NASCOSTO DI DEFAULT */
-        .match-details {
-            display: none;
-            margin-top: 15px;
-            border-top: 1px solid #2d2d34;
-            padding-top: 15px;
-        }
-
-        .match-card.active .match-details {
-            display: block; /* Si mostra solo se la card è attiva */
-        }
-
-        /* BLOCCHI STATISTICHE INTERNE */
-        .section-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #94a3b8;
-            margin-bottom: 8px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .stat-box {
-            background-color: #121214;
-            padding: 10px;
-            border-radius: 6px;
             margin-bottom: 10px;
-            text-align: center;
+            font-size: 16px;
+            color: #555;
         }
 
-        .stat-value {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 2px;
-        }
-
-        .txt-green { color: #10b981; }
-        .txt-blue { color: #3b82f6; }
-        .txt-orange { color: #f59e0b; }
-
-        /* FORMA DI OGGI (I QUADRATINI) */
-        .form-row {
+        /* QUADRATO VERDE - VITTORIA */
+        .box-v {
+            background-color: #28a745; 
+            color: white;
+            width: 35px;
+            height: 35px;
             display: flex;
-            justify-content: space-between;
-            background-color: #121214;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .form-player {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            width: 48%;
-        }
-
-        .badge-form {
-            display: inline-flex;
+            justify-content: center;
             align-items: center;
-            gap: 5px;
-            font-size: 12px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .dot-v { background-color: #10b981; }
-        .dot-r { background-color: #ef4444; }
-
-        /* VALUE BET SIGNALS */
-        .odds-container {
-            font-size: 14px;
-            margin-bottom: 12px;
-            background-color: #121214;
-            padding: 8px 12px;
-            border-radius: 6px;
-        }
-
-        .value-tag {
-            background-color: #10b981;
-            color: #000;
-            font-size: 11px;
             font-weight: bold;
-            padding: 2px 6px;
+            font-size: 18px;
             border-radius: 4px;
-            margin-left: 5px;
+            margin-right: 15px;
         }
 
-        /* STORICO COMPATTO */
-        .history-item {
-            font-size: 13px;
-            color: #94a3b8;
-            padding: 5px 0;
-            border-bottom: 1px solid #2d2d34;
+        /* QUADRATO ROSSO - SCONFITTA */
+        .box-r {
+            background-color: #dc3545; 
+            color: white;
+            width: 35px;
+            height: 35px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 4px;
+            margin-right: 15px;
         }
     </style>
 </head>
 <body>
 
-    <h2>🏓 Radar Prossimi Match & Analisi</h2>
-    
-    <div class="match-list" id="match-list-container">
-        <p style="text-align:center; color:#94a3b8;">Caricamento palinsesto di oggi...</p>
+    <h2>🏓 Stato di Forma - Partite di Oggi</h2>
+
+    <div id="form-container">
+        <p style="color: #666; font-style: italic;">Caricamento dei dati di oggi...</p>
     </div>
 
     <script>
-        async function loadDashboard() {
+        async function loadFormData() {
+            const container = document.getElementById('form-container');
             try {
-                // Carichiamo i due file generati dallo script Python
-                const [resUp, resForm] = await Promise.all([
-                    fetch('upcoming.json'),
-                    fetch('today_form.json')
-                ]);
+                // Legge il file generato dallo script Python
+                const response = await fetch('today_form.json');
+                const formData = await response.json();
                 
-                const upData = await resUp.json();
-                const formData = await resForm.json();
-                
-                const container = document.getElementById('match-list-container');
+                // Pulisce il testo di caricamento
                 container.innerHTML = "";
 
-                if (!upData.results || upData.results.length === 0) {
-                    container.innerHTML = "<p style='text-align:center; color:#ef4444;'>Nessun match in programma.</p>";
+                const players = Object.keys(formData);
+                
+                if (players.length === 0) {
+                    container.innerHTML = "<p style='color: #666; font-style: italic;'>Nessun match registrato nelle ultime ore.</p>";
                     return;
                 }
 
-                upData.results.forEach(m => {
-                    // Estraggo lo stato di forma di oggi per i due giocatori dal secondo file JSON
-                    const formP1 = formData[m.home] || [];
-                    const formP2 = formData[m.away] || [];
-
-                    // Calcolo vittorie totali di oggi per il riepilogo rapido
-                    const winsP1Today = formP1.filter(x => x.res === 'V').length;
-                    const winsP2Today = formP2.filter(x => x.res === 'V').length;
-
-                    // Calcolo percentuali H2H storiche
-                    const totalH2h = m.p1_wins + m.p2_wins;
-                    const p1Pct = totalH2h > 0 ? Math.round((m.p1_wins / totalH2h) * 100) : 50;
-                    const p2Pct = totalH2h > 0 ? Math.round((m.p2_wins / totalH2h) * 100) : 50;
-
-                    // Creazione della card interattiva
-                    const card = document.createElement('div');
-                    card.className = 'match-card';
+                // Disegna le schede esattamente con la tua struttura HTML originale
+                players.forEach(playerName => {
+                    const matches = formData[playerName];
                     
-                    // Gestione del CLIC per aprire/chiudere
-                    card.onclick = function() {
-                        const isAlreadyActive = card.classList.contains('active');
-                        document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active'));
-                        if (!isAlreadyActive) {
-                            card.classList.add('active');
-                        }
-                    };
-
                     let cardHtml = `
-                        <div class="match-summary">
-                            <span class="match-time">${m.time}</span>
-                            <span class="match-teams">${m.home} vs ${m.away}</span>
-                        </div>
-                        
-                        <div class="match-details">
-                            <div class="section-label">Stato di Forma (Ultime Dirette di Oggi)</div>
-                            <div class="form-row">
-                                <div class="form-player">
-                                    <span style="font-weight:bold; color:#10b981;">${m.home}: ${winsP1Today} Vinte</span>
-                                    ${formP1.slice(0,3).map(x => `<span class='badge-form'><span class='dot ${x.res==='V'?'dot-v':'dot-r'}'></span> vs ${x.opp} (${x.score})</span>`).join('')}
-                                </div>
-                                <div class="form-player">
-                                    <span style="font-weight:bold; color:#3b82f6;">${m.away}: ${winsP2Today} Vinte</span>
-                                    ${formP2.slice(0,3).map(x => `<span class='badge-form'><span class='dot ${x.res==='V'?'dot-v':'dot-r'}'></span> vs ${x.opp} (${x.score})</span>`).join('')}
-                                </div>
-                            </div>
-
-                            <div class="stat-box">
-                                <div class="section-label" style="margin:0;">Vittorie ${m.p1_name}</div>
-                                <div class="stat-value txt-green">${m.p1_wins} <span style="font-size:13px; color:#aaa;">(${p1Pct}%)</span></div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="section-label" style="margin:0;">Vittorie ${m.p2_name}</div>
-                                <div class="stat-value txt-blue">${m.p2_wins} <span style="font-size:13px; color:#aaa;">(${p2Pct}%)</span></div>
-                            </div>
-
-                            <div class="stat-box">
-                                <div class="section-label" style="margin:0;">Media Punti Totali (su ${m.h2h_matches_count} match con set)</div>
-                                <div class="stat-value txt-orange">${m.avg_points > 0 ? m.avg_points + ' punti' : 'Nessun precedente'}</div>
-                            </div>
-
-                            <div class="odds-container">
-                                <div>Quota ${m.home}: <b>${m.odds_home}</b> ${m.value_home ? '<span class="value-tag">VALUE BET</span>' : ''}</div>
-                                <div style="margin-top:4px;">Quota ${m.away}: <b>${m.odds_away}</b> ${m.value_away ? '<span class="value-tag">VALUE BET</span>' : ''}</div>
-                            </div>
-
-                            <div class="section-label">Storico Ultimi Incontri H2H</div>
+                        <div class="player-card">
+                            <div class="player-name">${playerName}</div>
                     `;
-
-                    if (m.h2h_history && m.h2h_history.length > 0) {
-                        m.h2h_history.forEach(hist => {
-                            cardHtml += `
-                                <div class="history-item">
-                                    <span>${hist.date}</span>
-                                    <span>${hist.home} <b>${hist.score}</b> ${hist.away}</span>
-                                    <span class="txt-orange">(${hist.pts} pts)</span>
-                                </div>`;
-                        });
-                    } else {
-                        cardHtml += `<div style="font-size:12px; color:#666; text-align:center; font-style:italic;">Nessun precedente trovato.</div>`;
-                    }
-
-                    cardHtml += `</div>`; // Fine match-details
-                    card.innerHTML = cardHtml;
-                    container.appendChild(card);
+                    
+                    matches.forEach(m => {
+                        // Se il risultato è 'V' usa la classe box-v, altrimenti box-r
+                        const boxClass = m.res === 'V' ? 'box-v' : 'box-r';
+                        cardHtml += `
+                            <div class="match-row">
+                                <div class="${boxClass}">${m.res}</div>
+                                <div>vs ${m.opp} (${m.score}) - Ore ${m.time}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    cardHtml += `</div>`;
+                    container.innerHTML += cardHtml;
                 });
 
             } catch (e) {
-                document.getElementById('match-list-container').innerHTML = "<p style='color:#ef4444; text-align:center;'>Errore nel caricamento dei dati interattivi.</p>";
-                console.error(e);
+                container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>In attesa che lo script generi i primi dati di oggi...</p>";
+                console.error("Errore nel caricamento del file JSON:", e);
             }
         }
 
-        loadDashboard();
+        // Avvia il caricamento dei dati
+        loadFormData();
     </script>
 </body>
 </html>
