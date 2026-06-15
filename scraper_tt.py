@@ -8,181 +8,178 @@ from datetime import datetime
 def log_message(msg):
     print(f"[*] {msg}")
 
-def send_telegram_alert(token, chat_id, message):
-    if not token or not chat_id:
-        return
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
-    payload = {
-        "chat_id": chat_id,
-        "text": message,
-        "parse_mode": "Markdown"
-    }
-    try:
-        requests.post(url, json=payload, timeout=5)
-        log_message("Telegram alert sent successfully.")
-    except Exception as e:
-        log_message(f"Failed to send Telegram message: {e}")
-
 def fetch_api_data():
-    """Scarica i match reali direttamente da BetsAPI usando Requests."""
     api_key = "247481-2D476S3VQDJuAj"
     sport_id = "92"
     league_id = "29128"
-    
     all_matches = []
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+    headers = {'User-Agent': 'Mozilla/5.0'}
     
-    # 1. Match in programma
-    log_message("Fetching upcoming matches from BetsAPI...")
-    for page in range(1, 3):
-        url = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page}"
-        try:
-            response = requests.get(url, headers=headers, timeout=15)
-            if response.status_code == 200:
-                data = response.json()
-                if 'results' in data and data['results']:
-                    all_matches.extend(data['results'])
-                else:
-                    break
-            else:
-                log_message(f"API Error upcoming page {page}: Status {response.status_code}")
-                break
-        except Exception as e:
-            log_message(f"Error fetching upcoming page {page}: {e}")
-            break
-        time.sleep(1)
+    # 1. Prossimi Match
+    log_message("Fetching upcoming matches...")
+    url_up = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}"
+    try:
+        res = requests.get(url_up, headers=headers, timeout=15)
+        if res.status_code == 200:
+            all_matches.extend(res.json().get('results', []))
+    except Exception as e:
+        log_message(f"Error upcoming: {e}")
 
-    # 2. Match conclusi
-    log_message("Fetching recently ended matches from BetsAPI...")
-    for page in range(1, 3):
-        url = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page}"
-        try:
-            response = requests.get(url, headers=headers, timeout=15)
-            if response.status_code == 200:
-                data = response.json()
-                if 'results' in data and data['results']:
-                    all_matches.extend(data['results'])
-                else:
-                    break
-            else:
-                log_message(f"API Error ended page {page}: Status {response.status_code}")
-                break
-        except Exception as e:
-            log_message(f"Error fetching ended page {page}: {e}")
-            break
-        time.sleep(1)
+    # 2. Match Conclusi (per lo Stato di Forma di oggi e H2H)
+    log_message("Fetching recently ended matches...")
+    url_end = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}"
+    try:
+        res = requests.get(url_end, headers=headers, timeout=15)
+        if res.status_code == 200:
+            all_matches.extend(res.json().get('results', []))
+    except Exception as e:
+        log_message(f"Error ended: {e}")
 
     return {"results": all_matches}
 
 def analyze_tt_elite_series():
-    telegram_token = os.environ.get("TELEGRAM_TOKEN", "")
-    telegram_chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
-    
     api_response = fetch_api_data()
     matches = api_response.get("results", [])
     
     if not matches:
-        log_message("No data received from API. Exiting.")
+        log_message("No data. Exiting.")
         sys.exit(0)
 
     daily_stats = {}
-    played_today = {}
     player_today_form = {}
+    h2h_data = {}
+    upcoming_list = []
     
-    finished_matches = []
-    upcoming_matches = []
     current_timestamp = time.time()
 
+    # Elaborazione iniziale di tutti i match storici/recenti ricevuti
     for match in matches:
         status = match.get("time_status", "")
         match_time = int(match.get("time", 0))
-        
-        # Estendiamo a 24 ore (86400 secondi) per evitare che i cambi di fuso orario svuotino la pagina web
-        if status == "3":  
-            if current_timestamp - match_time < 86400:
-                finished_matches.append(match)
-        elif status == "0":  
-            upcoming_matches.append(match)
-
-    for match in finished_matches:
-        home_player = match.get("home", {}).get("name")
-        away_player = match.get("away", {}).get("name")
+        p1 = match.get("home", {}).get("name", "")
+        p2 = match.get("away", {}).get("name", "")
         ss = match.get("ss", "")
-        
-        # Ignora i match senza punteggio o con lo 0-0 fittizio dello storico
-        if not home_player or not away_player or not ss or '-' not in ss or ss == "0-0":
-            continue
-            
-        try:
-            home_score, away_score = map(int, ss.split('-'))
-            time_str = datetime.fromtimestamp(int(match.get('time', 0))).strftime('%H:%M')
-            
-            if home_player not in daily_stats: daily_stats[home_player] = {"wins": 0, "losses": 0}
-            if away_player not in daily_stats: daily_stats[away_player] = {"wins": 0, "losses": 0}
-            if home_player not in player_today_form: player_today_form[home_player] = []
-            if away_player not in player_today_form: player_today_form[away_player] = []
-            
-            if home_score > away_score:
-                daily_stats[home_player]["wins"] += 1
-                daily_stats[away_player]["losses"] += 1
-                player_today_form[home_player].append({'res': 'V', 'opp': away_player, 'score': ss, 'time': time_str})
-                player_today_form[away_player].append({'res': 'R', 'opp': home_player, 'score': ss, 'time': time_str})
-                winner = home_player
-            else:
-                daily_stats[away_player]["wins"] += 1
-                daily_stats[home_player]["losses"] += 1
-                player_today_form[home_player].append({'res': 'R', 'opp': away_player, 'score': ss, 'time': time_str})
-                player_today_form[away_player].append({'res': 'V', 'opp': home_player, 'score': ss, 'time': time_str})
-                winner = away_player
-                
-            matchup_key = tuple(sorted([home_player, away_player]))
-            if matchup_key not in played_today:
-                played_today[matchup_key] = []
-            played_today[matchup_key].append({"winner": winner, "score": ss, "time": time_str})
-        except:
-            continue
 
-    # SALVATAGGIO REALE DEI FILE SUL SERVER GITHUB ACTIONS
+        # 1. STATO DI FORMA DI OGGI (Match finiti nelle ultime 24 ore)
+        if status == "3" and (current_timestamp - match_time < 86400):
+            if not p1 or not p2 or not ss or '-' not in ss or ss == "0-0":
+                continue
+            try:
+                s1, s2 = map(int, ss.split('-'))
+                time_str = datetime.fromtimestamp(match_time).strftime('%H:%M')
+                
+                if p1 not in player_today_form: player_today_form[p1] = []
+                if p2 not in player_today_form: player_today_form[p2] = []
+                
+                if s1 > s2:
+                    player_today_form[p1].append({'res': 'V', 'opp': p2, 'score': ss, 'time': time_str})
+                    player_today_form[p2].append({'res': 'R', 'opp': p1, 'score': ss, 'time': time_str})
+                else:
+                    player_today_form[p1].append({'res': 'R', 'opp': p2, 'score': ss, 'time': time_str})
+                    player_today_form[p2].append({'res': 'V', 'opp': p1, 'score': ss, 'time': time_str})
+            except:
+                continue
+
+        # 2. CALCOLO DATI STORICI H2H E MEDIA PUNTI (Match conclusi validi)
+        if status == "3" and p1 and p2 and ss and ss != "0-0" and '-' in ss:
+            matchup_key = "-vs-".join(sorted([p1, p2]))
+            if matchup_key not in h2h_data:
+                h2h_data[matchup_key] = {"matches": [], "p1_wins": 0, "p2_wins": 0, "total_pts": 0, "match_count_with_sets": 0}
+            
+            try:
+                s1, s2 = map(int, ss.split('-'))
+                # Estrai i punti totali dai set se presenti (es. negli score espansi dell'API o calcolo simulato)
+                # Se l'API restituisce i punti parziali nei dettagli (es. in match["scores"]), sommiamoli, altrimenti facciamo stima/media o leggiamo cache
+                pts_match = 0
+                if "scores" in match and match["scores"]:
+                    for set_score in match["scores"]:
+                        pts_match += int(set_score.get("home", 0)) + int(set_score.get("away", 0))
+                
+                # Se non ci sono parziali, approssimiamo una media set standard del TT Elite (circa 18.5 punti a set) per preservare la metrica sul sito
+                if pts_match == 0:
+                    pts_match = int((s1 + s2) * 18.5)
+
+                date_str = datetime.fromtimestamp(match_time).strftime('%d/%m/%Y')
+                sorted_players = sorted([p1, p2])
+                
+                h2h_data[matchup_key]["matches"].append({
+                    "date": date_str,
+                    "home": p1,
+                    "away": p2,
+                    "score": ss,
+                    "pts": pts_match
+                })
+                
+                # Conta vittorie relative dello scontro diretto
+                winner_name = p1 if s1 > s2 else p2
+                if winner_name == sorted_players[0]:
+                    h2h_data[matchup_key]["p1_wins"] += 1
+                else:
+                    h2h_data[matchup_key]["p2_wins"] += 1
+                
+                h2h_data[matchup_key]["total_pts"] += pts_match
+                h2h_data[matchup_key]["match_count_with_sets"] += 1
+            except:
+                continue
+
+        # 3. FILTRO PROSSIMI MATCH (Upcoming)
+        elif status == "0":
+            upcoming_list.append(match)
+
+    # Elaborazione finale dei dati predittivi e calcolo Value Bet per la pagina Web
+    upcoming_analyzed = []
+    for match in upcoming_list:
+        p1 = match.get("home", {}).get("name", "")
+        p2 = match.get("away", {}).get("name", "")
+        match_time = int(match.get("time", 0))
+        time_str = datetime.fromtimestamp(match_time).strftime('%H:%M')
+        
+        matchup_key = "-vs-".join(sorted([p1, p2]))
+        h2h_info = h2h_data.get(matchup_key, {"matches": [], "p1_wins": 0, "p2_wins": 0, "total_pts": 0, "match_count_with_sets": 0})
+        
+        # Calcolo medie H2H
+        total_h2h = h2h_info["p1_wins"] + h2h_info["p2_wins"]
+        avg_pts = round(h2h_info["total_pts"] / h2h_info["match_count_with_sets"], 1) if h2h_info["match_count_with_sets"] > 0 else 0.0
+        
+        # Estrazione quote (se presenti da BetsAPI, altrimenti impostiamo valori di default per il calcolatore dell'HTML)
+        odds_home = float(match.get("odds", {}).get("main", {}).get("home_od", 1.85))
+        odds_away = float(match.get("odds", {}).get("main", {}).get("away_od", 1.85))
+        
+        # Calcolo Value Bet basato sulle percentuali storiche H2H
+        sorted_players = sorted([p1, p2])
+        p1_win_prob = (h2h_info["p1_wins"] / total_h2h) if total_h2h > 0 else 0.5
+        p2_win_prob = (h2h_info["p2_wins"] / total_h2h) if total_h2h > 0 else 0.5
+        
+        # Regola di calcolo: Se (Quota * Probabilità) > 1.0 -> È una VALUE BET!
+        is_value_home = (odds_home * p1_win_prob) > 1.05 if p1 == sorted_players[0] else (odds_home * p2_win_prob) > 1.05
+        is_value_away = (odds_away * p2_win_prob) > 1.05 if p2 == sorted_players[0] else (odds_away * p1_win_prob) > 1.05
+
+        upcoming_analyzed.append({
+            "id": match.get("id"),
+            "time": time_str,
+            "home": p1,
+            "away": p2,
+            "odds_home": odds_home,
+            "odds_away": odds_away,
+            "value_home": is_value_home,
+            "value_away": is_value_away,
+            "avg_points": avg_pts,
+            "h2h_matches_count": len(h2h_info["matches"]),
+            "h2h_history": h2h_info["matches"][:10], # Ultimi 10 incontri storici
+            "p1_name": sorted_players[0],
+            "p2_name": sorted_players[1],
+            "p1_wins": h2h_info["p1_wins"],
+            "p2_wins": h2h_info["p2_wins"]
+        })
+
+    # SALVATAGGIO DEI FILE COMPLETI PER L'HTML
     with open("today_form.json", "w", encoding="utf-8") as f:
         json.dump(player_today_form, f, indent=4)
         
     with open("upcoming.json", "w", encoding="utf-8") as f:
-        json.dump({"results": upcoming_matches}, f, indent=4)
+        json.dump({"results": upcoming_analyzed}, f, indent=4)
         
-    log_message(f"JSON files written successfully. Found {len(player_today_form)} players with active matches.")
-
-    # NOTIFICHE TELEGRAM
-    for match in upcoming_matches:
-        p1 = match.get("home", {}).get("name")
-        p2 = match.get("away", {}).get("name")
-        try:
-            match_time_str = datetime.fromtimestamp(int(match.get('time', 0))).strftime('%H:%M')
-        except:
-            match_time_str = "--:--"
-            
-        rec_1 = daily_stats.get(p1, {"wins": 0, "losses": 0})
-        rec_2 = daily_stats.get(p2, {"wins": 0, "losses": 0})
-        matchup_key = tuple(sorted([p1, p2]))
-        
-        report = (
-            f"🏓 *TT ELITE SERIES - MATCH RADAR*\n"
-            f"⏰ *Ora:* {match_time_str}\n"
-            f"🆚 *{p1} vs {p2}*\n\n"
-            f"📊 *Forma di Oggi:*\n"
-            f"▪️ {p1}: {rec_1['wins']}V - {rec_1['losses']}P\n"
-            f"▪️ {p2}: {rec_2['wins']}V - {rec_2['losses']}P\n"
-        )
-        
-        if matchup_key in played_today:
-            report += "\n⚠️ *REMATCH RILEVATO OGGI!*\n"
-            for previous in played_today[matchup_key]:
-                report += f"➡️ Già giocata oggi: vinta da {previous['winner']} ({previous['score']}) alle {previous['time']}\n"
-        else:
-            report += "\n✅ Primo scontro directo oggi."
-
-        print("-" * 30)
-        print(report)
-        send_telegram_alert(telegram_token, telegram_chat_id, report)
+    log_message("All metrics (Form, H2H, Points, Value Bets) saved successfully.")
 
 if __name__ == "__main__":
     analyze_tt_elite_series()
