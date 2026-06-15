@@ -3,99 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stato di Forma - Ping Pong</title>
+    <title>TT Elite Series - Stato di Forma</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f4f4f9;
             padding: 20px;
-        }
-        
-        h2 {
-            color: #333;
         }
 
-        /* Stile del riquadro del giocatore */
+        /* Contenitore per ogni giocatore */
         .player-card {
-            background: white;
+            background-color: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 450px;
             margin-bottom: 20px;
-            max-width: 400px;
         }
 
         .player-name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             margin-bottom: 15px;
-            color: #222;
+            color: #333;
         }
 
-        /* Struttura della riga della singola partita */
+        /* Riga della singola partita */
         .match-row {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
-        }
-
-        /* IL QUADRATO VERDE (VITTORIA) */
-        .box-vittoria {
-            width: 35px;
-            height: 35px;
-            background-color: #28a745;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 4px;
-            margin-right: 15px;
-        }
-
-        /* IL QUADRATO ROSSO (SCONFITTA) */
-        .box-sconfitta {
-            width: 35px;
-            height: 35px;
-            background-color: #dc3545;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 4px;
-            margin-right: 15px;
-        }
-
-        /* Testo di fianco al quadrato */
-        .match-info {
-            font-size: 15px;
+            font-size: 16px;
             color: #555;
+        }
+
+        /* QUADRATO VERDE - VITTORIA */
+        .box-v {
+            background-color: #28a745; 
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+
+        /* QUADRATO ROSSO - SCONFITTA */
+        .box-r {
+            background-color: #dc3545; 
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 4px;
+            margin-right: 15px;
         }
     </style>
 </head>
 <body>
 
-    <h2>🏓 Stato di Forma Odierno</h2>
+    <h2>🏓 Stato di Forma - Partite di Oggi</h2>
 
     <div class="player-card">
         <div class="player-name">Jan Zandecki</div>
         
         <div class="match-row">
-            <div class="box-vittoria">V</div>
-            <div class="match-info">Ore 09:30 - contro Jaime Lama</div>
+            <div class="box-v">V</div>
+            <div>vs Jaime Lama (3-1) - Ore 09:30</div>
         </div>
         
         <div class="match-row">
-            <div class="box-sconfitta">R</div>
-            <div class="match-info">Ore 11:15 - contro Alex Moreno</div>
+            <div class="box-r">R</div>
+            <div>vs Alex Moreno (2-3) - Ore 11:15</div>
         </div>
 
         <div class="match-row">
-            <div class="box-vittoria">V</div>
-            <div class="match-info">Ore 14:00 - contro Dawid Pelc</div>
+            <div class="box-v">V</div>
+            <div>vs Dawid Pelc (3-0) - Ore 14:00</div>
         </div>
     </div>
 
@@ -103,13 +95,13 @@
         <div class="player-name">Jaime Lama</div>
         
         <div class="match-row">
-            <div class="box-sconfitta">R</div>
-            <div class="match-info">Ore 09:30 - contro Jan Zandecki</div>
+            <div class="box-r">R</div>
+            <div>vs Jan Zandecki (1-3) - Ore 09:30</div>
         </div>
         
         <div class="match-row">
-            <div class="box-sconfitta">R</div>
-            <div class="match-info">Ore 12:00 - contro Dawid Pelc</div>
+            <div class="box-r">R</div>
+            <div>vs Dawid Pelc (1-3) - Ore 12:00</div>
         </div>
     </div>
 
