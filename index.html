@@ -41,7 +41,6 @@
         .text-yellow { color: #fba94c; }
         .text-red { color: #f75a68; }
         
-        /* Modifiche per i bordi dinamici del valore */
         .value-medium { border: 2px solid #fba94c !important; box-shadow: 0 0 8px rgba(251, 169, 76, 0.15); }
         .value-high { border: 2px solid #00b37e !important; box-shadow: 0 0 10px rgba(0, 179, 126, 0.25); }
 
@@ -70,8 +69,14 @@
         .history-points { color: #fba94c; }
         .error-box { background-color: #f75a68; color: #fff; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold; }
         
-        .trend-box { background-color: #1a1a1e; padding: 10px; border-radius: 6px; margin-bottom: 10px; text-align: center; border: 1px dashed #323238; }
-        .trend-title { display: block; font-size: 0.75em; color: #8d8d99; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        /* NUOVI STILI PER STATO FORMA GIORNALIERO (QUADRATI VERDI E ROSSI) */
+        .trend-box { background-color: #1a1a1e; border-radius: 6px; margin-bottom: 10px; border: 1px dashed #323238; padding: 12px 10px; display: flex; justify-content: space-around; }
+        .player-form-col { flex: 1; text-align: center; padding: 0 8px; }
+        .trend-title { display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: bold; }
+        .form-boxes { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+        .box-v { background-color: #00b37e; color: #fff; width: 26px; height: 26px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 13px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,179,126,0.2); cursor: help; }
+        .box-r { background-color: #f75a68; color: #fff; width: 26px; height: 26px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 13px; border-radius: 4px; box-shadow: 0 2px 4px rgba(247,90,104,0.2); cursor: help; }
+        
         .value-indicator { margin-top: 8px; text-align: center; font-size: 0.85em; padding: 6px; border-radius: 4px; background: #1a1a1e; border: 1px solid #323238; }
     </style>
 </head>
@@ -112,7 +117,7 @@
 
     <script>
         let betsCache = JSON.parse(localStorage.getItem('tt_bets')) || {};
-        let currentFilterMode = 'all'; // Stato globale del filtro orario
+        let currentFilterMode = 'all';
 
         function saveBet(matchId, amount, odds, status) {
             betsCache[matchId] = {
@@ -170,13 +175,27 @@
         async function loadDashboardData() {
             try {
                 const nocache = new Date().getTime();
+                
+                // Fetch upcoming
                 const upcomingFetch = await fetch(`upcoming.json?v=${nocache}`);
                 const upcomingPayload = await upcomingFetch.json();
                 
+                // Fetch H2H
                 const h2hFetch = await fetch(`h2h_data.json?v=${nocache}`);
                 const h2hPayload = await h2hFetch.json();
+
+                // Fetch Form di Oggi (NUOVO)
+                let formPayload = {};
+                try {
+                    const formFetch = await fetch(`today_form.json?v=${nocache}`);
+                    formPayload = await formFetch.json();
+                } catch(e) {
+                    console.warn("today_form.json non trovato. Assicurati che lo script Python abbia completato l'esecuzione.");
+                }
                 
+                window.todayForm = formPayload;
                 renderUpcomingContainer(upcomingPayload.results || [], h2hPayload || {});
+                
             } catch (error) {
                 console.error("Data error:", error);
                 document.getElementById('upcoming-list').innerHTML = 
@@ -203,7 +222,6 @@
                 
                 const elementCard = document.createElement('div');
                 elementCard.className = 'match-card';
-                // Aggiungiamo il timestamp come attributo per permettere il filtraggio orario orario lato client
                 elementCard.setAttribute('data-timestamp', matchTimestamp);
                 
                 elementCard.innerHTML = `
@@ -221,15 +239,11 @@
                 window[`h2h_${matchId}`] = h2hDictionary[matchId] || [];
             });
 
-            // Riapplica il filtro attivo in caso di ricaricamento dati
             filterTime(currentFilterMode);
         }
 
-        // Nuova Logica: Filtro Orario Dinamico
         window.filterTime = function(mode) {
             currentFilterMode = mode;
-            
-            // Gestione classi attive sui bottoni UI
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             if(mode === 'all') document.getElementById('filter-all').classList.add('active');
             if(mode === 1) document.getElementById('filter-1h').classList.add('active');
@@ -240,12 +254,10 @@
 
             cards.forEach(card => {
                 const cardTime = parseInt(card.getAttribute('data-timestamp'));
-                
                 if (mode === 'all') {
                     card.style.display = 'block';
                 } else {
                     const maxTimeWindow = nowUnix + (mode * 3600);
-                    // Mostra il match se è nel range orario stabilito (e non è iniziato da più di 2 ore per i live pendenti)
                     if (cardTime >= (nowUnix - 7200) && cardTime <= maxTimeWindow) {
                         card.style.display = 'block';
                     } else {
@@ -338,7 +350,6 @@
             }
         };
 
-        // Nuova Logica: Calcolo Margine ROI Atteso & Bordi Dinamici
         window.checkFairValue = function(matchId) {
             const oddsInput = document.getElementById(`odds-${matchId}`).value.replace(',', '.');
             const odds = parseFloat(oddsInput);
@@ -351,7 +362,6 @@
             const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct) : 999;
             const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct) : 999;
 
-            // Reset classi
             wrapper.className = "bet-section";
 
             if (!odds) {
@@ -384,10 +394,34 @@
         };
 
         function processHeadToHead(playerOne, playerTwo, historicalRecords, containerElement, matchId) {
+            // --- NUOVA LOGICA: ESTRAZIONE E COSTRUZIONE BOX DI OGGI ---
+            const p1Form = window.todayForm ? (window.todayForm[playerOne] || []) : [];
+            const p2Form = window.todayForm ? (window.todayForm[playerTwo] || []) : [];
+
+            let p1Boxes = p1Form.map(m => `<div class="${m.res === 'V' ? 'box-v' : 'box-r'}" title="vs ${m.opp} (${m.score}) alle ${m.time}">${m.res}</div>`).join('');
+            let p2Boxes = p2Form.map(m => `<div class="${m.res === 'V' ? 'box-v' : 'box-r'}" title="vs ${m.opp} (${m.score}) alle ${m.time}">${m.res}</div>`).join('');
+
+            if(!p1Boxes) p1Boxes = '<span style="font-size:0.75em; color:#8d8d99; display:block; margin-top:5px;">Nessun match oggi</span>';
+            if(!p2Boxes) p2Boxes = '<span style="font-size:0.75em; color:#8d8d99; display:block; margin-top:5px;">Nessun match oggi</span>';
+
+            const htmlTrendBoxes = `
+                <div class="trend-box">
+                    <div class="player-form-col">
+                        <span class="trend-title" style="color: #00b37e;">Oggi: ${playerOne}</span>
+                        <div class="form-boxes">${p1Boxes}</div>
+                    </div>
+                    <div class="player-form-col" style="border-left: 1px dashed #323238;">
+                        <span class="trend-title" style="color: #4ea8de;">Oggi: ${playerTwo}</span>
+                        <div class="form-boxes">${p2Boxes}</div>
+                    </div>
+                </div>
+            `;
+            // -----------------------------------------------------------
+
             const filteredEncounters = historicalRecords.slice(0, 18);
             
             if (filteredEncounters.length === 0) {
-                containerElement.innerHTML = "<p style='text-align:center; color:#8d8d99; margin-bottom:15px;'>Nessun precedente storico su BetsAPI.</p>";
+                containerElement.innerHTML = htmlTrendBoxes + "<p style='text-align:center; color:#8d8d99; margin-bottom:15px; margin-top:15px;'>Nessun precedente storico H2H su BetsAPI.</p>";
                 window[`stats_${matchId}`] = { p1WinPct: 0, p2WinPct: 0, p1Name: playerOne, p2Name: playerTwo };
                 return;
             }
@@ -398,10 +432,6 @@
             let validMatchesWithDetails = 0;
             let htmlHistoryRows = "";
             
-            const last5Encounters = filteredEncounters.slice(0, 5);
-            let p1Last5Wins = 0;
-            let p2Last5Wins = 0;
-
             filteredEncounters.forEach((record, index) => {
                 const rawScoreString = record.ss || "0-0";
                 const absoluteScoreParts = rawScoreString.split('-');
@@ -412,14 +442,8 @@
                 if (homeScoreInt > awayScoreInt) { winningSideName = record.home.name; } 
                 else if (awayScoreInt > homeScoreInt) { winningSideName = record.away.name; }
                 
-                if (winningSideName === playerOne) { 
-                    playerOneWinsCount++; 
-                    if(index < 5) p1Last5Wins++;
-                } 
-                else if (winningSideName === playerTwo) { 
-                    playerTwoWinsCount++; 
-                    if(index < 5) p2Last5Wins++;
-                }
+                if (winningSideName === playerOne) { playerOneWinsCount++; } 
+                else if (winningSideName === playerTwo) { playerTwoWinsCount++; }
                 
                 let specificMatchSum = 0;
                 let calculationFlag = false;
@@ -471,18 +495,9 @@
                 p1Name: playerOne,
                 p2Name: playerTwo
             };
-
-            const htmlTrendLast5 = `
-                <div class="trend-box">
-                    <span class="trend-title">Stato di forma (Ultime ${last5Encounters.length} dirette)</span>
-                    <span style="color: #00b37e; font-weight: bold;">${playerOne}: ${p1Last5Wins} Vinte</span>
-                    <span style="color: #8d8d99; margin: 0 10px;">|</span>
-                    <span style="color: #4ea8de; font-weight: bold;">${playerTwo}: ${p2Last5Wins} Vinte</span>
-                </div>
-            `;
             
             containerElement.innerHTML = `
-                ${last5Encounters.length > 0 ? htmlTrendLast5 : ''}
+                ${htmlTrendBoxes}
                 <div class="stat-grid">
                     <div class="stat-box">
                         <span class="stat-label">Vittorie ${playerOne}</span>
@@ -498,7 +513,7 @@
                     </div>
                 </div>
                 <div class="history-list">
-                    <h3 style="font-size: 1.1em; color: #8d8d99; margin-bottom:5px;">Storico ultimi ${totalPlayed} incontri</h3>
+                    <h3 style="font-size: 1.1em; color: #8d8d99; margin-bottom:5px;">Storico ultimi ${totalPlayed} incontri H2H</h3>
                     ${htmlHistoryRows}
                 </div>
             `;
