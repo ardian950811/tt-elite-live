@@ -2,8 +2,7 @@ import os
 import sys
 import json
 import time
-import urllib.parse
-import urllib.request
+import requests
 from datetime import datetime
 
 def log_message(msg):
@@ -12,34 +11,42 @@ def log_message(msg):
 def send_telegram_alert(token, chat_id, message):
     if not token or not chat_id:
         return
-    encoded_msg = urllib.parse.quote(message)
-    url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={encoded_msg}&parse_mode=Markdown"
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": message,
+        "parse_mode": "Markdown"
+    }
     try:
-        urllib.request.urlopen(url, timeout=5)
+        requests.post(url, json=payload, timeout=5)
         log_message("Telegram alert sent successfully.")
     except Exception as e:
         log_message(f"Failed to send Telegram message: {e}")
 
 def fetch_api_data():
-    """Scarica i match reali direttamente da BetsAPI."""
+    """Scarica i match reali direttamente da BetsAPI usando Requests."""
     api_key = "247481-2D476S3VQDJuAj"
     sport_id = "92"
     league_id = "29128"
     
     all_matches = []
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
     
     # 1. Match in programma
     log_message("Fetching upcoming matches from BetsAPI...")
     for page in range(1, 3):
         url = f"https://api.betsapi.com/v1/events/upcoming?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page}"
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         try:
-            with urllib.request.urlopen(req, timeout=15) as response:
-                data = json.loads(response.read().decode('utf-8'))
+            response = requests.get(url, headers=headers, timeout=15)
+            if response.status_code == 200:
+                data = response.json()
                 if 'results' in data and data['results']:
                     all_matches.extend(data['results'])
                 else:
                     break
+            else:
+                log_message(f"API Error upcoming page {page}: Status {response.status_code}")
+                break
         except Exception as e:
             log_message(f"Error fetching upcoming page {page}: {e}")
             break
@@ -49,14 +56,17 @@ def fetch_api_data():
     log_message("Fetching recently ended matches from BetsAPI...")
     for page in range(1, 3):
         url = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}&page={page}"
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         try:
-            with urllib.request.urlopen(req, timeout=15) as response:
-                data = json.loads(response.read().decode('utf-8'))
+            response = requests.get(url, headers=headers, timeout=15)
+            if response.status_code == 200:
+                data = response.json()
                 if 'results' in data and data['results']:
                     all_matches.extend(data['results'])
                 else:
                     break
+            else:
+                log_message(f"API Error ended page {page}: Status {response.status_code}")
+                break
         except Exception as e:
             log_message(f"Error fetching ended page {page}: {e}")
             break
@@ -87,9 +97,9 @@ def analyze_tt_elite_series():
         status = match.get("time_status", "")
         match_time = int(match.get("time", 0))
         
-        # Filtro infallibile basato sulle ultime 15 ore
+        # Estendiamo a 24 ore (86400 secondi) per evitare che i cambi di fuso orario svuotino la pagina web
         if status == "3":  
-            if current_timestamp - match_time < 54000:
+            if current_timestamp - match_time < 86400:
                 finished_matches.append(match)
         elif status == "0":  
             upcoming_matches.append(match)
@@ -99,7 +109,8 @@ def analyze_tt_elite_series():
         away_player = match.get("away", {}).get("name")
         ss = match.get("ss", "")
         
-        if not home_player or not away_player or not ss or '-' not in ss:
+        # Ignora i match senza punteggio o con lo 0-0 fittizio dello storico
+        if not home_player or not away_player or not ss or '-' not in ss or ss == "0-0":
             continue
             
         try:
@@ -131,14 +142,14 @@ def analyze_tt_elite_series():
         except:
             continue
 
-    # SALVATAGGIO DEI FILE JSON IN LOCALE
+    # SALVATAGGIO REALE DEI FILE SUL SERVER GITHUB ACTIONS
     with open("today_form.json", "w", encoding="utf-8") as f:
         json.dump(player_today_form, f, indent=4)
         
     with open("upcoming.json", "w", encoding="utf-8") as f:
         json.dump({"results": upcoming_matches}, f, indent=4)
         
-    log_message("JSON files written locally.")
+    log_message(f"JSON files written successfully. Found {len(player_today_form)} players with active matches.")
 
     # NOTIFICHE TELEGRAM
     for match in upcoming_matches:
@@ -167,7 +178,7 @@ def analyze_tt_elite_series():
             for previous in played_today[matchup_key]:
                 report += f"➡️ Già giocata oggi: vinta da {previous['winner']} ({previous['score']}) alle {previous['time']}\n"
         else:
-            report += "\n✅ Primo scontro diretto oggi."
+            report += "\n✅ Primo scontro directo oggi."
 
         print("-" * 30)
         print(report)
