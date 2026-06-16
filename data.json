@@ -1,978 +1,6 @@
 {
     "upcoming": [
         {
-            "id": "12048432",
-            "time": "07:40",
-            "home": "Marcin Balcerzak",
-            "away": "Kacper Glazowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 12,
-            "avg_points": 84.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048431",
-            "time": "07:55",
-            "home": "Rafal Gajda",
-            "away": "Lukasz Oracz",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 72.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048430",
-            "time": "08:00",
-            "home": "Rafal Idaczyk",
-            "away": "Krzysztof Hetnar",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 60.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043834",
-            "time": "08:05",
-            "home": "Piotr Cyrnek",
-            "away": "Artur Grela",
-            "p1_wins": 4,
-            "p2_wins": 6,
-            "total_h2h_count": 12,
-            "avg_points": 79.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048429",
-            "time": "08:05",
-            "home": "Dmitrij Prokopcov",
-            "away": "Kacper Glazowski",
-            "p1_wins": 2,
-            "p2_wins": 2,
-            "total_h2h_count": 5,
-            "avg_points": 80.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043977",
-            "time": "08:10",
-            "home": "Waldemar Glanowski",
-            "away": "Pawel Adamus",
-            "p1_wins": 0,
-            "p2_wins": 0,
-            "total_h2h_count": 2,
-            "avg_points": 0.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048531",
-            "time": "08:20",
-            "home": "Kacper Adamus",
-            "away": "Krzysztof Schaniel",
-            "p1_wins": 2,
-            "p2_wins": 8,
-            "total_h2h_count": 11,
-            "avg_points": 79.2,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048532",
-            "time": "08:20",
-            "home": "Rafal Skotniczny",
-            "away": "Patryk Mecik",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 60.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043828",
-            "time": "08:30",
-            "home": "Adrian Wiecek",
-            "away": "Krzysztof Wloczko",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 67.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048530",
-            "time": "08:30",
-            "home": "Miroslav Sklensky",
-            "away": "Marcin Balcerzak",
-            "p1_wins": 8,
-            "p2_wins": 2,
-            "total_h2h_count": 11,
-            "avg_points": 68.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043976",
-            "time": "08:35",
-            "home": "Oliwier Sokolowski",
-            "away": "Wojciech Wojtaszczyk",
-            "p1_wins": 0,
-            "p2_wins": 10,
-            "total_h2h_count": 12,
-            "avg_points": 57.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048624",
-            "time": "08:45",
-            "home": "Dawid Jedrysik",
-            "away": "Adam Ruszkiewicz",
-            "p1_wins": 5,
-            "p2_wins": 3,
-            "total_h2h_count": 9,
-            "avg_points": 75.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048829",
-            "time": "08:45",
-            "home": "Maksymilian Rus",
-            "away": "Oliver Vincenec",
-            "p1_wins": 0,
-            "p2_wins": 0,
-            "total_h2h_count": 1,
-            "avg_points": 0.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043617",
-            "time": "09:00",
-            "home": "Piotr Cyrnek",
-            "away": "Artur Grela",
-            "p1_wins": 4,
-            "p2_wins": 6,
-            "total_h2h_count": 12,
-            "avg_points": 79.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12046287",
-            "time": "09:00",
-            "home": "Wojciech Gluszek",
-            "away": "Jakub Glanowski",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 74.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048110",
-            "time": "09:00",
-            "home": "Igor Szymanski",
-            "away": "Pawel Adamus",
-            "p1_wins": 1,
-            "p2_wins": 0,
-            "total_h2h_count": 2,
-            "avg_points": 75.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048623",
-            "time": "09:00",
-            "home": "Karol Strowski",
-            "away": "Kacper Glazowski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 87.4,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048622",
-            "time": "09:05",
-            "home": "Rafal Gajda",
-            "away": "Krzysztof Schaniel",
-            "p1_wins": 1,
-            "p2_wins": 1,
-            "total_h2h_count": 3,
-            "avg_points": 85.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043601",
-            "time": "09:20",
-            "home": "Adrian Wiecek",
-            "away": "Grzegorz Felkel",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 79.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044597",
-            "time": "09:25",
-            "home": "Kamil Rudomina",
-            "away": "Bartosz Sulkowski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 87.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048185",
-            "time": "09:25",
-            "home": "Witold Buczynski",
-            "away": "Wojciech Wojtaszczyk",
-            "p1_wins": 2,
-            "p2_wins": 3,
-            "total_h2h_count": 6,
-            "avg_points": 67.4,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048740",
-            "time": "09:30",
-            "home": "Kacper Adamus",
-            "away": "Maksymilian Rus",
-            "p1_wins": 10,
-            "p2_wins": 0,
-            "total_h2h_count": 11,
-            "avg_points": 66.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043606",
-            "time": "09:40",
-            "home": "Miroslav Sklensky",
-            "away": "Marcin Jadczyk",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 68.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044182",
-            "time": "09:45",
-            "home": "Grzegorz Poliniewicz",
-            "away": "Marcin Balcerzak",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 79.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044596",
-            "time": "09:50",
-            "home": "Aleksander Lilien",
-            "away": "Rafal Stapor",
-            "p1_wins": 1,
-            "p2_wins": 0,
-            "total_h2h_count": 2,
-            "avg_points": 100.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048109",
-            "time": "09:50",
-            "home": "Waldemar Glanowski",
-            "away": "Oliwier Sokolowski",
-            "p1_wins": 1,
-            "p2_wins": 0,
-            "total_h2h_count": 2,
-            "avg_points": 73.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048828",
-            "time": "09:55",
-            "home": "Oliver Vincenec",
-            "away": "Lukasz Oracz",
-            "p1_wins": 7,
-            "p2_wins": 3,
-            "total_h2h_count": 11,
-            "avg_points": 71.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043829",
-            "time": "10:00",
-            "home": "Piotr Cyrnek",
-            "away": "Adrian Wiecek",
-            "p1_wins": 7,
-            "p2_wins": 3,
-            "total_h2h_count": 11,
-            "avg_points": 86.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048827",
-            "time": "10:05",
-            "home": "Karol Strowski",
-            "away": "Karol Wisniewski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 82.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048184",
-            "time": "10:10",
-            "home": "Igor Szymanski",
-            "away": "Witold Buczynski",
-            "p1_wins": 0,
-            "p2_wins": 0,
-            "total_h2h_count": 2,
-            "avg_points": 0.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048888",
-            "time": "10:10",
-            "home": "Wojciech Gluszek",
-            "away": "Kamil Rudomina",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 69.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048889",
-            "time": "10:20",
-            "home": "Rafal Gajda",
-            "away": "Maksymilian Rus",
-            "p1_wins": 8,
-            "p2_wins": 2,
-            "total_h2h_count": 11,
-            "avg_points": 79.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043833",
-            "time": "10:25",
-            "home": "Marcin Jadczyk",
-            "away": "Artur Grela",
-            "p1_wins": 4,
-            "p2_wins": 6,
-            "total_h2h_count": 11,
-            "avg_points": 80.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048887",
-            "time": "10:30",
-            "home": "Marcin Balcerzak",
-            "away": "Kacper Glazowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 12,
-            "avg_points": 84.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043938",
-            "time": "10:35",
-            "home": "Oliwier Sokolowski",
-            "away": "Pawel Adamus",
-            "p1_wins": 1,
-            "p2_wins": 1,
-            "total_h2h_count": 3,
-            "avg_points": 83.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043455",
-            "time": "10:50",
-            "home": "Miroslav Sklensky",
-            "away": "Grzegorz Felkel",
-            "p1_wins": 2,
-            "p2_wins": 8,
-            "total_h2h_count": 11,
-            "avg_points": 81.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048183",
-            "time": "11:00",
-            "home": "Waldemar Glanowski",
-            "away": "Wojciech Wojtaszczyk",
-            "p1_wins": 1,
-            "p2_wins": 2,
-            "total_h2h_count": 4,
-            "avg_points": 80.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043465",
-            "time": "11:15",
-            "home": "Adrian Wiecek",
-            "away": "Artur Grela",
-            "p1_wins": 7,
-            "p2_wins": 3,
-            "total_h2h_count": 11,
-            "avg_points": 81.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048108",
-            "time": "11:25",
-            "home": "Witold Buczynski",
-            "away": "Pawel Adamus",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 72.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043607",
-            "time": "11:40",
-            "home": "Piotr Cyrnek",
-            "away": "Miroslav Sklensky",
-            "p1_wins": 2,
-            "p2_wins": 1,
-            "total_h2h_count": 4,
-            "avg_points": 59.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048235",
-            "time": "11:50",
-            "home": "Igor Szymanski",
-            "away": "Waldemar Glanowski",
-            "p1_wins": 0,
-            "p2_wins": 1,
-            "total_h2h_count": 2,
-            "avg_points": 98.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043460",
-            "time": "12:05",
-            "home": "Marcin Jadczyk",
-            "away": "Grzegorz Felkel",
-            "p1_wins": 7,
-            "p2_wins": 4,
-            "total_h2h_count": 12,
-            "avg_points": 70.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043975",
-            "time": "12:15",
-            "home": "Oliwier Sokolowski",
-            "away": "Wojciech Wojtaszczyk",
-            "p1_wins": 0,
-            "p2_wins": 10,
-            "total_h2h_count": 12,
-            "avg_points": 57.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043466",
-            "time": "12:30",
-            "home": "Adrian Wiecek",
-            "away": "Miroslav Sklensky",
-            "p1_wins": 10,
-            "p2_wins": 0,
-            "total_h2h_count": 11,
-            "avg_points": 80.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043470",
-            "time": "12:40",
-            "home": "Witold Buczynski",
-            "away": "Waldemar Glanowski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 74.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043458",
-            "time": "12:55",
-            "home": "Piotr Cyrnek",
-            "away": "Marcin Jadczyk",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 83.2,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048107",
-            "time": "13:05",
-            "home": "Igor Szymanski",
-            "away": "Oliwier Sokolowski",
-            "p1_wins": 0,
-            "p2_wins": 2,
-            "total_h2h_count": 3,
-            "avg_points": 91.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043830",
-            "time": "13:20",
-            "home": "Grzegorz Felkel",
-            "away": "Artur Grela",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 72.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043832",
-            "time": "13:30",
-            "home": "Wojciech Wojtaszczyk",
-            "away": "Pawel Adamus",
-            "p1_wins": 8,
-            "p2_wins": 2,
-            "total_h2h_count": 11,
-            "avg_points": 84.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043831",
-            "time": "13:45",
-            "home": "Adrian Wiecek",
-            "away": "Marcin Jadczyk",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 80.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043459",
-            "time": "13:55",
-            "home": "Witold Buczynski",
-            "away": "Oliwier Sokolowski",
-            "p1_wins": 0,
-            "p2_wins": 5,
-            "total_h2h_count": 6,
-            "avg_points": 99.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043583",
-            "time": "14:10",
-            "home": "Miroslav Sklensky",
-            "away": "Artur Grela",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 80.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048106",
-            "time": "14:20",
-            "home": "Waldemar Glanowski",
-            "away": "Pawel Adamus",
-            "p1_wins": 0,
-            "p2_wins": 0,
-            "total_h2h_count": 2,
-            "avg_points": 0.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12043468",
-            "time": "14:35",
-            "home": "Piotr Cyrnek",
-            "away": "Grzegorz Felkel",
-            "p1_wins": 7,
-            "p2_wins": 3,
-            "total_h2h_count": 11,
-            "avg_points": 63.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12048182",
-            "time": "14:40",
-            "home": "Igor Szymanski",
-            "away": "Wojciech Wojtaszczyk",
-            "p1_wins": 0,
-            "p2_wins": 2,
-            "total_h2h_count": 3,
-            "avg_points": 61.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044109",
-            "time": "15:00",
-            "home": "Oskar Sokolowski",
-            "away": "Krzysztof Juszczyk",
-            "p1_wins": 0,
-            "p2_wins": 5,
-            "total_h2h_count": 6,
-            "avg_points": 75.2,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044714",
-            "time": "15:00",
-            "home": "Jakub Zochniak",
-            "away": "Mateusz Rutkowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 13,
-            "avg_points": 72.1,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044760",
-            "time": "15:00",
-            "home": "Rafal Stapor",
-            "away": "Bartlomiej Wisniewski",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 80.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044102",
-            "time": "15:10",
-            "home": "Grzegorz Marud",
-            "away": "Piotr Kaczynski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 74.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044149",
-            "time": "15:25",
-            "home": "Mariusz Baron",
-            "away": "Pawel Slosarczyk",
-            "p1_wins": 10,
-            "p2_wins": 0,
-            "total_h2h_count": 11,
-            "avg_points": 69.2,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044582",
-            "time": "15:25",
-            "home": "Marcin Kowalczyk",
-            "away": "Jaroslaw Rolak",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 83.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044713",
-            "time": "15:25",
-            "home": "Krzysztof Kapik",
-            "away": "Patryk Jendrzejewski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 84.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044798",
-            "time": "15:45",
-            "home": "Krystian Kolodziej",
-            "away": "Karol Strowski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 85.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044640",
-            "time": "15:50",
-            "home": "Pawel Kurek",
-            "away": "Milosz Cesarz",
-            "p1_wins": 3,
-            "p2_wins": 2,
-            "total_h2h_count": 6,
-            "avg_points": 57.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12046286",
-            "time": "15:50",
-            "home": "Karol Sulkowski",
-            "away": "Wojciech Gluszek",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 79.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044148",
-            "time": "16:00",
-            "home": "Tomasz Wrzalik",
-            "away": "Mariusz Adamus",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 80.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044712",
-            "time": "16:05",
-            "home": "Jakub Zochniak",
-            "away": "Krzysztof Kapik",
-            "p1_wins": 4,
-            "p2_wins": 6,
-            "total_h2h_count": 11,
-            "avg_points": 85.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12046365",
-            "time": "16:30",
-            "home": "Karol Strowski",
-            "away": "Mateusz Rutkowski",
-            "p1_wins": 7,
-            "p2_wins": 3,
-            "total_h2h_count": 11,
-            "avg_points": 78.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044797",
-            "time": "16:55",
-            "home": "Krystian Kolodziej",
-            "away": "Patryk Jendrzejewski",
-            "p1_wins": 9,
-            "p2_wins": 1,
-            "total_h2h_count": 12,
-            "avg_points": 66.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044711",
-            "time": "17:20",
-            "home": "Krzysztof Kapik",
-            "away": "Mateusz Rutkowski",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 67.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044845",
-            "time": "17:30",
-            "home": "Marian Brunner",
-            "away": "Pawel Chojnacki",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 82.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044710",
-            "time": "17:40",
-            "home": "Jakub Zochniak",
-            "away": "Krystian Kolodziej",
-            "p1_wins": 0,
-            "p2_wins": 10,
-            "total_h2h_count": 13,
-            "avg_points": 58.7,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044729",
-            "time": "17:55",
-            "home": "Zbigniew Nocun",
-            "away": "Henryk Tkaczyk",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 12,
-            "avg_points": 72.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044796",
-            "time": "18:05",
-            "home": "Karol Strowski",
-            "away": "Patryk Jendrzejewski",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 11,
-            "avg_points": 68.8,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044709",
-            "time": "18:30",
-            "home": "Krzysztof Kapik",
-            "away": "Krystian Kolodziej",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 84.0,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044728",
-            "time": "18:45",
-            "home": "Marian Brunner",
-            "away": "Zbigniew Nocun",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 74.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044708",
-            "time": "18:50",
-            "home": "Jakub Zochniak",
-            "away": "Karol Strowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 72.9,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044844",
-            "time": "19:10",
-            "home": "Jacek Zelezik",
-            "away": "Pawel Chojnacki",
-            "p1_wins": 8,
-            "p2_wins": 2,
-            "total_h2h_count": 12,
-            "avg_points": 67.5,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044795",
-            "time": "19:15",
-            "home": "Patryk Jendrzejewski",
-            "away": "Mateusz Rutkowski",
-            "p1_wins": 6,
-            "p2_wins": 4,
-            "total_h2h_count": 13,
-            "avg_points": 82.4,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044794",
-            "time": "19:30",
-            "home": "Dawid Pyrek",
-            "away": "Henryk Tkaczyk",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 83.6,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
-            "id": "12044707",
-            "time": "19:40",
-            "home": "Krzysztof Kapik",
-            "away": "Karol Strowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 89.3,
-            "api_odds_home": 1.85,
-            "api_odds_away": 1.85
-        },
-        {
             "id": "12044727",
             "time": "19:55",
             "home": "Zbigniew Nocun",
@@ -981,6 +9,18 @@
             "p2_wins": 2,
             "total_h2h_count": 11,
             "avg_points": 83.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052096",
+            "time": "20:00",
+            "home": "Mariusz Koczyba",
+            "away": "Mariusz Adamus",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 11,
+            "avg_points": 77.5,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -997,6 +37,54 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12049087",
+            "time": "20:05",
+            "home": "Pawel Kurek",
+            "away": "Krzysztof Juszczyk",
+            "p1_wins": 4,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 78.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052095",
+            "time": "20:05",
+            "home": "Karol Sulkowski",
+            "away": "Bartlomiej Wisniewski",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 11,
+            "avg_points": 75.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052236",
+            "time": "20:20",
+            "home": "Marian Brunner",
+            "away": "Dawid Pyrek",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 11,
+            "avg_points": 62.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052237",
+            "time": "20:20",
+            "home": "Tomasz Wrzalik",
+            "away": "Piotr Kaczynski",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 11,
+            "avg_points": 81.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044706",
             "time": "20:30",
             "home": "Jakub Zochniak",
@@ -1005,6 +93,30 @@
             "p2_wins": 6,
             "total_h2h_count": 12,
             "avg_points": 77.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049097",
+            "time": "20:30",
+            "home": "Oskar Sokolowski",
+            "away": "Pawel Slosarczyk",
+            "p1_wins": 2,
+            "p2_wins": 4,
+            "total_h2h_count": 7,
+            "avg_points": 85.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052235",
+            "time": "20:30",
+            "home": "Rafal Stapor",
+            "away": "Jaroslaw Rolak",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 11,
+            "avg_points": 87.1,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1021,14 +133,26 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12052347",
+            "time": "20:45",
+            "home": "Grzegorz Marud",
+            "away": "Marek Tkocz",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 11,
+            "avg_points": 75.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044705",
             "time": "21:00",
             "home": "Jakub Zochniak",
             "away": "Krystian Kolodziej",
             "p1_wins": 0,
             "p2_wins": 10,
-            "total_h2h_count": 13,
-            "avg_points": 58.7,
+            "total_h2h_count": 12,
+            "avg_points": 56.6,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1041,6 +165,18 @@
             "p2_wins": 3,
             "total_h2h_count": 11,
             "avg_points": 78.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049074",
+            "time": "21:00",
+            "home": "Mariusz Baron",
+            "away": "Pawel Slosarczyk",
+            "p1_wins": 10,
+            "p2_wins": 0,
+            "total_h2h_count": 11,
+            "avg_points": 74.3,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1075,8 +211,8 @@
             "away": "Mateusz Rutkowski",
             "p1_wins": 6,
             "p2_wins": 4,
-            "total_h2h_count": 13,
-            "avg_points": 82.4,
+            "total_h2h_count": 12,
+            "avg_points": 83.3,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1105,14 +241,62 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12052405",
+            "time": "21:30",
+            "home": "Marian Brunner",
+            "away": "Jacek Zelezik",
+            "p1_wins": 3,
+            "p2_wins": 3,
+            "total_h2h_count": 7,
+            "avg_points": 68.2,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052513",
+            "time": "21:35",
+            "home": "Mariusz Adamus",
+            "away": "Marek Tkocz",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 11,
+            "avg_points": 72.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044704",
             "time": "21:45",
             "home": "Jakub Zochniak",
             "away": "Mateusz Rutkowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 13,
-            "avg_points": 72.1,
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 12,
+            "avg_points": 67.2,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049291",
+            "time": "21:45",
+            "home": "Pawel Kurek",
+            "away": "Mariusz Koczyba",
+            "p1_wins": 1,
+            "p2_wins": 9,
+            "total_h2h_count": 11,
+            "avg_points": 66.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052512",
+            "time": "21:45",
+            "home": "Milosz Kukawka",
+            "away": "Krzysztof Kotyl",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 11,
+            "avg_points": 76.6,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1129,14 +313,50 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12052511",
+            "time": "22:00",
+            "home": "Tomasz Wrzalik",
+            "away": "Grzegorz Marud",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 11,
+            "avg_points": 73.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044789",
             "time": "22:05",
             "home": "Krystian Kolodziej",
             "away": "Patryk Jendrzejewski",
             "p1_wins": 9,
             "p2_wins": 1,
-            "total_h2h_count": 12,
-            "avg_points": 66.0,
+            "total_h2h_count": 11,
+            "avg_points": 68.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12048973",
+            "time": "22:10",
+            "home": "Mariusz Baron",
+            "away": "Jakub Nowak",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 11,
+            "avg_points": 92.2,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052609",
+            "time": "22:10",
+            "home": "Mikolaj Lukaszewski",
+            "away": "Jaroslaw Rolak",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 11,
+            "avg_points": 68.1,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1153,6 +373,18 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12052608",
+            "time": "22:25",
+            "home": "Marian Lebek",
+            "away": "Mariusz Adamus",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 11,
+            "avg_points": 71.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044703",
             "time": "22:30",
             "home": "Jakub Zochniak",
@@ -1161,6 +393,18 @@
             "p2_wins": 6,
             "total_h2h_count": 12,
             "avg_points": 77.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049432",
+            "time": "22:35",
+            "home": "Mariusz Koczyba",
+            "away": "Pawel Slosarczyk",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 11,
+            "avg_points": 73.1,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1189,6 +433,18 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12049111",
+            "time": "22:55",
+            "home": "Pawel Kurek",
+            "away": "Oskar Sokolowski",
+            "p1_wins": 9,
+            "p2_wins": 1,
+            "total_h2h_count": 11,
+            "avg_points": 66.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044787",
             "time": "23:05",
             "home": "Marian Brunner",
@@ -1207,8 +463,20 @@
             "away": "Krystian Kolodziej",
             "p1_wins": 0,
             "p2_wins": 10,
-            "total_h2h_count": 13,
-            "avg_points": 58.7,
+            "total_h2h_count": 12,
+            "avg_points": 56.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049143",
+            "time": "23:20",
+            "home": "Jakub Nowak",
+            "away": "Pawel Slosarczyk",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 11,
+            "avg_points": 85.8,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1219,8 +487,8 @@
             "away": "Pawel Chojnacki",
             "p1_wins": 8,
             "p2_wins": 2,
-            "total_h2h_count": 12,
-            "avg_points": 67.5,
+            "total_h2h_count": 11,
+            "avg_points": 68.8,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1231,8 +499,20 @@
             "away": "Mateusz Rutkowski",
             "p1_wins": 6,
             "p2_wins": 4,
-            "total_h2h_count": 13,
-            "avg_points": 82.4,
+            "total_h2h_count": 12,
+            "avg_points": 83.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049110",
+            "time": "23:45",
+            "home": "Mariusz Baron",
+            "away": "Pawel Kurek",
+            "p1_wins": 1,
+            "p2_wins": 7,
+            "total_h2h_count": 9,
+            "avg_points": 75.2,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1241,10 +521,10 @@
             "time": "23:55",
             "home": "Jakub Zochniak",
             "away": "Mateusz Rutkowski",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 13,
-            "avg_points": 72.1,
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 12,
+            "avg_points": 67.2,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1253,10 +533,22 @@
             "time": "23:55",
             "home": "Zbigniew Nocun",
             "away": "Henryk Tkaczyk",
-            "p1_wins": 5,
-            "p2_wins": 5,
-            "total_h2h_count": 12,
-            "avg_points": 72.5,
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 11,
+            "avg_points": 74.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049320",
+            "time": "00:10",
+            "home": "Mariusz Koczyba",
+            "away": "Oskar Sokolowski",
+            "p1_wins": 3,
+            "p2_wins": 1,
+            "total_h2h_count": 4,
+            "avg_points": 70.0,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1267,8 +559,20 @@
             "away": "Patryk Jendrzejewski",
             "p1_wins": 9,
             "p2_wins": 1,
-            "total_h2h_count": 12,
-            "avg_points": 66.0,
+            "total_h2h_count": 11,
+            "avg_points": 68.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049147",
+            "time": "00:35",
+            "home": "Jakub Nowak",
+            "away": "Pawel Kurek",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 74.2,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1297,6 +601,18 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12049001",
+            "time": "01:00",
+            "home": "Mariusz Baron",
+            "away": "Mariusz Koczyba",
+            "p1_wins": 1,
+            "p2_wins": 9,
+            "total_h2h_count": 10,
+            "avg_points": 72.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044784",
             "time": "01:10",
             "home": "Mateusz Rutkowski",
@@ -1315,8 +631,20 @@
             "away": "Pawel Chojnacki",
             "p1_wins": 5,
             "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 82.3,
+            "total_h2h_count": 10,
+            "avg_points": 81.2,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049109",
+            "time": "01:25",
+            "home": "Oskar Sokolowski",
+            "away": "Pawel Slosarczyk",
+            "p1_wins": 2,
+            "p2_wins": 4,
+            "total_h2h_count": 7,
+            "avg_points": 85.0,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1325,10 +653,22 @@
             "time": "01:30",
             "home": "Dawid Pyrek",
             "away": "Henryk Tkaczyk",
-            "p1_wins": 3,
-            "p2_wins": 7,
-            "total_h2h_count": 11,
-            "avg_points": 83.6,
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 83.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049000",
+            "time": "01:45",
+            "home": "Jakub Nowak",
+            "away": "Mariusz Koczyba",
+            "p1_wins": 1,
+            "p2_wins": 9,
+            "total_h2h_count": 10,
+            "avg_points": 68.1,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1345,6 +685,30 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12049108",
+            "time": "02:10",
+            "home": "Pawel Kurek",
+            "away": "Pawel Slosarczyk",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 72.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049326",
+            "time": "02:35",
+            "home": "Mariusz Baron",
+            "away": "Oskar Sokolowski",
+            "p1_wins": 1,
+            "p2_wins": 0,
+            "total_h2h_count": 1,
+            "avg_points": 97.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044782",
             "time": "02:45",
             "home": "Marian Brunner",
@@ -1353,6 +717,42 @@
             "p2_wins": 7,
             "total_h2h_count": 11,
             "avg_points": 70.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050320",
+            "time": "03:00",
+            "home": "Jakub Pruszkowski",
+            "away": "Sebastian Szostok",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 77.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050337",
+            "time": "03:00",
+            "home": "Bartosz Czerwinski",
+            "away": "Kamil Rudomina",
+            "p1_wins": 4,
+            "p2_wins": 2,
+            "total_h2h_count": 6,
+            "avg_points": 66.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051188",
+            "time": "03:00",
+            "home": "Artur Grela",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 10,
+            "avg_points": 75.0,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1369,6 +769,78 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12051236",
+            "time": "03:10",
+            "home": "Wojciech Wojtaszczyk",
+            "away": "Michal Paszkiewicz",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 10,
+            "avg_points": 78.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049653",
+            "time": "03:25",
+            "home": "Szymon Kolasa",
+            "away": "Adrian Wiecek",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 86.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049665",
+            "time": "03:25",
+            "home": "Lukasz Oracz",
+            "away": "Witold Buczynski",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 73.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050788",
+            "time": "03:25",
+            "home": "Jakub Glanowski",
+            "away": "Michal Minda",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 86.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049656",
+            "time": "03:45",
+            "home": "Jan Zandecki",
+            "away": "Dawid Michna",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 73.2,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049637",
+            "time": "03:50",
+            "home": "Igor Szymanski",
+            "away": "Pawel Adamus",
+            "p1_wins": 1,
+            "p2_wins": 1,
+            "total_h2h_count": 2,
+            "avg_points": 64.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044781",
             "time": "03:55",
             "home": "Henryk Tkaczyk",
@@ -1381,14 +853,98 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12050336",
+            "time": "04:00",
+            "home": "Maciej Kolek",
+            "away": "Dmitrij Prokopcov",
+            "p1_wins": 0,
+            "p2_wins": 0,
+            "total_h2h_count": 0,
+            "avg_points": 0.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050340",
+            "time": "04:00",
+            "home": "Rafal Idaczyk",
+            "away": "Marian Lebek",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 10,
+            "avg_points": 75.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049624",
+            "time": "04:10",
+            "home": "Jakub Pruszkowski",
+            "away": "Lukasz Oracz",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 10,
+            "avg_points": 70.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049645",
+            "time": "04:10",
+            "home": "Artur Grela",
+            "away": "Szymon Kolasa",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 78.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044720",
             "time": "04:20",
             "home": "Zbigniew Nocun",
             "away": "Marian Brunner",
             "p1_wins": 5,
             "p2_wins": 5,
-            "total_h2h_count": 11,
-            "avg_points": 74.9,
+            "total_h2h_count": 10,
+            "avg_points": 77.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051139",
+            "time": "04:25",
+            "home": "Karol Wisniewski",
+            "away": "Miroslav Sklensky",
+            "p1_wins": 0,
+            "p2_wins": 10,
+            "total_h2h_count": 10,
+            "avg_points": 54.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049635",
+            "time": "04:30",
+            "home": "Dawid Michna",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 79.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049671",
+            "time": "04:30",
+            "home": "Pawel Adamus",
+            "away": "Sebastian Szostok",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 73.9,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
         },
@@ -1405,6 +961,30 @@
             "api_odds_away": 1.85
         },
         {
+            "id": "12049646",
+            "time": "04:55",
+            "home": "Jan Zandecki",
+            "away": "Adrian Wiecek",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 72.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050264",
+            "time": "04:55",
+            "home": "Igor Szymanski",
+            "away": "Witold Buczynski",
+            "p1_wins": 2,
+            "p2_wins": 0,
+            "total_h2h_count": 2,
+            "avg_points": 59.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
             "id": "12044780",
             "time": "05:05",
             "home": "Jacek Zelezik",
@@ -1415,603 +995,2185 @@
             "avg_points": 63.4,
             "api_odds_home": 1.85,
             "api_odds_away": 1.85
+        },
+        {
+            "id": "12049625",
+            "time": "05:15",
+            "home": "Lukasz Oracz",
+            "away": "Sebastian Szostok",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 83.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049641",
+            "time": "05:15",
+            "home": "Szymon Kolasa",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 66.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051936",
+            "time": "05:30",
+            "home": "Kacper Adamus",
+            "away": "Jerzy Pelka",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 10,
+            "avg_points": 73.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049622",
+            "time": "05:40",
+            "home": "Artur Grela",
+            "away": "Jan Zandecki",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 78.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050296",
+            "time": "05:40",
+            "home": "Jakub Pruszkowski",
+            "away": "Igor Szymanski",
+            "p1_wins": 0,
+            "p2_wins": 0,
+            "total_h2h_count": 0,
+            "avg_points": 0.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051935",
+            "time": "05:55",
+            "home": "Rafal Gajda",
+            "away": "Oliver Vincenec",
+            "p1_wins": 4,
+            "p2_wins": 2,
+            "total_h2h_count": 6,
+            "avg_points": 89.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049654",
+            "time": "06:05",
+            "home": "Dawid Michna",
+            "away": "Adrian Wiecek",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 71.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050263",
+            "time": "06:05",
+            "home": "Pawel Adamus",
+            "away": "Witold Buczynski",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 75.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050391",
+            "time": "06:20",
+            "home": "Krzysztof Schaniel",
+            "away": "Oskar Jadach",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 70.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049642",
+            "time": "06:30",
+            "home": "Szymon Kolasa",
+            "away": "Jan Zandecki",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 82.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050262",
+            "time": "06:30",
+            "home": "Lukasz Oracz",
+            "away": "Igor Szymanski",
+            "p1_wins": 0,
+            "p2_wins": 0,
+            "total_h2h_count": 0,
+            "avg_points": 0.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049638",
+            "time": "06:55",
+            "home": "Jakub Pruszkowski",
+            "away": "Pawel Adamus",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 78.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049650",
+            "time": "06:55",
+            "home": "Artur Grela",
+            "away": "Dawid Michna",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 78.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049647",
+            "time": "07:20",
+            "home": "Adrian Wiecek",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 81.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049659",
+            "time": "07:20",
+            "home": "Witold Buczynski",
+            "away": "Sebastian Szostok",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 77.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049636",
+            "time": "07:45",
+            "home": "Szymon Kolasa",
+            "away": "Dawid Michna",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 84.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050324",
+            "time": "07:45",
+            "home": "Lukasz Oracz",
+            "away": "Pawel Adamus",
+            "p1_wins": 7,
+            "p2_wins": 2,
+            "total_h2h_count": 9,
+            "avg_points": 72.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049623",
+            "time": "08:05",
+            "home": "Jan Zandecki",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 80.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050209",
+            "time": "08:10",
+            "home": "Igor Szymanski",
+            "away": "Sebastian Szostok",
+            "p1_wins": 0,
+            "p2_wins": 0,
+            "total_h2h_count": 0,
+            "avg_points": 0.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049655",
+            "time": "08:30",
+            "home": "Artur Grela",
+            "away": "Adrian Wiecek",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 82.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049631",
+            "time": "08:35",
+            "home": "Jakub Pruszkowski",
+            "away": "Witold Buczynski",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 10,
+            "avg_points": 77.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049652",
+            "time": "09:00",
+            "home": "Jan Zandecki",
+            "away": "Szymon Kolasa",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 82.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050157",
+            "time": "09:00",
+            "home": "Pawel Adamus",
+            "away": "Sebastian Szostok",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 73.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051414",
+            "time": "09:00",
+            "home": "Karol Strowski",
+            "away": "Karol Wisniewski",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 81.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051420",
+            "time": "09:00",
+            "home": "Bartosz Sulkowski",
+            "away": "Aleksander Lilien",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 81.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049643",
+            "time": "09:20",
+            "home": "Artur Grela",
+            "away": "Dawid Michna",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 78.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049644",
+            "time": "09:25",
+            "home": "Lukasz Oracz",
+            "away": "Witold Buczynski",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 73.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050872",
+            "time": "09:25",
+            "home": "Kamil Rudomina",
+            "away": "Bartosz Kwodawski",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 75.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049632",
+            "time": "09:40",
+            "home": "Grzegorz Felkel",
+            "away": "Adrian Wiecek",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 81.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050361",
+            "time": "09:45",
+            "home": "Krzysztof Wloczko",
+            "away": "Dmitrij Prokopcov",
+            "p1_wins": 1,
+            "p2_wins": 1,
+            "total_h2h_count": 2,
+            "avg_points": 87.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049662",
+            "time": "10:00",
+            "home": "Jan Zandecki",
+            "away": "Artur Grela",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 78.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051413",
+            "time": "10:05",
+            "home": "Karol Strowski",
+            "away": "Miroslav Sklensky",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 75.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050200",
+            "time": "10:10",
+            "home": "Pawel Adamus",
+            "away": "Lukasz Oracz",
+            "p1_wins": 2,
+            "p2_wins": 7,
+            "total_h2h_count": 9,
+            "avg_points": 72.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049648",
+            "time": "10:25",
+            "home": "Adrian Wiecek",
+            "away": "Szymon Kolasa",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 86.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049640",
+            "time": "10:35",
+            "home": "Jakub Pruszkowski",
+            "away": "Sebastian Szostok",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 77.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049608",
+            "time": "10:50",
+            "home": "Grzegorz Felkel",
+            "away": "Dawid Michna",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 10,
+            "avg_points": 79.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050207",
+            "time": "11:00",
+            "home": "Igor Szymanski",
+            "away": "Witold Buczynski",
+            "p1_wins": 2,
+            "p2_wins": 0,
+            "total_h2h_count": 2,
+            "avg_points": 59.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049735",
+            "time": "11:15",
+            "home": "Artur Grela",
+            "away": "Szymon Kolasa",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 78.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049634",
+            "time": "11:25",
+            "home": "Lukasz Oracz",
+            "away": "Sebastian Szostok",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 83.8,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049627",
+            "time": "11:40",
+            "home": "Jan Zandecki",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 80.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051412",
+            "time": "11:45",
+            "home": "Karol Strowski",
+            "away": "Krzysztof Wloczko",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 81.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049620",
+            "time": "11:50",
+            "home": "Pawel Adamus",
+            "away": "Igor Szymanski",
+            "p1_wins": 1,
+            "p2_wins": 1,
+            "total_h2h_count": 2,
+            "avg_points": 64.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049633",
+            "time": "12:05",
+            "home": "Adrian Wiecek",
+            "away": "Dawid Michna",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 71.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049621",
+            "time": "12:15",
+            "home": "Jakub Pruszkowski",
+            "away": "Witold Buczynski",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 10,
+            "avg_points": 77.5,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049628",
+            "time": "12:30",
+            "home": "Artur Grela",
+            "away": "Grzegorz Felkel",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 10,
+            "avg_points": 75.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049784",
+            "time": "12:55",
+            "home": "Jan Zandecki",
+            "away": "Adrian Wiecek",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 72.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051411",
+            "time": "13:00",
+            "home": "Karol Strowski",
+            "away": "Dmitrij Prokopcov",
+            "p1_wins": 1,
+            "p2_wins": 0,
+            "total_h2h_count": 1,
+            "avg_points": 73.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049630",
+            "time": "13:05",
+            "home": "Pawel Adamus",
+            "away": "Jakub Pruszkowski",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 78.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049629",
+            "time": "13:20",
+            "home": "Dawid Michna",
+            "away": "Szymon Kolasa",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 84.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049649",
+            "time": "13:30",
+            "home": "Witold Buczynski",
+            "away": "Sebastian Szostok",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 77.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049651",
+            "time": "13:45",
+            "home": "Artur Grela",
+            "away": "Adrian Wiecek",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 82.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049753",
+            "time": "13:55",
+            "home": "Lukasz Oracz",
+            "away": "Jakub Pruszkowski",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 70.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049639",
+            "time": "14:10",
+            "home": "Grzegorz Felkel",
+            "away": "Szymon Kolasa",
+            "p1_wins": 7,
+            "p2_wins": 3,
+            "total_h2h_count": 10,
+            "avg_points": 66.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12049619",
+            "time": "14:35",
+            "home": "Jan Zandecki",
+            "away": "Dawid Michna",
+            "p1_wins": 5,
+            "p2_wins": 5,
+            "total_h2h_count": 10,
+            "avg_points": 73.2,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051410",
+            "time": "14:35",
+            "home": "Karol Strowski",
+            "away": "Szymon Sporek",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 77.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050295",
+            "time": "14:40",
+            "home": "Pawel Adamus",
+            "away": "Witold Buczynski",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 75.4,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050728",
+            "time": "15:00",
+            "home": "Artur Kubiak",
+            "away": "Michal Machelski",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 10,
+            "avg_points": 71.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050880",
+            "time": "15:00",
+            "home": "Adrian Fabis",
+            "away": "Milosz Kukawka",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 75.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050881",
+            "time": "15:00",
+            "home": "Lukasz Pietraszko",
+            "away": "Krystian Kolodziej",
+            "p1_wins": 1,
+            "p2_wins": 9,
+            "total_h2h_count": 10,
+            "avg_points": 69.7,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051247",
+            "time": "15:10",
+            "home": "Jakub Kaczmarek",
+            "away": "Krzysztof Juszczyk",
+            "p1_wins": 3,
+            "p2_wins": 7,
+            "total_h2h_count": 10,
+            "avg_points": 76.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050339",
+            "time": "15:25",
+            "home": "Jacek Oracz",
+            "away": "Adam Staniczek",
+            "p1_wins": 9,
+            "p2_wins": 1,
+            "total_h2h_count": 10,
+            "avg_points": 56.1,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051359",
+            "time": "15:25",
+            "home": "Karol Strowski",
+            "away": "Patryk Jendrzejewski",
+            "p1_wins": 6,
+            "p2_wins": 4,
+            "total_h2h_count": 10,
+            "avg_points": 68.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12052633",
+            "time": "15:25",
+            "home": "Marcin Kowalczyk",
+            "away": "Krzysztof Kotyl",
+            "p1_wins": 2,
+            "p2_wins": 8,
+            "total_h2h_count": 10,
+            "avg_points": 80.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050851",
+            "time": "15:35",
+            "home": "Mariusz Koczyba",
+            "away": "Dawid Jedrysik",
+            "p1_wins": 7,
+            "p2_wins": 0,
+            "total_h2h_count": 7,
+            "avg_points": 54.3,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051358",
+            "time": "15:45",
+            "home": "Krzysztof Kapik",
+            "away": "Szymon Sporek",
+            "p1_wins": 4,
+            "p2_wins": 6,
+            "total_h2h_count": 10,
+            "avg_points": 80.6,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12050727",
+            "time": "15:50",
+            "home": "Jerzy Michalik",
+            "away": "Grzegorz Mucha",
+            "p1_wins": 0,
+            "p2_wins": 0,
+            "total_h2h_count": 0,
+            "avg_points": 0.0,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
+        },
+        {
+            "id": "12051028",
+            "time": "15:50",
+            "home": "Bartlomiej Wisniewski",
+            "away": "Piotr Strus",
+            "p1_wins": 8,
+            "p2_wins": 2,
+            "total_h2h_count": 10,
+            "avg_points": 76.9,
+            "api_odds_home": 1.85,
+            "api_odds_away": 1.85
         }
     ],
     "today_form": {
-        "Grzegorz Felkel": [
+        "Marcin Kowalczyk": [
             {
                 "res": "V",
-                "opp": "Marcin Jadczyk",
-                "score": "7-5",
-                "time": "07:45"
+                "opp": "Wojciech Gluszek",
+                "score": "3-1",
+                "time": "19:40"
             },
             {
                 "res": "R",
-                "opp": "Piotr Cyrnek",
+                "opp": "Karol Sulkowski",
+                "score": "2-3",
+                "time": "18:30"
+            },
+            {
+                "res": "R",
+                "opp": "Bartlomiej Wisniewski",
+                "score": "1-3",
+                "time": "17:20"
+            },
+            {
+                "res": "R",
+                "opp": "Rafal Stapor",
+                "score": "3-1",
+                "time": "16:15"
+            },
+            {
+                "res": "R",
+                "opp": "Jaroslaw Rolak",
                 "score": "0-3",
-                "time": "06:30"
-            },
-            {
-                "res": "R",
-                "opp": "Artur Grela",
-                "score": "2-3",
-                "time": "05:15"
+                "time": "15:25"
             }
         ],
-        "Marcin Jadczyk": [
+        "Wojciech Gluszek": [
             {
                 "res": "R",
-                "opp": "Grzegorz Felkel",
-                "score": "7-5",
-                "time": "07:45"
+                "opp": "Marcin Kowalczyk",
+                "score": "3-1",
+                "time": "19:40"
             },
             {
                 "res": "R",
-                "opp": "Adrian Wiecek",
+                "opp": "Rafal Stapor",
                 "score": "3-0",
-                "time": "06:55"
+                "time": "18:55"
             },
             {
                 "res": "V",
-                "opp": "Krzysztof Wloczko",
-                "score": "3-0",
-                "time": "06:05"
-            }
-        ],
-        "Adam Ruszkiewicz": [
+                "opp": "Jaroslaw Rolak",
+                "score": "3-1",
+                "time": "18:10"
+            },
             {
                 "res": "R",
-                "opp": "Patryk Mecik",
+                "opp": "Bartlomiej Wisniewski",
+                "score": "2-3",
+                "time": "16:35"
+            },
+            {
+                "res": "V",
+                "opp": "Karol Sulkowski",
+                "score": "2-3",
+                "time": "15:50"
+            },
+            {
+                "res": "R",
+                "opp": "Bartosz Sulkowski",
                 "score": "1-3",
-                "time": "07:35"
+                "time": "14:40"
             },
             {
                 "res": "R",
-                "opp": "Krzysztof Hetnar",
-                "score": "3-0",
-                "time": "06:25"
-            },
-            {
-                "res": "R",
-                "opp": "Rafal Skotniczny",
-                "score": "3-1",
-                "time": "05:10"
-            }
-        ],
-        "Patryk Mecik": [
-            {
-                "res": "V",
-                "opp": "Adam Ruszkiewicz",
-                "score": "1-3",
-                "time": "07:35"
-            },
-            {
-                "res": "R",
-                "opp": "Rafal Idaczyk",
-                "score": "3-1",
-                "time": "05:35"
-            },
-            {
-                "res": "R",
-                "opp": "Krzysztof Hetnar",
-                "score": "3-1",
-                "time": "04:50"
-            }
-        ],
-        "Krzysztof Schaniel": [
-            {
-                "res": "R",
-                "opp": "Oliver Vincenec",
-                "score": "2-3",
-                "time": "07:30"
-            },
-            {
-                "res": "V",
-                "opp": "Maksymilian Rus",
-                "score": "3-1",
-                "time": "06:20"
-            }
-        ],
-        "Oliver Vincenec": [
-            {
-                "res": "V",
-                "opp": "Krzysztof Schaniel",
-                "score": "2-3",
-                "time": "07:30"
-            },
-            {
-                "res": "V",
-                "opp": "Rafal Gajda",
-                "score": "2-3",
-                "time": "05:55"
-            }
-        ],
-        "Wojciech Wojtaszczyk": [
-            {
-                "res": "V",
-                "opp": "Pawel Adamus",
-                "score": "14-12",
-                "time": "07:30"
-            },
-            {
-                "res": "V",
-                "opp": "Igor Szymanski",
+                "opp": "Rafal Stapor",
                 "score": "0-3",
-                "time": "06:30"
+                "time": "13:05"
             },
             {
-                "res": "V",
-                "opp": "Waldemar Glanowski",
+                "res": "R",
+                "opp": "Aleksander Lilien",
                 "score": "1-3",
-                "time": "05:35"
+                "time": "11:50"
             }
         ],
-        "Pawel Adamus": [
+        "Mariusz Baron": [
             {
                 "res": "R",
-                "opp": "Wojciech Wojtaszczyk",
-                "score": "14-12",
-                "time": "07:30"
-            },
-            {
-                "res": "R",
-                "opp": "Witold Buczynski",
-                "score": "3-1",
-                "time": "05:55"
+                "opp": "Milosz Cesarz",
+                "score": "4-4",
+                "time": "19:40"
             },
             {
                 "res": "R",
-                "opp": "Igor Szymanski",
-                "score": "3-1",
-                "time": "05:05"
-            }
-        ],
-        "Bartosz Czerwinski": [
-            {
-                "res": "R",
-                "opp": "Maciej Kolek",
-                "score": "1-3",
-                "time": "07:20"
+                "opp": "Pawel Kurek",
+                "score": "2-3",
+                "time": "18:30"
             },
             {
                 "res": "V",
-                "opp": "Jakub Glanowski",
-                "score": "1-3",
-                "time": "06:05"
-            },
-            {
-                "res": "V",
-                "opp": "Michal Minda",
-                "score": "0-3",
-                "time": "05:30"
-            }
-        ],
-        "Maciej Kolek": [
-            {
-                "res": "V",
-                "opp": "Bartosz Czerwinski",
-                "score": "1-3",
-                "time": "07:20"
-            },
-            {
-                "res": "V",
-                "opp": "Michal Minda",
+                "opp": "Krzysztof Juszczyk",
                 "score": "3-2",
-                "time": "06:30"
+                "time": "17:20"
             },
             {
                 "res": "V",
-                "opp": "Jakub Glanowski",
-                "score": "1-3",
-                "time": "05:10"
+                "opp": "Oskar Sokolowski",
+                "score": "2-3",
+                "time": "16:15"
+            },
+            {
+                "res": "V",
+                "opp": "Pawel Slosarczyk",
+                "score": "3-2",
+                "time": "15:25"
             }
         ],
-        "Krzysztof Wloczko": [
-            {
-                "res": "R",
-                "opp": "Artur Grela",
-                "score": "1-3",
-                "time": "07:20"
-            },
-            {
-                "res": "R",
-                "opp": "Marcin Jadczyk",
-                "score": "3-0",
-                "time": "06:05"
-            },
+        "Milosz Cesarz": [
             {
                 "res": "V",
-                "opp": "Piotr Cyrnek",
+                "opp": "Mariusz Baron",
+                "score": "4-4",
+                "time": "19:40"
+            },
+            {
+                "res": "R",
+                "opp": "Oskar Sokolowski",
+                "score": "3-2",
+                "time": "18:55"
+            },
+            {
+                "res": "R",
+                "opp": "Pawel Slosarczyk",
+                "score": "1-3",
+                "time": "18:10"
+            },
+            {
+                "res": "R",
+                "opp": "Krzysztof Juszczyk",
                 "score": "0-3",
-                "time": "04:55"
+                "time": "16:35"
+            },
+            {
+                "res": "R",
+                "opp": "Pawel Kurek",
+                "score": "3-0",
+                "time": "15:50"
             }
         ],
-        "Artur Grela": [
+        "Krzysztof Kapik": [
             {
-                "res": "V",
-                "opp": "Krzysztof Wloczko",
-                "score": "1-3",
-                "time": "07:20"
+                "res": "R",
+                "opp": "Karol Strowski",
+                "score": "8-9",
+                "time": "19:40"
+            },
+            {
+                "res": "R",
+                "opp": "Krystian Kolodziej",
+                "score": "2-3",
+                "time": "18:30"
+            },
+            {
+                "res": "R",
+                "opp": "Mateusz Rutkowski",
+                "score": "2-3",
+                "time": "17:20"
             },
             {
                 "res": "V",
-                "opp": "Grzegorz Felkel",
+                "opp": "Jakub Zochniak",
                 "score": "2-3",
-                "time": "05:15"
+                "time": "16:05"
+            },
+            {
+                "res": "R",
+                "opp": "Patryk Jendrzejewski",
+                "score": "0-3",
+                "time": "15:25"
             }
         ],
-        "Dmitrij Prokopcov": [
+        "Karol Strowski": [
             {
                 "res": "V",
-                "opp": "Miroslav Sklensky",
+                "opp": "Krzysztof Kapik",
+                "score": "8-9",
+                "time": "19:40"
+            },
+            {
+                "res": "R",
+                "opp": "Jakub Zochniak",
+                "score": "3-2",
+                "time": "18:50"
+            },
+            {
+                "res": "R",
+                "opp": "Patryk Jendrzejewski",
+                "score": "0-3",
+                "time": "18:05"
+            },
+            {
+                "res": "V",
+                "opp": "Mateusz Rutkowski",
                 "score": "3-1",
-                "time": "07:15"
+                "time": "16:30"
             },
             {
-                "res": "R",
-                "opp": "Marcin Balcerzak",
-                "score": "1-3",
-                "time": "06:25"
+                "res": "V",
+                "opp": "Krystian Kolodziej",
+                "score": "0-3",
+                "time": "15:45"
             },
             {
-                "res": "R",
-                "opp": "Kacper Glazowski",
-                "score": "1-3",
-                "time": "05:35"
-            },
-            {
-                "res": "R",
-                "opp": "Miroslav Sklensky",
-                "score": "2-3",
-                "time": "04:50"
-            }
-        ],
-        "Miroslav Sklensky": [
-            {
-                "res": "R",
+                "res": "V",
                 "opp": "Dmitrij Prokopcov",
                 "score": "3-1",
-                "time": "07:15"
-            },
-            {
-                "res": "V",
-                "opp": "Kacper Glazowski",
-                "score": "1-3",
-                "time": "06:50"
+                "time": "14:35"
             },
             {
                 "res": "V",
                 "opp": "Marcin Balcerzak",
                 "score": "3-2",
-                "time": "06:00"
+                "time": "13:00"
             },
             {
                 "res": "V",
-                "opp": "Dmitrij Prokopcov",
-                "score": "2-3",
-                "time": "04:50"
-            }
-        ],
-        "Dawid Jedrysik": [
-            {
-                "res": "R",
-                "opp": "Krzysztof Hetnar",
-                "score": "2-3",
-                "time": "07:10"
-            },
-            {
-                "res": "R",
-                "opp": "Rafal Skotniczny",
-                "score": "2-3",
-                "time": "06:00"
-            }
-        ],
-        "Krzysztof Hetnar": [
-            {
-                "res": "V",
-                "opp": "Dawid Jedrysik",
-                "score": "2-3",
-                "time": "07:10"
-            },
-            {
-                "res": "V",
-                "opp": "Adam Ruszkiewicz",
+                "opp": "Grzegorz Poliniewicz",
                 "score": "3-0",
-                "time": "06:25"
+                "time": "11:45"
+            }
+        ],
+        "Marek Tkocz": [
+            {
+                "res": "V",
+                "opp": "Piotr Kaczynski",
+                "score": "3-1",
+                "time": "19:35"
             },
             {
                 "res": "V",
-                "opp": "Patryk Mecik",
+                "opp": "Mariusz Adamus",
+                "score": "0-3",
+                "time": "18:25"
+            },
+            {
+                "res": "V",
+                "opp": "Tomasz Wrzalik",
+                "score": "1-3",
+                "time": "17:10"
+            },
+            {
+                "res": "V",
+                "opp": "Mariusz Koczyba",
+                "score": "2-3",
+                "time": "15:35"
+            }
+        ],
+        "Piotr Kaczynski": [
+            {
+                "res": "R",
+                "opp": "Marek Tkocz",
                 "score": "3-1",
-                "time": "04:50"
+                "time": "19:35"
+            },
+            {
+                "res": "R",
+                "opp": "Mariusz Koczyba",
+                "score": "3-0",
+                "time": "17:35"
+            },
+            {
+                "res": "R",
+                "opp": "Mariusz Adamus",
+                "score": "3-2",
+                "time": "16:50"
+            },
+            {
+                "res": "V",
+                "opp": "Grzegorz Marud",
+                "score": "0-3",
+                "time": "15:10"
+            }
+        ],
+        "Dawid Pyrek": [
+            {
+                "res": "V",
+                "opp": "Henryk Tkaczyk",
+                "score": "3-1",
+                "time": "19:30"
+            },
+            {
+                "res": "V",
+                "opp": "Jacek Zelezik",
+                "score": "3-0",
+                "time": "18:20"
+            }
+        ],
+        "Henryk Tkaczyk": [
+            {
+                "res": "R",
+                "opp": "Dawid Pyrek",
+                "score": "3-1",
+                "time": "19:30"
+            },
+            {
+                "res": "V",
+                "opp": "Zbigniew Nocun",
+                "score": "1-3",
+                "time": "17:55"
+            }
+        ],
+        "Jaroslaw Rolak": [
+            {
+                "res": "V",
+                "opp": "Bartlomiej Wisniewski",
+                "score": "3-0",
+                "time": "19:20"
+            },
+            {
+                "res": "R",
+                "opp": "Wojciech Gluszek",
+                "score": "3-1",
+                "time": "18:10"
+            },
+            {
+                "res": "R",
+                "opp": "Karol Sulkowski",
+                "score": "3-0",
+                "time": "16:55"
+            },
+            {
+                "res": "V",
+                "opp": "Marcin Kowalczyk",
+                "score": "0-3",
+                "time": "15:25"
+            }
+        ],
+        "Bartlomiej Wisniewski": [
+            {
+                "res": "R",
+                "opp": "Jaroslaw Rolak",
+                "score": "3-0",
+                "time": "19:20"
+            },
+            {
+                "res": "V",
+                "opp": "Marcin Kowalczyk",
+                "score": "1-3",
+                "time": "17:20"
+            },
+            {
+                "res": "V",
+                "opp": "Wojciech Gluszek",
+                "score": "2-3",
+                "time": "16:35"
+            },
+            {
+                "res": "R",
+                "opp": "Rafal Stapor",
+                "score": "3-1",
+                "time": "15:00"
+            }
+        ],
+        "Pawel Slosarczyk": [
+            {
+                "res": "R",
+                "opp": "Krzysztof Juszczyk",
+                "score": "2-3",
+                "time": "19:20"
+            },
+            {
+                "res": "V",
+                "opp": "Milosz Cesarz",
+                "score": "1-3",
+                "time": "18:10"
+            },
+            {
+                "res": "R",
+                "opp": "Pawel Kurek",
+                "score": "3-1",
+                "time": "16:55"
+            },
+            {
+                "res": "R",
+                "opp": "Mariusz Baron",
+                "score": "3-2",
+                "time": "15:25"
+            }
+        ],
+        "Krzysztof Juszczyk": [
+            {
+                "res": "V",
+                "opp": "Pawel Slosarczyk",
+                "score": "2-3",
+                "time": "19:20"
+            },
+            {
+                "res": "R",
+                "opp": "Mariusz Baron",
+                "score": "3-2",
+                "time": "17:20"
+            },
+            {
+                "res": "V",
+                "opp": "Milosz Cesarz",
+                "score": "0-3",
+                "time": "16:35"
+            },
+            {
+                "res": "V",
+                "opp": "Oskar Sokolowski",
+                "score": "1-3",
+                "time": "15:00"
+            }
+        ],
+        "Patryk Jendrzejewski": [
+            {
+                "res": "R",
+                "opp": "Mateusz Rutkowski",
+                "score": "1-3",
+                "time": "19:15"
+            },
+            {
+                "res": "V",
+                "opp": "Karol Strowski",
+                "score": "0-3",
+                "time": "18:05"
+            },
+            {
+                "res": "R",
+                "opp": "Krystian Kolodziej",
+                "score": "3-1",
+                "time": "16:55"
+            },
+            {
+                "res": "V",
+                "opp": "Krzysztof Kapik",
+                "score": "0-3",
+                "time": "15:25"
+            }
+        ],
+        "Mateusz Rutkowski": [
+            {
+                "res": "V",
+                "opp": "Patryk Jendrzejewski",
+                "score": "1-3",
+                "time": "19:15"
+            },
+            {
+                "res": "V",
+                "opp": "Krzysztof Kapik",
+                "score": "2-3",
+                "time": "17:20"
+            },
+            {
+                "res": "R",
+                "opp": "Karol Strowski",
+                "score": "3-1",
+                "time": "16:30"
+            },
+            {
+                "res": "V",
+                "opp": "Jakub Zochniak",
+                "score": "0-3",
+                "time": "15:00"
+            }
+        ],
+        "Grzegorz Marud": [
+            {
+                "res": "V",
+                "opp": "Mariusz Adamus",
+                "score": "3-2",
+                "time": "19:10"
+            },
+            {
+                "res": "R",
+                "opp": "Tomasz Wrzalik",
+                "score": "0-3",
+                "time": "18:00"
+            },
+            {
+                "res": "R",
+                "opp": "Mariusz Koczyba",
+                "score": "1-3",
+                "time": "16:25"
+            },
+            {
+                "res": "R",
+                "opp": "Piotr Kaczynski",
+                "score": "0-3",
+                "time": "15:10"
+            }
+        ],
+        "Mariusz Adamus": [
+            {
+                "res": "R",
+                "opp": "Grzegorz Marud",
+                "score": "3-2",
+                "time": "19:10"
+            },
+            {
+                "res": "R",
+                "opp": "Marek Tkocz",
+                "score": "0-3",
+                "time": "18:25"
+            },
+            {
+                "res": "V",
+                "opp": "Piotr Kaczynski",
+                "score": "3-2",
+                "time": "16:50"
+            },
+            {
+                "res": "R",
+                "opp": "Tomasz Wrzalik",
+                "score": "3-1",
+                "time": "16:00"
+            }
+        ],
+        "Jacek Zelezik": [
+            {
+                "res": "V",
+                "opp": "Pawel Chojnacki",
+                "score": "3-0",
+                "time": "19:10"
+            },
+            {
+                "res": "R",
+                "opp": "Dawid Pyrek",
+                "score": "3-0",
+                "time": "18:20"
+            }
+        ],
+        "Pawel Chojnacki": [
+            {
+                "res": "R",
+                "opp": "Jacek Zelezik",
+                "score": "3-0",
+                "time": "19:10"
+            },
+            {
+                "res": "V",
+                "opp": "Marian Brunner",
+                "score": "1-3",
+                "time": "17:30"
+            }
+        ],
+        "Rafal Stapor": [
+            {
+                "res": "V",
+                "opp": "Wojciech Gluszek",
+                "score": "3-0",
+                "time": "18:55"
+            },
+            {
+                "res": "V",
+                "opp": "Karol Sulkowski",
+                "score": "3-1",
+                "time": "17:45"
+            },
+            {
+                "res": "V",
+                "opp": "Marcin Kowalczyk",
+                "score": "3-1",
+                "time": "16:15"
+            },
+            {
+                "res": "V",
+                "opp": "Bartlomiej Wisniewski",
+                "score": "3-1",
+                "time": "15:00"
+            },
+            {
+                "res": "R",
+                "opp": "Kamil Rudomina",
+                "score": "3-0",
+                "time": "13:55"
+            },
+            {
+                "res": "V",
+                "opp": "Wojciech Gluszek",
+                "score": "0-3",
+                "time": "13:05"
+            },
+            {
+                "res": "V",
+                "opp": "Bartosz Sulkowski",
+                "score": "3-1",
+                "time": "12:15"
+            }
+        ],
+        "Oskar Sokolowski": [
+            {
+                "res": "V",
+                "opp": "Milosz Cesarz",
+                "score": "3-2",
+                "time": "18:55"
+            },
+            {
+                "res": "R",
+                "opp": "Pawel Kurek",
+                "score": "0-3",
+                "time": "17:45"
+            },
+            {
+                "res": "R",
+                "opp": "Mariusz Baron",
+                "score": "2-3",
+                "time": "16:15"
+            },
+            {
+                "res": "R",
+                "opp": "Krzysztof Juszczyk",
+                "score": "1-3",
+                "time": "15:00"
+            }
+        ],
+        "Jakub Zochniak": [
+            {
+                "res": "V",
+                "opp": "Karol Strowski",
+                "score": "3-2",
+                "time": "18:50"
+            },
+            {
+                "res": "R",
+                "opp": "Krystian Kolodziej",
+                "score": "0-3",
+                "time": "17:40"
+            },
+            {
+                "res": "R",
+                "opp": "Krzysztof Kapik",
+                "score": "2-3",
+                "time": "16:05"
+            },
+            {
+                "res": "R",
+                "opp": "Mateusz Rutkowski",
+                "score": "0-3",
+                "time": "15:00"
+            }
+        ],
+        "Mariusz Koczyba": [
+            {
+                "res": "V",
+                "opp": "Tomasz Wrzalik",
+                "score": "3-1",
+                "time": "18:45"
+            },
+            {
+                "res": "V",
+                "opp": "Piotr Kaczynski",
+                "score": "3-0",
+                "time": "17:35"
+            },
+            {
+                "res": "V",
+                "opp": "Grzegorz Marud",
+                "score": "1-3",
+                "time": "16:25"
+            },
+            {
+                "res": "R",
+                "opp": "Marek Tkocz",
+                "score": "2-3",
+                "time": "15:35"
+            }
+        ],
+        "Tomasz Wrzalik": [
+            {
+                "res": "R",
+                "opp": "Mariusz Koczyba",
+                "score": "3-1",
+                "time": "18:45"
+            },
+            {
+                "res": "V",
+                "opp": "Grzegorz Marud",
+                "score": "0-3",
+                "time": "18:00"
+            },
+            {
+                "res": "R",
+                "opp": "Marek Tkocz",
+                "score": "1-3",
+                "time": "17:10"
+            },
+            {
+                "res": "V",
+                "opp": "Mariusz Adamus",
+                "score": "3-1",
+                "time": "16:00"
+            }
+        ],
+        "Marian Brunner": [
+            {
+                "res": "R",
+                "opp": "Zbigniew Nocun",
+                "score": "2-3",
+                "time": "18:45"
+            },
+            {
+                "res": "R",
+                "opp": "Pawel Chojnacki",
+                "score": "1-3",
+                "time": "17:30"
+            }
+        ],
+        "Zbigniew Nocun": [
+            {
+                "res": "V",
+                "opp": "Marian Brunner",
+                "score": "2-3",
+                "time": "18:45"
+            },
+            {
+                "res": "R",
+                "opp": "Henryk Tkaczyk",
+                "score": "1-3",
+                "time": "17:55"
+            }
+        ],
+        "Karol Sulkowski": [
+            {
+                "res": "V",
+                "opp": "Marcin Kowalczyk",
+                "score": "2-3",
+                "time": "18:30"
+            },
+            {
+                "res": "R",
+                "opp": "Rafal Stapor",
+                "score": "3-1",
+                "time": "17:45"
+            },
+            {
+                "res": "V",
+                "opp": "Jaroslaw Rolak",
+                "score": "3-0",
+                "time": "16:55"
+            },
+            {
+                "res": "R",
+                "opp": "Wojciech Gluszek",
+                "score": "2-3",
+                "time": "15:50"
+            }
+        ],
+        "Pawel Kurek": [
+            {
+                "res": "V",
+                "opp": "Mariusz Baron",
+                "score": "2-3",
+                "time": "18:30"
+            },
+            {
+                "res": "V",
+                "opp": "Oskar Sokolowski",
+                "score": "0-3",
+                "time": "17:45"
+            },
+            {
+                "res": "V",
+                "opp": "Pawel Slosarczyk",
+                "score": "3-1",
+                "time": "16:55"
+            },
+            {
+                "res": "V",
+                "opp": "Milosz Cesarz",
+                "score": "3-0",
+                "time": "15:50"
+            }
+        ],
+        "Krystian Kolodziej": [
+            {
+                "res": "V",
+                "opp": "Krzysztof Kapik",
+                "score": "2-3",
+                "time": "18:30"
+            },
+            {
+                "res": "V",
+                "opp": "Jakub Zochniak",
+                "score": "0-3",
+                "time": "17:40"
+            },
+            {
+                "res": "V",
+                "opp": "Patryk Jendrzejewski",
+                "score": "3-1",
+                "time": "16:55"
+            },
+            {
+                "res": "R",
+                "opp": "Karol Strowski",
+                "score": "0-3",
+                "time": "15:45"
             }
         ],
         "Maksymilian Rus": [
             {
-                "res": "R",
-                "opp": "Lukasz Oracz",
-                "score": "1-3",
-                "time": "07:10"
-            },
-            {
-                "res": "R",
-                "opp": "Krzysztof Schaniel",
-                "score": "3-1",
-                "time": "06:20"
-            }
-        ],
-        "Lukasz Oracz": [
-            {
                 "res": "V",
-                "opp": "Maksymilian Rus",
-                "score": "1-3",
-                "time": "07:10"
+                "opp": "Oliver Vincenec",
+                "score": "3-0",
+                "time": "17:05"
             },
             {
                 "res": "V",
                 "opp": "Kacper Adamus",
-                "score": "2-3",
-                "time": "05:30"
-            }
-        ],
-        "Oliwier Sokolowski": [
-            {
-                "res": "V",
-                "opp": "Igor Szymanski",
                 "score": "3-2",
-                "time": "07:10"
-            },
-            {
-                "res": "R",
-                "opp": "Waldemar Glanowski",
-                "score": "1-3",
-                "time": "06:10"
-            }
-        ],
-        "Igor Szymanski": [
-            {
-                "res": "R",
-                "opp": "Oliwier Sokolowski",
-                "score": "3-2",
-                "time": "07:10"
-            },
-            {
-                "res": "R",
-                "opp": "Wojciech Wojtaszczyk",
-                "score": "0-3",
-                "time": "06:30"
+                "time": "15:30"
             },
             {
                 "res": "V",
-                "opp": "Pawel Adamus",
+                "opp": "Krzysztof Schaniel",
                 "score": "3-1",
-                "time": "05:05"
-            }
-        ],
-        "Jakub Glanowski": [
-            {
-                "res": "R",
-                "opp": "Michal Minda",
-                "score": "1-3",
-                "time": "06:55"
-            },
-            {
-                "res": "R",
-                "opp": "Bartosz Czerwinski",
-                "score": "1-3",
-                "time": "06:05"
-            },
-            {
-                "res": "R",
-                "opp": "Maciej Kolek",
-                "score": "1-3",
-                "time": "05:10"
-            }
-        ],
-        "Michal Minda": [
-            {
-                "res": "V",
-                "opp": "Jakub Glanowski",
-                "score": "1-3",
-                "time": "06:55"
-            },
-            {
-                "res": "R",
-                "opp": "Maciej Kolek",
-                "score": "3-2",
-                "time": "06:30"
-            },
-            {
-                "res": "R",
-                "opp": "Bartosz Czerwinski",
-                "score": "0-3",
-                "time": "05:30"
-            }
-        ],
-        "Adrian Wiecek": [
-            {
-                "res": "V",
-                "opp": "Marcin Jadczyk",
-                "score": "3-0",
-                "time": "06:55"
-            },
-            {
-                "res": "R",
-                "opp": "Piotr Cyrnek",
-                "score": "2-3",
-                "time": "05:40"
-            }
-        ],
-        "Kacper Glazowski": [
-            {
-                "res": "R",
-                "opp": "Miroslav Sklensky",
-                "score": "1-3",
-                "time": "06:50"
+                "time": "14:20"
             },
             {
                 "res": "V",
-                "opp": "Dmitrij Prokopcov",
-                "score": "1-3",
-                "time": "05:35"
-            },
-            {
-                "res": "V",
-                "opp": "Marcin Balcerzak",
-                "score": "2-3",
-                "time": "05:15"
-            }
-        ],
-        "Witold Buczynski": [
-            {
-                "res": "V",
-                "opp": "Waldemar Glanowski",
-                "score": "3-2",
-                "time": "06:50"
-            },
-            {
-                "res": "V",
-                "opp": "Pawel Adamus",
-                "score": "3-1",
-                "time": "05:55"
-            }
-        ],
-        "Waldemar Glanowski": [
-            {
-                "res": "R",
-                "opp": "Witold Buczynski",
-                "score": "3-2",
-                "time": "06:50"
-            },
-            {
-                "res": "V",
-                "opp": "Oliwier Sokolowski",
-                "score": "1-3",
-                "time": "06:10"
-            },
-            {
-                "res": "R",
-                "opp": "Wojciech Wojtaszczyk",
-                "score": "1-3",
-                "time": "05:35"
-            }
-        ],
-        "Rafal Idaczyk": [
-            {
-                "res": "R",
-                "opp": "Rafal Skotniczny",
-                "score": "2-3",
-                "time": "06:45"
-            },
-            {
-                "res": "V",
-                "opp": "Patryk Mecik",
-                "score": "3-1",
-                "time": "05:35"
-            }
-        ],
-        "Rafal Skotniczny": [
-            {
-                "res": "V",
-                "opp": "Rafal Idaczyk",
-                "score": "2-3",
-                "time": "06:45"
-            },
-            {
-                "res": "V",
-                "opp": "Dawid Jedrysik",
-                "score": "2-3",
-                "time": "06:00"
-            },
-            {
-                "res": "V",
-                "opp": "Adam Ruszkiewicz",
-                "score": "3-1",
-                "time": "05:10"
-            }
-        ],
-        "Kacper Adamus": [
-            {
-                "res": "R",
                 "opp": "Rafal Gajda",
-                "score": "2-3",
-                "time": "06:45"
+                "score": "3-2",
+                "time": "12:45"
             },
             {
                 "res": "R",
                 "opp": "Lukasz Oracz",
-                "score": "2-3",
-                "time": "05:30"
+                "score": "0-3",
+                "time": "11:30"
+            }
+        ],
+        "Oliver Vincenec": [
+            {
+                "res": "R",
+                "opp": "Maksymilian Rus",
+                "score": "3-0",
+                "time": "17:05"
+            },
+            {
+                "res": "V",
+                "opp": "Lukasz Oracz",
+                "score": "3-1",
+                "time": "15:55"
+            },
+            {
+                "res": "R",
+                "opp": "Kacper Adamus",
+                "score": "3-2",
+                "time": "14:45"
+            },
+            {
+                "res": "R",
+                "opp": "Krzysztof Schaniel",
+                "score": "3-2",
+                "time": "13:30"
+            },
+            {
+                "res": "R",
+                "opp": "Rafal Gajda",
+                "score": "3-2",
+                "time": "11:55"
+            }
+        ],
+        "Krzysztof Schaniel": [
+            {
+                "res": "V",
+                "opp": "Lukasz Oracz",
+                "score": "3-1",
+                "time": "16:40"
+            },
+            {
+                "res": "V",
+                "opp": "Rafal Gajda",
+                "score": "1-3",
+                "time": "15:05"
+            },
+            {
+                "res": "R",
+                "opp": "Maksymilian Rus",
+                "score": "3-1",
+                "time": "14:20"
+            },
+            {
+                "res": "V",
+                "opp": "Oliver Vincenec",
+                "score": "3-2",
+                "time": "13:30"
+            },
+            {
+                "res": "R",
+                "opp": "Kacper Adamus",
+                "score": "0-3",
+                "time": "12:20"
+            }
+        ],
+        "Lukasz Oracz": [
+            {
+                "res": "R",
+                "opp": "Krzysztof Schaniel",
+                "score": "3-1",
+                "time": "16:40"
+            },
+            {
+                "res": "R",
+                "opp": "Oliver Vincenec",
+                "score": "3-1",
+                "time": "15:55"
+            },
+            {
+                "res": "V",
+                "opp": "Rafal Gajda",
+                "score": "1-3",
+                "time": "13:55"
+            },
+            {
+                "res": "R",
+                "opp": "Kacper Adamus",
+                "score": "3-1",
+                "time": "13:10"
+            },
+            {
+                "res": "V",
+                "opp": "Maksymilian Rus",
+                "score": "0-3",
+                "time": "11:30"
             }
         ],
         "Rafal Gajda": [
             {
                 "res": "V",
                 "opp": "Kacper Adamus",
-                "score": "2-3",
-                "time": "06:45"
+                "score": "3-1",
+                "time": "16:20"
             },
             {
                 "res": "R",
+                "opp": "Krzysztof Schaniel",
+                "score": "1-3",
+                "time": "15:05"
+            },
+            {
+                "res": "R",
+                "opp": "Lukasz Oracz",
+                "score": "1-3",
+                "time": "13:55"
+            },
+            {
+                "res": "R",
+                "opp": "Maksymilian Rus",
+                "score": "3-2",
+                "time": "12:45"
+            },
+            {
+                "res": "V",
                 "opp": "Oliver Vincenec",
+                "score": "3-2",
+                "time": "11:55"
+            }
+        ],
+        "Kacper Adamus": [
+            {
+                "res": "R",
+                "opp": "Rafal Gajda",
+                "score": "3-1",
+                "time": "16:20"
+            },
+            {
+                "res": "R",
+                "opp": "Maksymilian Rus",
+                "score": "3-2",
+                "time": "15:30"
+            },
+            {
+                "res": "V",
+                "opp": "Oliver Vincenec",
+                "score": "3-2",
+                "time": "14:45"
+            },
+            {
+                "res": "V",
+                "opp": "Lukasz Oracz",
+                "score": "3-1",
+                "time": "13:10"
+            },
+            {
+                "res": "V",
+                "opp": "Krzysztof Schaniel",
+                "score": "0-3",
+                "time": "12:20"
+            }
+        ],
+        "Bartosz Sulkowski": [
+            {
+                "res": "V",
+                "opp": "Wojciech Gluszek",
+                "score": "1-3",
+                "time": "14:40"
+            },
+            {
+                "res": "R",
+                "opp": "Jakub Glanowski",
+                "score": "1-3",
+                "time": "13:30"
+            },
+            {
+                "res": "R",
+                "opp": "Rafal Stapor",
+                "score": "3-1",
+                "time": "12:15"
+            }
+        ],
+        "Igor Szymanski": [
+            {
+                "res": "R",
+                "opp": "Wojciech Wojtaszczyk",
+                "score": "0-3",
+                "time": "14:40"
+            },
+            {
+                "res": "R",
+                "opp": "Oliwier Sokolowski",
+                "score": "1-3",
+                "time": "13:05"
+            },
+            {
+                "res": "R",
+                "opp": "Waldemar Glanowski",
+                "score": "1-3",
+                "time": "11:50"
+            }
+        ],
+        "Wojciech Wojtaszczyk": [
+            {
+                "res": "V",
+                "opp": "Igor Szymanski",
+                "score": "0-3",
+                "time": "14:40"
+            },
+            {
+                "res": "V",
+                "opp": "Pawel Adamus",
+                "score": "3-1",
+                "time": "13:30"
+            },
+            {
+                "res": "V",
+                "opp": "Oliwier Sokolowski",
+                "score": "0-3",
+                "time": "12:15"
+            }
+        ],
+        "Dmitrij Prokopcov": [
+            {
+                "res": "R",
+                "opp": "Karol Strowski",
+                "score": "3-1",
+                "time": "14:35"
+            },
+            {
+                "res": "R",
+                "opp": "Kacper Glazowski",
                 "score": "2-3",
-                "time": "05:55"
+                "time": "13:25"
+            },
+            {
+                "res": "R",
+                "opp": "Marcin Balcerzak",
+                "score": "3-0",
+                "time": "12:10"
             }
         ],
         "Piotr Cyrnek": [
             {
                 "res": "V",
                 "opp": "Grzegorz Felkel",
+                "score": "3-0",
+                "time": "14:35"
+            },
+            {
+                "res": "V",
+                "opp": "Marcin Jadczyk",
+                "score": "3-2",
+                "time": "12:55"
+            },
+            {
+                "res": "V",
+                "opp": "Miroslav Sklensky",
+                "score": "3-1",
+                "time": "11:40"
+            }
+        ],
+        "Grzegorz Felkel": [
+            {
+                "res": "R",
+                "opp": "Piotr Cyrnek",
+                "score": "3-0",
+                "time": "14:35"
+            },
+            {
+                "res": "R",
+                "opp": "Artur Grela",
+                "score": "1-3",
+                "time": "13:20"
+            },
+            {
+                "res": "V",
+                "opp": "Marcin Jadczyk",
                 "score": "0-3",
-                "time": "06:30"
+                "time": "12:05"
+            }
+        ],
+        "Aleksander Lilien": [
+            {
+                "res": "V",
+                "opp": "Jakub Glanowski",
+                "score": "3-2",
+                "time": "14:20"
+            },
+            {
+                "res": "R",
+                "opp": "Kamil Rudomina",
+                "score": "3-1",
+                "time": "12:40"
+            },
+            {
+                "res": "V",
+                "opp": "Wojciech Gluszek",
+                "score": "1-3",
+                "time": "11:50"
+            }
+        ],
+        "Jakub Glanowski": [
+            {
+                "res": "R",
+                "opp": "Aleksander Lilien",
+                "score": "3-2",
+                "time": "14:20"
+            },
+            {
+                "res": "V",
+                "opp": "Bartosz Sulkowski",
+                "score": "1-3",
+                "time": "13:30"
+            },
+            {
+                "res": "V",
+                "opp": "Kamil Rudomina",
+                "score": "0-3",
+                "time": "11:25"
+            }
+        ],
+        "Waldemar Glanowski": [
+            {
+                "res": "R",
+                "opp": "Pawel Adamus",
+                "score": "0-3",
+                "time": "14:20"
+            },
+            {
+                "res": "R",
+                "opp": "Witold Buczynski",
+                "score": "3-2",
+                "time": "12:40"
+            },
+            {
+                "res": "V",
+                "opp": "Igor Szymanski",
+                "score": "1-3",
+                "time": "11:50"
+            }
+        ],
+        "Pawel Adamus": [
+            {
+                "res": "V",
+                "opp": "Waldemar Glanowski",
+                "score": "0-3",
+                "time": "14:20"
+            },
+            {
+                "res": "R",
+                "opp": "Wojciech Wojtaszczyk",
+                "score": "3-1",
+                "time": "13:30"
+            }
+        ],
+        "Grzegorz Poliniewicz": [
+            {
+                "res": "R",
+                "opp": "Kacper Glazowski",
+                "score": "1-3",
+                "time": "14:15"
+            },
+            {
+                "res": "V",
+                "opp": "Karol Wisniewski",
+                "score": "0-3",
+                "time": "12:35"
+            },
+            {
+                "res": "R",
+                "opp": "Karol Strowski",
+                "score": "3-0",
+                "time": "11:45"
+            }
+        ],
+        "Kacper Glazowski": [
+            {
+                "res": "V",
+                "opp": "Grzegorz Poliniewicz",
+                "score": "1-3",
+                "time": "14:15"
+            },
+            {
+                "res": "V",
+                "opp": "Dmitrij Prokopcov",
+                "score": "2-3",
+                "time": "13:25"
+            }
+        ],
+        "Miroslav Sklensky": [
+            {
+                "res": "V",
+                "opp": "Artur Grela",
+                "score": "3-1",
+                "time": "14:10"
             },
             {
                 "res": "V",
                 "opp": "Adrian Wiecek",
-                "score": "2-3",
-                "time": "05:40"
+                "score": "1-3",
+                "time": "12:30"
             },
             {
                 "res": "R",
-                "opp": "Krzysztof Wloczko",
+                "opp": "Piotr Cyrnek",
+                "score": "3-1",
+                "time": "11:40"
+            }
+        ],
+        "Artur Grela": [
+            {
+                "res": "R",
+                "opp": "Miroslav Sklensky",
+                "score": "3-1",
+                "time": "14:10"
+            },
+            {
+                "res": "V",
+                "opp": "Grzegorz Felkel",
+                "score": "1-3",
+                "time": "13:20"
+            }
+        ],
+        "Kamil Rudomina": [
+            {
+                "res": "V",
+                "opp": "Rafal Stapor",
+                "score": "3-0",
+                "time": "13:55"
+            },
+            {
+                "res": "V",
+                "opp": "Aleksander Lilien",
+                "score": "3-1",
+                "time": "12:40"
+            },
+            {
+                "res": "R",
+                "opp": "Jakub Glanowski",
                 "score": "0-3",
-                "time": "04:55"
+                "time": "11:25"
+            }
+        ],
+        "Witold Buczynski": [
+            {
+                "res": "V",
+                "opp": "Oliwier Sokolowski",
+                "score": "3-0",
+                "time": "13:55"
+            },
+            {
+                "res": "V",
+                "opp": "Waldemar Glanowski",
+                "score": "3-2",
+                "time": "12:40"
+            }
+        ],
+        "Oliwier Sokolowski": [
+            {
+                "res": "R",
+                "opp": "Witold Buczynski",
+                "score": "3-0",
+                "time": "13:55"
+            },
+            {
+                "res": "V",
+                "opp": "Igor Szymanski",
+                "score": "1-3",
+                "time": "13:05"
+            },
+            {
+                "res": "R",
+                "opp": "Wojciech Wojtaszczyk",
+                "score": "0-3",
+                "time": "12:15"
+            }
+        ],
+        "Karol Wisniewski": [
+            {
+                "res": "R",
+                "opp": "Marcin Balcerzak",
+                "score": "1-3",
+                "time": "13:50"
+            },
+            {
+                "res": "R",
+                "opp": "Grzegorz Poliniewicz",
+                "score": "0-3",
+                "time": "12:35"
             }
         ],
         "Marcin Balcerzak": [
             {
                 "res": "V",
-                "opp": "Dmitrij Prokopcov",
+                "opp": "Karol Wisniewski",
                 "score": "1-3",
-                "time": "06:25"
+                "time": "13:50"
+            },
+            {
+                "res": "R",
+                "opp": "Karol Strowski",
+                "score": "3-2",
+                "time": "13:00"
+            },
+            {
+                "res": "V",
+                "opp": "Dmitrij Prokopcov",
+                "score": "3-0",
+                "time": "12:10"
+            }
+        ],
+        "Adrian Wiecek": [
+            {
+                "res": "R",
+                "opp": "Marcin Jadczyk",
+                "score": "2-3",
+                "time": "13:45"
             },
             {
                 "res": "R",
                 "opp": "Miroslav Sklensky",
-                "score": "3-2",
-                "time": "06:00"
+                "score": "1-3",
+                "time": "12:30"
+            }
+        ],
+        "Marcin Jadczyk": [
+            {
+                "res": "V",
+                "opp": "Adrian Wiecek",
+                "score": "2-3",
+                "time": "13:45"
             },
             {
                 "res": "R",
-                "opp": "Kacper Glazowski",
-                "score": "2-3",
-                "time": "05:15"
-            }
-        ],
-        "Jakub Pruszkowski": [
+                "opp": "Piotr Cyrnek",
+                "score": "3-2",
+                "time": "12:55"
+            },
             {
                 "res": "R",
-                "opp": "Piotr Gumulinski",
-                "score": "2-3",
-                "time": "05:05"
-            }
-        ],
-        "Piotr Gumulinski": [
-            {
-                "res": "V",
-                "opp": "Jakub Pruszkowski",
-                "score": "2-3",
-                "time": "05:05"
+                "opp": "Grzegorz Felkel",
+                "score": "0-3",
+                "time": "12:05"
             }
         ]
     }
