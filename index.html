@@ -5,307 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala Operativa TT</title>
     <style>
-        /* TEMA SCURO */
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --card-header: #2a2a2a;
-            --text-main: #e0e0e0;
-            --text-muted: #a0a0a0;
-            --accent: #0d6efd;
-            --green: #28a745;
-            --red: #dc3545;
-            --border: #333333;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 15px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* STILE TENDINA (ACCORDION) */
-        details {
-            background: var(--card-bg);
-            margin-bottom: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        summary {
-            padding: 15px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--card-header);
-            transition: background 0.2s;
-        }
-
-        summary:hover {
-            background: #353535;
-        }
-
-        /* Nasconde la freccetta di default del browser */
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .details-content {
-            padding: 15px;
-            border-top: 1px solid var(--border);
-        }
-
-        /* GRIGLIE DATI */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .box-stat {
-            background: #252525;
-            padding: 12px;
-            border-radius: 6px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .box-title {
-            font-size: 0.9em;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .text-green { color: var(--green); font-weight: bold; }
-        .text-red { color: var(--red); font-weight: bold; }
-
-        /* CALCOLATORE VALUE BET SINGOLA */
-        .value-bet-section {
-            background: #252525;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-        }
-
-        .calc-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px dotted var(--border);
-        }
-
-        .calc-row:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .calc-inputs {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        input[type="number"] {
-            width: 80px;
-            padding: 8px;
-            background: #333;
-            border: 1px solid #555;
-            color: #fff;
-            border-radius: 4px;
-        }
-
-        button {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: #0b5ed7;
-        }
-
-        .badge-result {
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.85em;
-            text-align: center;
-            min-width: 150px;
-        }
-
-        #loading {
-            text-align: center;
-            color: var(--accent);
-            font-weight: bold;
-            margin-top: 50px;
-        }
+        body { background-color: #121212; color: #fff; font-family: sans-serif; padding: 10px; }
+        .bankroll-bar { background: #333; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
+        .match-card { background: #1e1e1e; border: 1px solid #444; border-radius: 10px; padding: 10px; margin-bottom: 15px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 10px 0; }
+        .box { background: #2a2a2a; padding: 8px; border-radius: 5px; text-align: center; font-size: 0.85em; }
+        /* Layout verticale per il calcolatore */
+        .value-box { background: #252525; padding: 10px; border-radius: 5px; margin-top: 10px; }
+        .calc-input { width: 100%; padding: 8px; margin: 5px 0; box-sizing: border-box; background: #333; border: 1px solid #555; color: white; }
+        .btn-row { display: flex; gap: 5px; margin-top: 5px; }
+        button { flex: 1; padding: 8px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-test { background: #0d6efd; color: white; }
+        .btn-win { background: #28a745; color: white; }
+        .btn-loss { background: #dc3545; color: white; }
     </style>
 </head>
 <body>
 
-    <h2>🏓 Analisi TT Elite Series</h2>
-    <div class="container">
-        <div id="loading">Recupero dati in corso...</div>
-        <div id="matches-container"></div>
+    <div class="bankroll-bar">
+        Bankroll: <b id="bankroll">1000€</b> | ROI: <b id="roi">0%</b>
     </div>
 
+    <div id="container"></div>
+
     <script>
-        // Funzione per il calcolo della Value Bet su singola quota
-        function calcolaValueBet(inputId, pWins, totalMatches, resultId) {
-            const quotaInput = document.getElementById(inputId).value;
-            const resultBox = document.getElementById(resultId);
+        let bankroll = 1000;
+        let totaleInvestito = 0;
+        let totaleVinto = 0;
 
-            if (!quotaInput || quotaInput <= 1 || totalMatches === 0) {
-                resultBox.innerHTML = "<span style='color:#a0a0a0;'>Inserisci una quota valida</span>";
-                return;
-            }
-
-            // Calcolo Probabilità
-            const probImplicita = (1 / parseFloat(quotaInput)) * 100;
-            const probReale = (pWins / totalMatches) * 100;
-
-            if (probReale > probImplicita) {
-                resultBox.innerHTML = `<div class='badge-result' style='background:var(--green); color:white;'>⚠️ VALUE BET!<br><span style='font-size:0.8em;'>Reale ${probReale.toFixed(1)}% > Quota ${probImplicita.toFixed(1)}%</span></div>`;
-            } else {
-                resultBox.innerHTML = `<div class='badge-result' style='background:var(--red); color:white;'>NO VALUE<br><span style='font-size:0.8em;'>Reale ${probReale.toFixed(1)}% < Quota ${probImplicita.toFixed(1)}%</span></div>`;
-            }
+        function aggiornaStatistiche(esito, quota, importo) {
+            totaleInvestito += importo;
+            if (esito === 'vinto') totaleVinto += (importo * quota);
+            
+            const profitto = totaleVinto - totaleInvestito;
+            const roi = totaleInvestito > 0 ? (profitto / totaleInvestito) * 100 : 0;
+            document.getElementById('bankroll').innerText = (1000 + profitto).toFixed(2) + "€";
+            document.getElementById('roi').innerText = roi.toFixed(1) + "%";
         }
 
-        async function caricaDati() {
-            try {
-                const response = await fetch('data.json?t=' + new Date().getTime());
-                if (!response.ok) throw new Error("File non trovato");
-                const data = await response.json();
-                renderizzaMatch(data);
-            } catch (error) {
-                document.getElementById('loading').innerHTML = "<span class='text-red'>Dati non ancora disponibili. Attendi che l'aggiornamento su GitHub finisca.</span>";
-            }
-        }
-
-        function renderizzaMatch(data) {
-            const container = document.getElementById('matches-container');
-            document.getElementById('loading').style.display = 'none';
-
-            if (!data.upcoming || data.upcoming.length === 0) {
-                container.innerHTML = "<div class='box-stat'>Nessun match imminente in programma.</div>";
-                return;
-            }
-
-            // Normalizzazione dei nomi per evitare i problemi di spazi vuoti come con Adrian Wiecek
-            let formOggi = {};
-            if (data.today_form) {
-                for (let key in data.today_form) {
-                    formOggi[key.trim().toLowerCase()] = data.today_form[key];
-                }
-            }
-
-            const html = data.upcoming.map((match, index) => {
-                let p1 = match.home.trim();
-                let p2 = match.away.trim();
-                let p1Key = p1.toLowerCase();
-                let p2Key = p2.toLowerCase();
-
-                let p1Oggi = formOggi[p1Key] || [];
-                let p2Oggi = formOggi[p2Key] || [];
-
-                let p1Vinte = p1Oggi.filter(m => m.res === 'V').length;
-                let p1Perse = p1Oggi.filter(m => m.res === 'R').length;
-                let p2Vinte = p2Oggi.filter(m => m.res === 'V').length;
-                let p2Perse = p2Oggi.filter(m => m.res === 'R').length;
-
-                return `
-                <details>
-                    <summary>
-                        <span>🕒 ${match.time}</span>
-                        <span>${p1} vs ${p2}</span>
-                        <span>▼</span>
-                    </summary>
-                    <div class="details-content">
-                        
-                        <!-- Storico H2H e Media Punti -->
-                        <div class="grid-2">
-                            <div class="box-stat">
-                                <span class="box-title">⚔️ Scontri Diretti (Ultimi ${match.total_h2h_count})</span>
-                                <span class="text-green">${p1} ${match.p1_wins}V</span> - <span class="text-green">${p2} ${match.p2_wins}V</span>
-                            </div>
-                            <div class="box-stat">
-                                <span class="box-title">🏀 Media Punti Partita</span>
-                                <b style="font-size:1.2em;">${match.avg_points > 0 ? match.avg_points : '--'}</b>
-                            </div>
-                        </div>
-
-                        <!-- Stato di Forma di Oggi -->
-                        <div class="grid-2">
-                            <div class="box-stat">
-                                <span class="box-title">Oggi: ${p1}</span>
-                                <span class="text-green">${p1Vinte}V</span> - <span class="text-red">${p1Perse}P</span>
-                            </div>
-                            <div class="box-stat">
-                                <span class="box-title">Oggi: ${p2}</span>
-                                <span class="text-green">${p2Vinte}V</span> - <span class="text-red">${p2Perse}P</span>
-                            </div>
-                        </div>
-
-                        <!-- Calcolatore Value Bet -->
-                        <div class="value-bet-section">
-                            <span class="box-title" style="text-align:left; margin-bottom:10px;">🎯 Verifica Singola Value Bet</span>
-                            
-                            <div class="calc-row">
-                                <div style="flex:1;"><b>${p1}</b></div>
-                                <div class="calc-inputs">
-                                    <input type="number" step="0.01" id="quota_p1_${index}" placeholder="Quota">
-                                    <button onclick="calcolaValueBet('quota_p1_${index}', ${match.p1_wins}, ${match.total_h2h_count}, 'risultato_p1_${index}')">Test</button>
-                                </div>
-                                <div id="risultato_p1_${index}" class="badge-result"></div>
-                            </div>
-
-                            <div class="calc-row">
-                                <div style="flex:1;"><b>${p2}</b></div>
-                                <div class="calc-inputs">
-                                    <input type="number" step="0.01" id="quota_p2_${index}" placeholder="Quota">
-                                    <button onclick="calcolaValueBet('quota_p2_${index}', ${match.p2_wins}, ${match.total_h2h_count}, 'risultato_p2_${index}')">Test</button>
-                                </div>
-                                <div id="risultato_p2_${index}" class="badge-result"></div>
-                            </div>
-                        </div>
-
+        async function loadData() {
+            const res = await fetch('data.json?t=' + new Date().getTime());
+            const data = await res.json();
+            const container = document.getElementById('container');
+            
+            container.innerHTML = data.upcoming.map(m => `
+                <div class="match-card">
+                    <div style="font-weight:bold; margin-bottom:5px;">${m.time} | ${m.home} vs ${m.away}</div>
+                    <div class="grid-2">
+                        <div class="box">Scontri: ${m.p1_wins}V-${m.p2_wins}V</div>
+                        <div class="box">Media: ${m.avg_points} pts</div>
                     </div>
-                </details>
-                `;
-            }).join('');
-
-            container.innerHTML = html;
+                    
+                    <div class="value-box">
+                        <input type="number" step="0.01" id="quota_${m.id}" class="calc-input" placeholder="Inserisci Quota">
+                        <input type="number" id="importo_${m.id}" class="calc-input" placeholder="Importo €">
+                        <div class="btn-row">
+                            <button class="btn-test" onclick="testValue('${m.id}', ${m.p1_wins}, ${m.total_h2h_count})">Test Value</button>
+                            <button class="btn-win" onclick="aggiornaStatistiche('vinto', document.getElementById('quota_${m.id}').value, parseFloat(document.getElementById('importo_${m.id}').value))">Vinto</button>
+                            <button class="btn-loss" onclick="aggiornaStatistiche('perso', 0, parseFloat(document.getElementById('importo_${m.id}').value))">Perso</button>
+                        </div>
+                        <div id="ris_${m.id}" style="margin-top:5px; font-size:0.8em;"></div>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Avvia il caricamento all'apertura della pagina
-        window.onload = caricaDati;
+        function testValue(id, wins, total) {
+            const q = parseFloat(document.getElementById('quota_'+id).value);
+            const probReale = (wins / total) * 100;
+            const probImplicita = (1/q) * 100;
+            const res = document.getElementById('ris_'+id);
+            res.innerHTML = probReale > probImplicita ? "<b style='color:green'>⚠️ VALUE BET!</b>" : "<b style='color:red'>NO VALUE</b>";
+        }
+
+        loadData();
     </script>
 </body>
 </html>
