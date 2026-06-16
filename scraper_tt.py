@@ -12,7 +12,6 @@ def run_tracker_scraper():
     sport_id = "92"        # Tennis Tavolo
     league_id = "29128"    # TT Elite Series
     
-    # Gestione Cache per risparmiare i token sui dettagli dei set
     cache_file = "match_cache.json"
     score_cache = {}
     if os.path.exists(cache_file):
@@ -20,7 +19,6 @@ def run_tracker_scraper():
             try: score_cache = json.load(f)
             except: score_cache = {}
 
-    # 1. Recupero dei Prossimi Match (Pagine 1-3 per copertura completa)
     log_msg("Recupero dei prossimi match in programma...")
     upcoming_matches = []
     for page in range(1, 4):
@@ -31,24 +29,23 @@ def run_tracker_scraper():
                 upcoming_matches.extend(res['results'])
             else:
                 break
-        except Exception as e:
-            log_msg(f"Errore pagina upcoming {page}: {e}")
-            break
+        except: break
         time.sleep(1)
 
-    # 2. Recupero dei Match Terminati OGGI (Stato di forma in tempo reale)
     log_msg("Recupero dei match terminati oggi...")
     today_ended = []
     today_str = datetime.utcnow().strftime('%Y%m%d')
-    url_ended = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}&day={today_str}"
-    try:
-        res_ended = requests.get(url_ended, timeout=20).json()
-        if 'results' in res_ended and res_ended['results']:
-            today_ended = res_ended['results']
-    except Exception as e:
-        log_msg(f"Errore match terminati oggi: {e}")
+    # Aggiunta impaginazione anche qui per prendere TUTTI i match del giorno
+    for page in range(1, 4):
+        url_ended = f"https://api.betsapi.com/v1/events/ended?token={api_key}&sport_id={sport_id}&league_id={league_id}&day={today_str}&page={page}"
+        try:
+            res_ended = requests.get(url_ended, timeout=20).json()
+            if 'results' in res_ended and res_ended['results']:
+                today_ended.extend(res_ended['results'])
+            else:
+                break
+        except: break
 
-    # 3. Elaborazione dello Stato di Forma Odierno (Vinte e Perse del giorno stesso)
     player_today_form = {}
     for match in today_ended:
         p1 = match.get('home', {}).get('name')
@@ -70,10 +67,8 @@ def run_tracker_scraper():
             else:
                 player_today_form[p1].append({'res': 'R', 'opp': p2, 'score': ss, 'time': t_str})
                 player_today_form[p2].append({'res': 'V', 'opp': p1, 'score': ss, 'time': t_str})
-        except:
-            continue
+        except: continue
 
-    # 4. Elaborazione degli Ultimi 20 H2H per ogni match futuro
     final_upcoming_list = []
     
     for match in upcoming_matches:
@@ -82,11 +77,9 @@ def run_tracker_scraper():
         p2_name = match['away']['name']
         match_time = datetime.fromtimestamp(int(match.get('time', 0))).strftime('%H:%M')
         
-        log_msg(f"Analisi H2H profonda (Fino a 20 match): {p1_name} vs {p2_name}")
         h2h_list = []
         seen_ids = set()
         
-        # Inserisci prima i match disputati oggi (se presenti) per aggiornare gli H2H real-time
         for t_match in today_ended:
             t_p1 = t_match.get('home', {}).get('name', '')
             t_p2 = t_match.get('away', {}).get('name', '')
@@ -97,7 +90,6 @@ def run_tracker_scraper():
                     h2h_list.append(t_match)
                     seen_ids.add(t_id)
 
-        # Chiamata alla cronologia storica degli scontri diretti
         url_h2h = f"https://api.betsapi.com/v1/event/history?token={api_key}&event_id={event_id}"
         try:
             h2h_res = requests.get(url_h2h, timeout=20).json()
@@ -105,9 +97,8 @@ def run_tracker_scraper():
                 for past in h2h_res['results']['h2h']:
                     past_id = past['id']
                     if past_id in seen_ids: continue
-                    if len(h2h_list) >= 20: break  # Limite richiesto di 20 match
+                    if len(h2h_list) >= 20: break 
                     
-                    # Recupero punteggi set per media punti
                     if 'scores' not in past:
                         if past_id in score_cache:
                             past['scores'] = score_cache[past_id]
@@ -123,10 +114,8 @@ def run_tracker_scraper():
                             
                     h2h_list.append(past)
                     seen_ids.add(past_id)
-        except Exception as e:
-            log_msg(f"Errore storico H2H per evento {event_id}: {e}")
+        except: pass
 
-        # Calcolo metriche aggregate sugli ultimi 20 match storici reali
         p1_wins = 0
         p2_wins = 0
         total_points_all_matches = 0
@@ -139,7 +128,6 @@ def run_tracker_scraper():
             
             try:
                 sh, sa = map(int, h_ss.split('-'))
-                # Verifica vincitore relativo dello scontro diretto
                 if sh > sa:
                     if h_p1 == p1_name: p1_wins += 1
                     else: p2_wins += 1
@@ -147,22 +135,29 @@ def run_tracker_scraper():
                     if h_p1 == p1_name: p2_wins += 1
                     else: p1_wins += 1
                 
-                # Somma dei punti reali fatti nei singoli set
                 match_pts = 0
                 if 'scores' in h_match and h_match['scores']:
-                    for s_set in h_match['scores']:
-                        match_pts += int(s_set.get('home', 0)) + int(s_set.get('away', 0))
+                    scores_data = h_match['scores']
+                    # BUG FIX: Gestione corretta dei formati variabili dell'API
+                    if isinstance(scores_data, dict):
+                        for k, s_set in scores_data.items():
+                            try: match_pts += int(s_set.get('home', 0)) + int(s_set.get('away', 0))
+                            except: pass
+                    elif isinstance(scores_data, list):
+                        for s_set in scores_data:
+                            try: match_pts += int(s_set.get('home', 0)) + int(s_set.get('away', 0))
+                            except: pass
+
                 if match_pts == 0:
-                    match_pts = int((sh + sa) * 18.5) # Fallback matematico prudente
+                    match_pts = int((sh + sa) * 18.5) 
                 
                 total_points_all_matches += match_pts
                 valid_points_count += 1
-            except:
+            except Exception as e:
                 continue
 
         avg_points = round(total_points_all_matches / valid_points_count, 1) if valid_points_count > 0 else 0.0
         
-        # Estrazione quote automatiche BetsAPI come base iniziale
         odds_home = float(match.get('odds', {}).get('main', {}).get('home_od', 1.85))
         odds_away = float(match.get('odds', {}).get('main', {}).get('away_od', 1.85))
 
@@ -180,7 +175,6 @@ def run_tracker_scraper():
         })
         time.sleep(0.5)
 
-    # Salvataggio file unico e compatto per l'interfaccia HTML
     output_data = {
         "upcoming": final_upcoming_list,
         "today_form": player_today_form
@@ -192,7 +186,7 @@ def run_tracker_scraper():
     with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(score_cache, f, indent=4)
         
-    log_msg("Elaborazione dati completata. File 'data.json' pronto per la dashboard.")
+    log_msg("Elaborazione completata.")
 
 if __name__ == "__main__":
     run_tracker_scraper()
