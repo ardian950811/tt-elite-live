@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TT Elite Series Analytics & Tracker</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #121214; color: #e1e1e6; margin: 0; padding: 15px; }
+        h1, h2, h3 { color: #00b37e; text-align: center; margin-top: 5px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        
+        /* Tracker Summary Box */
+        .tracker-summary { background-color: #1a1a1e; border: 2px solid #323238; border-radius: 8px; padding: 15px; margin-bottom: 20px; text-align: center; }
+        .tracker-grid { display: flex; justify-content: space-around; margin-top: 10px; }
+        .tracker-val { font-size: 1.3em; font-weight: bold; }
+        
+        /* Pulsanti Filtro Orario */
+        .filter-container { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
+        .filter-btn { background-color: #202024; border: 1px solid #323238; color: #8d8d99; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85em; font-weight: bold; transition: all 0.2s; flex: 1; text-align: center; }
+        .filter-btn.active { background-color: #00b37e; border-color: #00b37e; color: #fff; }
+
+        .section-box { background-color: #202024; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .match-card { background-color: #29292e; border: 1px solid #323238; border-radius: 6px; padding: 12px; margin: 8px 0; }
+        .match-info { display: flex; flex-direction: column; gap: 8px; cursor: pointer; }
+        .match-header-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #323238; padding-bottom: 6px; }
+        .time { font-size: 0.85em; color: #8d8d99; background: #121214; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .players { font-size: 1.05em; color: #e1e1e6; font-weight: bold; }
+        
+        /* Layout Mobile Verticale per i Box Statistici */
+        .stat-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+        .stat-box { background: #121214; padding: 12px; border-radius: 6px; text-align: center; border: 1px solid #323238; }
+        .stat-label { display: block; font-size: 0.8em; color: #8d8d99; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-value { font-size: 1.2em; font-weight: bold; }
+        .pct-value { font-size: 0.8em; color: #8d8d99; font-weight: normal; margin-left: 4px; }
+        
+        .text-green { color: #00b37e; }
+        .text-blue { color: #4ea8de; }
+        .text-yellow { color: #fba94c; }
+        .text-red { color: #f75a68; }
+        
+        /* Modifiche per i bordi dinamici del valore */
+        .value-medium { border: 2px solid #fba94c !important; box-shadow: 0 0 8px rgba(251, 169, 76, 0.15); }
+        .value-high { border: 2px solid #00b37e !important; box-shadow: 0 0 10px rgba(0, 179, 126, 0.25); }
+
+        /* Betting UI Elements */
+        .bet-section { background-color: #121214; padding: 12px; border-radius: 6px; margin-top: 12px; border: 1px solid #323238; transition: border 0.2s; }
+        .bet-title { font-size: 0.9em; color: #8d8d99; margin-bottom: 10px; text-align: center; display: block; font-weight: bold; }
+        .bet-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+        .bet-input-group { display: flex; flex-direction: column; }
+        .bet-input-group label { font-size: 0.8em; color: #8d8d99; margin-bottom: 4px; }
+        .bet-input-group input { background-color: #202024; border: 1px solid #323238; color: #fff; padding: 10px; border-radius: 4px; text-align: center; font-size: 1em; }
+        
+        .bet-buttons { display: flex; gap: 8px; }
+        .btn { flex: 1; padding: 12px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: opacity 0.2s; color: #fff; font-size: 0.95em; }
+        .btn:hover { opacity: 0.8; }
+        .btn-win { background-color: #00b37e; }
+        .btn-lose { background-color: #f75a68; }
+        .btn-reset { background-color: #323238; }
+        
+        .bet-status { margin-top: 10px; text-align: center; font-weight: bold; padding: 10px; border-radius: 4px; line-height: 1.4; }
+        .status-win { background-color: rgba(0, 179, 126, 0.2); color: #00b37e; border: 1px solid #00b37e; }
+        .status-lose { background-color: rgba(247, 90, 104, 0.2); color: #f75a68; border: 1px solid #f75a68; }
+
+        .history-list { margin-top: 12px; background: #121214; padding: 8px; border-radius: 6px; border: 1px dashed #323238; }
+        .history-item { display: flex; justify-content: space-between; font-size: 0.85em; padding: 6px 0; border-bottom: 1px solid #323238; }
+        .history-item:last-child { border-bottom: none; }
+        .history-date { color: #8d8d99; }
+        .history-score { font-weight: bold; }
+        .history-points { color: #fba94c; font-weight: bold; }
+        .error-box { background-color: #f75a68; color: #fff; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold; }
+        
+        .value-indicator { margin-top: 8px; text-align: center; font-size: 0.9em; padding: 8px; border-radius: 4px; background: #1a1a1e; border: 1px solid #323238; line-height: 1.3; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>TT Elite Series Dashboard</h1>
+        
+        <div class="tracker-summary">
+            <h3 style="margin-top:0; color:#e1e1e6;">Bilancio Real Time</h3>
+            <div class="tracker-grid">
+                <div>
+                    <span class="stat-label">Investito</span>
+                    <span class="tracker-val" id="total-invested">0.00 €</span>
+                </div>
+                <div>
+                    <span class="stat-label">Netto</span>
+                    <span class="tracker-val" id="total-profit">0.00 €</span>
+                </div>
+                <div>
+                    <span class="stat-label">ROI</span>
+                    <span class="tracker-val text-blue" id="total-roi">0.0%</span>
+                </div>
+            </div>
+            <button onclick="clearAllBets()" class="btn btn-reset" style="margin-top:15px; width: 100%; font-size: 0.8em; padding: 6px;">Azzera Storico Scommesse</button>
+        </div>
+
+        <div class="filter-container">
+            <button id="filter-all" class="filter-btn active" onclick="filterTime('all')">Tutti</button>
+            <button id="filter-1h" class="filter-btn" onclick="filterTime(1)">1 Ora</button>
+            <button id="filter-3h" class="filter-btn" onclick="filterTime(3)">3 Ore</button>
+        </div>
+
+        <div class="section-box">
+            <h2>Partite in Programma</h2>
+            <div id="upcoming-list">Caricamento in corso...</div>
+        </div>
+    </div>
+
+    <script>
+        let betsCache = JSON.parse(localStorage.getItem('tt_bets')) || {};
+        let currentFilterMode = 'all';
+
+        function saveBet(matchId, amount, odds, status) {
+            betsCache[matchId] = {
+                amount: parseFloat(amount) || 0,
+                odds: parseFloat(odds) || 1,
+                status: status
+            };
+            localStorage.setItem('tt_bets', JSON.stringify(betsCache));
+            updateSummary();
+            renderBetUI(matchId);
+        }
+
+        function removeBet(matchId) {
+            delete betsCache[matchId];
+            localStorage.setItem('tt_bets', JSON.stringify(betsCache));
+            updateSummary();
+            renderBetUI(matchId);
+        }
+
+        function clearAllBets() {
+            if(confirm("Sei sicuro di voler cancellare tutto lo storico delle scommesse dal telefono?")) {
+                betsCache = {};
+                localStorage.removeItem('tt_bets');
+                updateSummary();
+                location.reload();
+            }
+        }
+
+        function updateSummary() {
+            let invested = 0;
+            let returned = 0;
+
+            for (const key in betsCache) {
+                const bet = betsCache[key];
+                invested += bet.amount;
+                if (bet.status === 'win') {
+                    returned += (bet.amount * bet.odds);
+                }
+            }
+
+            const profit = returned - invested;
+            const roi = invested > 0 ? (profit / invested) * 100 : 0;
+
+            document.getElementById('total-invested').innerText = invested.toFixed(2) + " €";
+            
+            const profitEl = document.getElementById('total-profit');
+            profitEl.innerText = (profit > 0 ? "+" : "") + profit.toFixed(2) + " €";
+            profitEl.className = "tracker-val " + (profit > 0 ? "text-green" : (profit < 0 ? "text-red" : "text-yellow"));
+
+            document.getElementById('total-roi').innerText = roi.toFixed(1) + "%";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateSummary();
+            loadDashboardData();
+        });
+
+        async function loadDashboardData() {
+            try {
+                const nocache = new Date().getTime();
+                const upcomingFetch = await fetch(`upcoming.json?v=${nocache}`);
+                const upcomingPayload = await upcomingFetch.json();
+                
+                const h2hFetch = await fetch(`h2h_data.json?v=${nocache}`);
+                const h2hPayload = await h2hFetch.json();
+                
+                renderUpcomingContainer(upcomingPayload.results || [], h2hPayload || {});
+            } catch (error) {
+                console.error("Data error:", error);
+                document.getElementById('upcoming-list').innerHTML = 
+                    `<div class="error-box">Errore nel caricamento dei dati JSON. Attendi che l'azione su GitHub finisca.</div>`;
+            }
+        }
+
+        function renderUpcomingContainer(upcomingList, h2hDictionary) {
+            const listContainer = document.getElementById('upcoming-list');
+            if (upcomingList.length === 0) {
+                listContainer.innerHTML = "<p style='text-align:center; color:#8d8d99;'>Nessun match imminente.</p>";
+                return;
+            }
+            
+            listContainer.innerHTML = "";
+            upcomingList.forEach(matchObject => {
+                const homeTeamName = matchObject.home.name;
+                const awayTeamName = matchObject.away.name;
+                const matchId = matchObject.id;
+                const matchTimestamp = parseInt(matchObject.time);
+                
+                const unixTimestamp = matchTimestamp * 1000;
+                const formattedTime = new Date(unixTimestamp).toLocaleString('it-IT', { hour: '2-digit', minute: '2-digit' });
+                
+                const elementCard = document.createElement('div');
+                elementCard.className = 'match-card';
+                elementCard.id = `card-${matchId}`;
+                elementCard.setAttribute('data-timestamp', matchTimestamp);
+                
+                elementCard.innerHTML = `
+                    <div class="match-info" onclick="toggleDetails('${matchId}', '${homeTeamName}', '${awayTeamName}')">
+                        <div class="match-header-row">
+                            <span class="time">${formattedTime}</span>
+                            <span style="color:#00b37e; font-size:0.85em;">Espandi ▾</span>
+                        </div>
+                        <span class="players">${homeTeamName} <span style="color:#8d8d99; font-weight:normal;">vs</span> ${awayTeamName}</span>
+                    </div>
+                    <div class="match-details" id="details-${matchId}" style="display:none;">
+                        <div id="stats-${matchId}"></div>
+                        <div id="bet-ui-${matchId}"></div>
+                    </div>
+                `;
+                
+                listContainer.appendChild(elementCard);
+                window[`h2h_${matchId}`] = h2hDictionary[matchId] || [];
+            });
+
+            filterTime(currentFilterMode);
+        }
+
+        window.filterTime = function(mode) {
+            currentFilterMode = mode;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if(mode === 'all') document.getElementById('filter-all').classList.add('active');
+            if(mode === 1) document.getElementById('filter-1h').classList.add('active');
+            if(mode === 3) document.getElementById('filter-3h').classList.add('active');
+
+            const nowUnix = Math.floor(Date.now() / 1000);
+            const cards = document.querySelectorAll('.match-card');
+
+            cards.forEach(card => {
+                const cardTime = parseInt(card.getAttribute('data-timestamp'));
+                if (mode === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const maxTimeWindow = nowUnix + (mode * 3600);
+                    if (cardTime >= (nowUnix - 7200) && cardTime <= maxTimeWindow) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        };
+
+        window.toggleDetails = function(matchId, homeTeam, awayTeam) {
+            const detailsContainer = document.getElementById(`details-${matchId}`);
+            const statsContainer = document.getElementById(`stats-${matchId}`);
+            
+            if (detailsContainer.style.display === 'block') {
+                detailsContainer.style.display = 'none';
+            } else {
+                detailsContainer.style.display = 'block';
+                
+                if (statsContainer.innerHTML.trim() === "") {
+                    processHeadToHead(homeTeam, awayTeam, window[`h2h_${matchId}`], statsContainer, matchId);
+                    renderBetUI(matchId);
+                }
+            }
+        };
+
+        /* ELABORAZIONE DATI IN VERTICALE COMPATTO */
+        function processHeadToHead(home, away, h2hList, container, matchId) {
+            let p1Wins = 0;
+            let p2Wins = 0;
+            let totalPoints = 0;
+            let matchesWithScores = 0;
+            let historyHtml = "";
+
+            h2hList.forEach(m => {
+                let homeScore = parseInt(m.home_score) || 0;
+                let awayScore = parseInt(m.away_score) || 0;
+                
+                // Calcola chi ha vinto nello scontro diretto
+                if (m.home.name === home) {
+                    if (homeScore > awayScore) p1Wins++; else p2Wins++;
+                } else {
+                    if (awayScore > homeScore) p1Wins++; else p2Wins++;
+                }
+
+                // Calcolo Punti Totali dai Set
+                if (m.scores && m.scores.length > 0) {
+                    let matchPoints = 0;
+                    m.scores.forEach(set => {
+                        matchPoints += (parseInt(set.home) || 0) + (parseInt(set.away) || 0);
+                    });
+                    if (matchPoints > 0) {
+                        totalPoints += matchPoints;
+                        matchesWithScores++;
+                        
+                        let formattedDate = m.time ? new Date(parseInt(m.time)*1000).toLocaleDateString('it-IT') : 'N/D';
+                        historyHtml += `
+                            <div class="history-item">
+                                <span class="history-date">${formattedDate}</span>
+                                <span class="history-score">${m.home.name} ${homeScore}-${awayScore} ${m.away.name}</span>
+                                <span class="history-points">(${matchPoints} pts)</span>
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            const totalMatches = h2hList.length || 1;
+            const p1WinPct = ((p1Wins / totalMatches) * 100);
+            const p2WinPct = ((p2Wins / totalMatches) * 100);
+            const avgPoints = matchesWithScores > 0 ? (totalPoints / matchesWithScores).toFixed(1) : "N/D";
+
+            // Salva le statistiche calcolate globalmente per riutilizzarle nel calcolatore delle quote eque
+            window[`stats_${matchId}`] = { p1Name: home, p2Name: away, p1WinPct: p1WinPct, p2WinPct: p2WinPct };
+
+            container.innerHTML = `
+                <div class="stat-grid">
+                    <div class="stat-box" style="border-left: 4px solid #00b37e;">
+                        <span class="stat-label">Vittorie ${home}</span>
+                        <span class="stat-value text-green">${p1Wins} <span class="pct-value">(${p1WinPct.toFixed(0)}%)</span></span>
+                    </div>
+                    <div class="stat-box" style="border-left: 4px solid #4ea8de;">
+                        <span class="stat-label">Vittorie ${away}</span>
+                        <span class="stat-value text-blue">${p2Wins} <span class="pct-value">(${p2WinPct.toFixed(0)}%)</span></span>
+                    </div>
+                    <div class="stat-box" style="border-left: 4px solid #fba94c;">
+                        <span class="stat-label">Media Punti Totali (${matchesWithScores} match)</span>
+                        <span class="stat-value text-yellow">${avgPoints} punti</span>
+                    </div>
+                </div>
+                ${historyHtml ? `<div class="history-list"><span class="stat-label" style="margin-left:5px;">Storico Incontri H2H</span>${historyHtml}</div>` : ''}
+            `;
+        }
+
+        window.handleBetAction = function(matchId, status) {
+            const amountInput = document.getElementById(`amount-${matchId}`).value.replace(',', '.');
+            const oddsInput = document.getElementById(`odds-${matchId}`).value.replace(',', '.');
+            
+            if(!amountInput || !oddsInput) {
+                alert("Inserisci sia l'importo che la quota prima di salvare!");
+                return;
+            }
+            saveBet(matchId, amountInput, oddsInput, status);
+        };
+
+        window.renderBetUI = function(matchId) {
+            const betContainer = document.getElementById(`bet-ui-${matchId}`);
+            const existingBet = betsCache[matchId];
+            const stats = window[`stats_${matchId}`];
+            
+            let fairText = "N/D";
+            if (stats) {
+                const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct).toFixed(2) : '-';
+                const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct).toFixed(2) : '-';
+                fairText = `Quote eque H2H:<br><strong>${stats.p1Name}</strong> (${f1}) | <strong>${stats.p2Name}</strong> (${f2})`;
+            }
+
+            if (existingBet) {
+                const profitText = existingBet.status === 'win' 
+                    ? `+ ${((existingBet.amount * existingBet.odds) - existingBet.amount).toFixed(2)} €` 
+                    : `- ${existingBet.amount.toFixed(2)} €`;
+                
+                const statusClass = existingBet.status === 'win' ? 'status-win' : 'status-lose';
+                const labelText = existingBet.status === 'win' ? 'SCOMMESSA REGISTRATA: VINTO' : 'SCOMMESSA REGISTRATA: PERSA';
+
+                betContainer.innerHTML = `
+                    <div class="bet-section">
+                        <div class="bet-status ${statusClass}">
+                            ${labelText}<br>
+                            <span style="font-size:0.85em; font-weight:normal;">Stake: ${existingBet.amount}€ | Quota: ${existingBet.odds} | Bilancio Netto: ${profitText}</span>
+                        </div>
+                        <button onclick="removeBet('${matchId}')" class="btn btn-reset" style="width:100%; margin-top:10px; padding: 10px;">Annulla o Modifica</button>
+                    </div>
+                `;
+            } else {
+                betC
