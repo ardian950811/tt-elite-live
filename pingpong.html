@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TT Elite Series - Sala Operativa Scommesse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            color: #333;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #222;
+        }
+
+        /* PANNELLO RENDICONTO FINANZIARIO */
+        .bankroll-panel {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-left: 5px solid #0056b3;
+        }
+
+        .bankroll-box {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .bankroll-box input {
+            width: 90px;
+            padding: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .metric-financial {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .roi-positive { color: #28a745; }
+        .roi-negative { color: #dc3545; }
+
+        /* CARD DELLA PARTITA ORIGINALE */
+        .match-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            max-width: 750px;
+            margin: 0 auto 25px auto;
+            border: 1px solid #e2e8f0;
+        }
+
+        .match-header {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            color: #0056b3;
+            text-align: center;
+        }
+
+        /* BARRA STATISTICHE CENTRALE */
+        .h2h-stats-bar {
+            background-color: #eef2f7;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .players-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .player-column {
+            width: 48%;
+            background: #fafafa;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #eef0f2;
+        }
+
+        .player-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #111;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        /* STRUTTURA DELLE GIOCATE DI OGGI (I QUADRATI ORIGINALI) */
+        .history-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .box-v {
+            background-color: #28a745;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 4px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .box-r {
+            background-color: #dc3545;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 4px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .no-matches {
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            font-size: 14px;
+            padding-top: 10px;
+        }
+
+        /* BLOCCO INTERATTIVO BETTING & VALUE CALCULATOR */
+        .betting-calculator-box {
+            margin-top: 15px;
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .calc-input-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .calc-input-group input {
+            width: 65px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .value-status-badge {
+            font-weight: bold;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .is-value { background-color: #28a745; color: white; animation: pulse 1.5s infinite; }
+        .no-value { background-color: #94a3b8; color: white; }
+
+        .btn-bet {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .btn-bet:hover { background-color: #004085; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🏓 Piattaforma Analitica TT Elite Series</h2>
+
+    <div class="bankroll-panel">
+        <div class="bankroll-box">
+            💰 BUDGET (€): <input type="number" id="bankroll-input" value="1000" onchange="updateBankrollValue(this.value)">
+        </div>
+        <div class="metric-financial">
+            📈 UTILI: <span id="profit-display" class="roi-positive">0.00 €</span>
+        </div>
+        <div class="metric-financial">
+            📊 ROI COMPLESSIVO: <span id="roi-display" class="roi-positive">0.00%</span>
+        </div>
+    </div>
+
+    <div id="dashboard-content">
+        <p style="text-align:center; color:#666; font-style:italic;">Elaborazione dati in corso...</p>
+    </div>
+
+    <script>
+        // Memoria Persistente LocalStorage per non perdere i dati al ricaricamento della pagina
+        let bankroll = parseFloat(localStorage.getItem('tt_bankroll')) || 1000.00;
+        let totalInvested = parseFloat(localStorage.getItem('tt_total_invested')) || 0.00;
+        let totalReturn = parseFloat(localStorage.getItem('tt_total_return')) || 0.00;
+
+        document.getElementById('bankroll-input').value = bankroll;
+
+        function updateBankrollValue(val) {
+            bankroll = parseFloat(val) || 0.00;
+            localStorage.setItem('tt_bankroll', bankroll);
+            calculateGlobalMetrics();
+        }
+
+        function calculateGlobalMetrics() {
+            const profit = totalReturn - totalInvested;
+            const profitDisplay = document.getElementById('profit-display');
+            profitDisplay.innerText = profit.toFixed(2) + " €";
+            if (profit >= 0) {
+                profitDisplay.className = "roi-positive";
+            } else {
+                profitDisplay.className = "roi-negative";
+            }
+
+            const roiDisplay = document.getElementById('roi-display');
+            if (totalInvested > 0) {
+                const roiPct = (profit / totalInvested) * 100;
+                roiDisplay.innerText = roiPct.toFixed(2) + "%";
+                roiDisplay.className = roiPct >= 0 ? "roi-positive" : "roi-negative";
+            } else {
+                roiDisplay.innerText = "0.00%";
+                roiDisplay.className = "roi-positive";
+            }
+        }
+
+        async function loadMasterData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                const container = document.getElementById('dashboard-content');
+                container.innerHTML = "";
+
+                if(!data.upcoming || data.upcoming.length === 0) {
+                    container.innerHTML = "<p style='text-align:center; color:#666;'>Nessun match in programma al momento nel palinsesto.</p>";
+                    return;
+                }
+
+                data.upcoming.forEach(match => {
+                    const totalH2H = match.p1_wins + match.p2_wins;
+                    
+                    // Calcolo probabilità reali basate rigorosamente sugli ultimi 20 scontri diretti passati
+                    const probP1 = totalH2H > 0 ? (match.p1_wins / totalH2H) : 0.50;
+                    const probP2 = totalH2H > 0 ? (match.p2_wins / totalH2H) : 0.50;
+                    
+                    const pctP1 = Math.round(probP1 * 100);
+                    const pctP2 = Math.round(probP2 * 100);
+
+                    // Stato di forma odierno dei due sfidanti (Partite disputate il giorno stesso)
+                    const formP1 = data.today_form[match.home] || [];
+                    const formP2 = data.today_form[match.away] || [];
+
+                    const winsP1 = formP1.filter(m => m.res === 'V').length;
+                    const lossesP1 = formP1.filter(m => m.res === 'R').length;
+                    
+                    const winsP2 = formP2.filter(m => m.res === 'V').length;
+                    const lossesP2 = formP2.filter(m => m.res === 'R').length;
+
+                    // Creazione della scheda grafica
+                    const card = document.createElement('div');
+                    card.className = 'match-card';
+
+                    card.innerHTML = `
+                        <div class="match-header">Ore ${match.time} | ${match.home} vs ${match.away}</div>
+                        
+                        <div class="h2h-stats-bar">
+                            <div>⚔️ Scontri Diretti (Ultimi ${match.total_h2h_count}): <span style="color:#0056b3;">${match.p1_wins}V (${pctP1}%)</span> - <span style="color:#0056b3;">${match.p2_wins}V (${pctP2}%)</span></div>
+                            <div style="color: #f59e0b;">🏀 Media Punti Totale Partita: ${match.avg_points > 0 ? match.avg_points + ' pts' : '--'}</div>
+                        </div>
+
+                        <div class="players-container">
+                            <div class="player-column">
+                                <div class="player-title">
+                                    ${match.home}<br>
+                                    <span style="font-size:12px; color:#28a745;">Oggi: ${winsP1}V - ${lossesP1}P</span>
+                                </div>
+                                ${formP1.length > 0 ? formP1.map(m => `
+                                    <div class="history-row">
+                                        <div class="${m.res === 'V' ? 'box-v' : 'box-r'}">${m.res}</div>
+                                        <div>vs ${m.opp} (${m.score}) alle ${m.time}</div>
+                                    </div>
+                                `).join('') : '<div class="no-matches">Nessun match disputato oggi</div>'}
+                            </div>
+
+                            <div class="player-column">
+                                <div class="player-title">
+                                    ${match.away}<br>
+                                    <span style="font-size:12px; color:#28a745;">Oggi: ${winsP2}V - ${lossesP2}P</span>
+                                </div>
+                                ${formP2.length > 0 ? formP2.map(m => `
+                                    <div class="history-row">
+                                        <div class="${m.res === 'V' ? 'box-v' : 'box-r'}">${m.res}</div>
+                                        <div>vs ${m.opp} (${m.score}) alle ${m.time}</div>
+                                    </div>
+                                `).join('') : '<div class="no-matches">Nessun match disputato oggi</div>'}
+                            </div>
+                        </div>
+
+                        <div class="betting-calculator-box">
+                            <div class="calc-input-group">
+                                📈 Quota 1: <input type="number" step="0.01" id="odds-p1-${match.id}" value="${match.api_odds_home}" oninput="checkValueBetRealtime('${match.id}', ${probP1}, ${probP2})">
+                                Quota 2: <input type="number" step="0.01" id="odds-p2-${match.id}" value="${match.api_odds_away}" oninput="checkValueBetRealtime('${match.id}', ${probP1}, ${probP2})">
+                            </div>
+                            
+                            <div>
+                                <span id="badge-p1-${match.id}" class="value-status-badge no-value">Q1 NO VALUE</span>
+                                <span id="badge-p2-${match.id}" class="value-status-badge no-value">Q2 NO VALUE</span>
+                            </div>
+
+                            <div class="calc-input-group">
+                                💶 Puntata (€): <input type="number" id="stake-${match.id}" value="20">
+                                <button class="btn-bet" onclick="placeSimulatedBet('${match.id}', '${match.home}', '${match.away}')">Registra</button>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                    // Esegui un primo controllo immediato sulle quote caricate dall'API
+                    checkValueBetRealtime(match.id, probP1, probP2);
+                });
+
+            } catch (e) {
+                document.getElementById('dashboard-content').innerHTML = "<p style='color:#dc3545; text-align:center; font-weight:bold;'>In attesa del completamento del file scraper dei dati...</p>";
+            }
+        }
+
+        // Funzione di calcolo dinamica delle Value Bet in tempo reale mentre scrivi la quota del bookmaker
+        function checkValueBetRealtime(matchId, probP1, probP2) {
+            const q1 = parseFloat(document.getElementById(`odds-p1-${matchId}`).value) || 0;
+            const q2 = parseFloat(document.getElementById(`odds-p2-${matchId}`).value) || 0;
+
+            const badgeP1 = document.getElementById(`badge-p1-${matchId}`);
+            const badgeP2 = document.getElementById(`badge-p2-${matchId}`);
+
+            // Formula matematica del Vantaggio Matematico (Quota * Probabilità > 1.05)
+            if (q1 * probP1 > 1.05) {
+                badgeP1.className = "value-status-badge is-value";
+                badgeP1.innerText = "⚠️ Q1 VALUE BET!";
+            } else {
+                badgeP1.className = "value-status-badge no-value";
+                badgeP1.innerText = "Q1 NO VALUE";
+            }
+
+            if (q2 * probP2 > 1.05) {
+                badgeP2.className = "value-status-badge is-value";
+                badgeP2.innerText = "⚠️ Q2 VALUE BET!";
+            } else {
+                badgeP2.className = "value-status-badge no-value";
+                badgeP2.innerText = "Q2 NO VALUE";
+            }
+        }
+
+        // Registrazione della scommessa nel bilancio ROI globale
+        function placeSimulatedBet(matchId, homePlayer, awayPlayer) {
+            const stake = parseFloat(document.getElementById(`stake-${matchId}`).value) || 0;
+            if(stake <= 0) return;
+
+            const q1 = parseFloat(document.getElementById(`odds-p1-${matchId}`).value) || 1.0;
+            const q2 = parseFloat(document.getElementById(`odds-p2-${matchId}`).value) || 1.0;
+
+            const choice = confirm(`Scegli su chi registrare la giocata:\nOK = Scommetti su ${homePlayer} (Quota: ${q1})\nAnnulla = Scommetti su ${awayPlayer} (Quota: ${q2})`);
+            
+            let finalOdds = choice ? q1 : q2;
+            let chosenPlayer = choice ? homePlayer : awayPlayer;
+
+            const result = confirm(`La scommessa su ${chosenPlayer} a quota ${finalOdds} è stata VINCENTE?\nOK = SI (Vinta)\nAnnulla = NO (Persa)`);
+
+            totalInvested += stake;
+            if(result) {
+                totalReturn += (stake * finalOdds);
+                bankroll += (stake * finalOdds) - stake;
+            } else {
+                bankroll -= stake;
+            }
+
+            localStorage.setItem('tt_bankroll', bankroll);
+            localStorage.setItem('tt_total_invested', totalInvested);
+            localStorage.setItem('tt_total_return', totalReturn);
+
+            document.getElementById('bankroll-input').value = bankroll.toFixed(2);
+            calculateGlobalMetrics();
+            alert("Scommessa registrata con successo nel bilancio ROI!");
+        }
+
+        // Caricamento iniziale e calcolo delle metriche finanziarie
+        calculateGlobalMetrics();
+        loadMasterData();
+    </script>
+</body>
+</html>
