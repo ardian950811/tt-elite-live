@@ -1,0 +1,34 @@
+name: Aggiornamento Dati TT Elite Series
+
+on:
+  schedule:
+    # Si avvia automaticamente ogni ora (puoi modificare i minuti se vuoi)
+    - cron: '0 * * * *'
+  workflow_dispatch: # Ti permette di avviare lo script anche manualmente con un tasto
+
+jobs:
+  aggiorna-dati:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v3
+
+      - name: Configurazione Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Installazione librerie
+        run: pip install requests
+
+      - name: Esecuzione Scraper
+        run: python scraper_tt.py
+
+      - name: Salvataggio automatico (Commit & Push)
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Scraper"
+          git add data.json match_cache.json
+          # Se non ci sono nuovi dati, evita che l'azione dia errore
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Aggiornamento dati e quote TT" && git push)
