@@ -1,228 +1,9 @@
 {
     "results": [
         {
-            "id": "12071256",
+            "id": "12072045",
             "sport_id": "92",
-            "time": "1781896200",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "831918",
-                "name": "Marcin Wozniczka",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1051287",
-                "name": "Artur Kubiak",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071257",
-            "sport_id": "92",
-            "time": "1781896200",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "815345",
-                "name": "Sebastian Krupa",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1157978",
-                "name": "Adam Ruszkiewicz",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12069401",
-            "sport_id": "92",
-            "time": "1781896800",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "931021",
-                "name": "Milosz Cesarz",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1293001",
-                "name": "Wiktor Ptak",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508505"
-        },
-        {
-            "id": "12071313",
-            "sport_id": "92",
-            "time": "1781896800",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "952195",
-                "name": "Kuba Golaszewski",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "994525",
-                "name": "Adrian Fabis",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071978",
-            "sport_id": "92",
-            "time": "1781897400",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "808044",
-                "name": "Piotr Kaczynski",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "698147",
-                "name": "Jakub Michalski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071353",
-            "sport_id": "92",
-            "time": "1781897700",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "826517",
-                "name": "Lukasz Pyda",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1215536",
-                "name": "Jacek Zelezik",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12063877",
-            "sport_id": "92",
-            "time": "1781898000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "317470",
-                "name": "Artur Daniel",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "314490",
-                "name": "Michal Krzyzanowski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508519"
-        },
-        {
-            "id": "12069204",
-            "sport_id": "92",
-            "time": "1781898000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "824684",
-                "name": "Krzysztof Juszczyk",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "312270",
-                "name": "Adrian Panczyk",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508506"
-        },
-        {
-            "id": "12071352",
-            "sport_id": "92",
-            "time": "1781898000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "721533",
-                "name": "Marcin Kowalczyk",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "676374",
-                "name": "Piotr Strus",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071351",
-            "sport_id": "92",
-            "time": "1781898900",
+            "time": "1781907600",
             "time_status": "0",
             "league": {
                 "id": "29128",
@@ -236,358 +17,17 @@
                 "cc": null
             },
             "away": {
-                "id": "1157978",
-                "name": "Adam Ruszkiewicz",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071350",
-            "sport_id": "92",
-            "time": "1781899200",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "1152380",
-                "name": "Jacek Oracz",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1051287",
-                "name": "Artur Kubiak",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12068908",
-            "sport_id": "92",
-            "time": "1781899500",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "809294",
-                "name": "Krystian Kolodziej",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "300594",
-                "name": "Alan Wos",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508520"
-        },
-        {
-            "id": "12069403",
-            "sport_id": "92",
-            "time": "1781899500",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "813475",
-                "name": "Lukasz Oracz",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1293001",
-                "name": "Wiktor Ptak",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508507"
-        },
-        {
-            "id": "12071494",
-            "sport_id": "92",
-            "time": "1781899500",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "1016923",
-                "name": "Dariusz Szlubowski",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "994525",
-                "name": "Adrian Fabis",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071465",
-            "sport_id": "92",
-            "time": "1781900400",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "1138370",
-                "name": "Cezary Pawlik",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1215536",
-                "name": "Jacek Zelezik",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071977",
-            "sport_id": "92",
-            "time": "1781900400",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "698733",
-                "name": "Robert Szymik",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "808044",
-                "name": "Piotr Kaczynski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12063749",
-            "sport_id": "92",
-            "time": "1781901000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "893791",
-                "name": "Maciej Domin",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "314356",
-                "name": "Jakub Kuzmicz",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508521"
-        },
-        {
-            "id": "12068920",
-            "sport_id": "92",
-            "time": "1781901000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "1140286",
-                "name": "Pawel Slosarczyk",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "931021",
-                "name": "Milosz Cesarz",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508508"
-        },
-        {
-            "id": "12071464",
-            "sport_id": "92",
-            "time": "1781901000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "817312",
-                "name": "Bartlomiej Wisniewski",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "952195",
-                "name": "Kuba Golaszewski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071546",
-            "sport_id": "92",
-            "time": "1781901900",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
                 "id": "815345",
                 "name": "Sebastian Krupa",
                 "image_id": 0,
                 "cc": null
             },
-            "away": {
-                "id": "698147",
-                "name": "Jakub Michalski",
-                "image_id": 0,
-                "cc": null
-            },
             "ss": null
         },
         {
-            "id": "12071558",
+            "id": "12072044",
             "sport_id": "92",
-            "time": "1781901900",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "831918",
-                "name": "Marcin Wozniczka",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "826517",
-                "name": "Lukasz Pyda",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12063876",
-            "sport_id": "92",
-            "time": "1781902800",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "317470",
-                "name": "Artur Daniel",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "300594",
-                "name": "Alan Wos",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508523"
-        },
-        {
-            "id": "12071545",
-            "sport_id": "92",
-            "time": "1781902800",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "994525",
-                "name": "Adrian Fabis",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "616813",
-                "name": "Mikolaj Lukaszewski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071544",
-            "sport_id": "92",
-            "time": "1781903100",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "918072",
-                "name": "Pawel Adamus",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "808044",
-                "name": "Piotr Kaczynski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071893",
-            "sport_id": "92",
-            "time": "1781903400",
+            "time": "1781907900",
             "time_status": "0",
             "league": {
                 "id": "29128",
@@ -601,189 +41,17 @@
                 "cc": null
             },
             "away": {
-                "id": "1215536",
-                "name": "Jacek Zelezik",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12062143",
-            "sport_id": "92",
-            "time": "1781904000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "817312",
-                "name": "Bartlomiej Wisniewski",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "820666",
-                "name": "Milosz Kukawka",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12063801",
-            "sport_id": "92",
-            "time": "1781904000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "314490",
-                "name": "Michal Krzyzanowski",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "314356",
-                "name": "Jakub Kuzmicz",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508524"
-        },
-        {
-            "id": "12068919",
-            "sport_id": "92",
-            "time": "1781904000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "831247",
-                "name": "Grzegorz Sawicki",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "931021",
-                "name": "Milosz Cesarz",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508527"
-        },
-        {
-            "id": "12071892",
-            "sport_id": "92",
-            "time": "1781904600",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "698733",
-                "name": "Robert Szymik",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "815345",
-                "name": "Sebastian Krupa",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12071976",
-            "sport_id": "92",
-            "time": "1781904900",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
                 "id": "1152380",
                 "name": "Jacek Oracz",
                 "image_id": 0,
                 "cc": null
             },
-            "away": {
-                "id": "826517",
-                "name": "Lukasz Pyda",
-                "image_id": 0,
-                "cc": null
-            },
             "ss": null
         },
         {
-            "id": "12063748",
+            "id": "12072164",
             "sport_id": "92",
-            "time": "1781905500",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "809294",
-                "name": "Krystian Kolodziej",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "893791",
-                "name": "Maciej Domin",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508525"
-        },
-        {
-            "id": "12068918",
-            "sport_id": "92",
-            "time": "1781905500",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "813475",
-                "name": "Lukasz Oracz",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "1140286",
-                "name": "Pawel Slosarczyk",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508528"
-        },
-        {
-            "id": "12071975",
-            "sport_id": "92",
-            "time": "1781905500",
+            "time": "1781908500",
             "time_status": "0",
             "league": {
                 "id": "29128",
@@ -797,17 +65,17 @@
                 "cc": null
             },
             "away": {
-                "id": "820666",
-                "name": "Milosz Kukawka",
+                "id": "817312",
+                "name": "Bartlomiej Wisniewski",
                 "image_id": 0,
                 "cc": null
             },
             "ss": null
         },
         {
-            "id": "12071974",
+            "id": "12072144",
             "sport_id": "92",
-            "time": "1781906100",
+            "time": "1781908800",
             "time_status": "0",
             "league": {
                 "id": "29128",
@@ -815,8 +83,8 @@
                 "cc": null
             },
             "home": {
-                "id": "698147",
-                "name": "Jakub Michalski",
+                "id": "808044",
+                "name": "Piotr Kaczynski",
                 "image_id": 0,
                 "cc": null
             },
@@ -827,105 +95,6 @@
                 "cc": null
             },
             "ss": null
-        },
-        {
-            "id": "12071973",
-            "sport_id": "92",
-            "time": "1781906400",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "1138370",
-                "name": "Cezary Pawlik",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "831918",
-                "name": "Marcin Wozniczka",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null
-        },
-        {
-            "id": "12069267",
-            "sport_id": "92",
-            "time": "1781906700",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "809294",
-                "name": "Krystian Kolodziej",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "314490",
-                "name": "Michal Krzyzanowski",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508542"
-        },
-        {
-            "id": "12069357",
-            "sport_id": "92",
-            "time": "1781907000",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "312270",
-                "name": "Adrian Panczyk",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "831247",
-                "name": "Grzegorz Sawicki",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508529"
-        },
-        {
-            "id": "12063747",
-            "sport_id": "92",
-            "time": "1781908200",
-            "time_status": "0",
-            "league": {
-                "id": "29128",
-                "name": "TT Elite Series",
-                "cc": null
-            },
-            "home": {
-                "id": "893791",
-                "name": "Maciej Domin",
-                "image_id": 0,
-                "cc": null
-            },
-            "away": {
-                "id": "300594",
-                "name": "Alan Wos",
-                "image_id": 0,
-                "cc": null
-            },
-            "ss": null,
-            "bet365_id": "196508543"
         },
         {
             "id": "12069264",
@@ -953,6 +122,30 @@
             "bet365_id": "196508545"
         },
         {
+            "id": "12072163",
+            "sport_id": "92",
+            "time": "1781909400",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "831918",
+                "name": "Marcin Wozniczka",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "1215536",
+                "name": "Jacek Zelezik",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
             "id": "12069299",
             "sport_id": "92",
             "time": "1781909700",
@@ -976,6 +169,78 @@
             },
             "ss": null,
             "bet365_id": "196508531"
+        },
+        {
+            "id": "12072161",
+            "sport_id": "92",
+            "time": "1781909700",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "820666",
+                "name": "Milosz Kukawka",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "616813",
+                "name": "Mikolaj Lukaszewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072160",
+            "sport_id": "92",
+            "time": "1781910300",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "698733",
+                "name": "Robert Szymik",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "698147",
+                "name": "Jakub Michalski",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072143",
+            "sport_id": "92",
+            "time": "1781910600",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "1138370",
+                "name": "Cezary Pawlik",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "826517",
+                "name": "Lukasz Pyda",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
         },
         {
             "id": "12063746",
@@ -1028,6 +293,54 @@
             "bet365_id": "196508533"
         },
         {
+            "id": "12072345",
+            "sport_id": "92",
+            "time": "1781911200",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "994525",
+                "name": "Adrian Fabis",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "616813",
+                "name": "Mikolaj Lukaszewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072344",
+            "sport_id": "92",
+            "time": "1781911800",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "815345",
+                "name": "Sebastian Krupa",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "1157978",
+                "name": "Adam Ruszkiewicz",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
             "id": "12063745",
             "sport_id": "92",
             "time": "1781912100",
@@ -1051,6 +364,78 @@
             },
             "ss": null,
             "bet365_id": "196508547"
+        },
+        {
+            "id": "12072301",
+            "sport_id": "92",
+            "time": "1781912100",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "1152380",
+                "name": "Jacek Oracz",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "1215536",
+                "name": "Jacek Zelezik",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072299",
+            "sport_id": "92",
+            "time": "1781912700",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "312270",
+                "name": "Adrian Panczyk",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "813475",
+                "name": "Lukasz Oracz",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072300",
+            "sport_id": "92",
+            "time": "1781912700",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "817312",
+                "name": "Bartlomiej Wisniewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "820666",
+                "name": "Milosz Kukawka",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
         },
         {
             "id": "12069130",
@@ -1078,6 +463,54 @@
             "bet365_id": "196508548"
         },
         {
+            "id": "12072343",
+            "sport_id": "92",
+            "time": "1781913300",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "918072",
+                "name": "Pawel Adamus",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "681303",
+                "name": "Jakub Nowak",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072298",
+            "sport_id": "92",
+            "time": "1781913600",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "1051287",
+                "name": "Artur Kubiak",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "1138370",
+                "name": "Cezary Pawlik",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
             "id": "12068947",
             "sport_id": "92",
             "time": "1781914200",
@@ -1101,6 +534,30 @@
             },
             "ss": null,
             "bet365_id": "196508535"
+        },
+        {
+            "id": "12072342",
+            "sport_id": "92",
+            "time": "1781914200",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "994525",
+                "name": "Adrian Fabis",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "820666",
+                "name": "Milosz Kukawka",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
         },
         {
             "id": "12069268",
@@ -1128,6 +585,54 @@
             "bet365_id": "196508549"
         },
         {
+            "id": "12072341",
+            "sport_id": "92",
+            "time": "1781914800",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "698147",
+                "name": "Jakub Michalski",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "698733",
+                "name": "Robert Szymik",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072340",
+            "sport_id": "92",
+            "time": "1781915100",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "831918",
+                "name": "Marcin Wozniczka",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "826517",
+                "name": "Lukasz Pyda",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
             "id": "12068946",
             "sport_id": "92",
             "time": "1781915700",
@@ -1151,6 +656,30 @@
             },
             "ss": null,
             "bet365_id": "196508536"
+        },
+        {
+            "id": "12072427",
+            "sport_id": "92",
+            "time": "1781915700",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "616813",
+                "name": "Mikolaj Lukaszewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "817312",
+                "name": "Bartlomiej Wisniewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
         },
         {
             "id": "12063744",
@@ -1178,6 +707,54 @@
             "bet365_id": "196508550"
         },
         {
+            "id": "12072426",
+            "sport_id": "92",
+            "time": "1781916300",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "1152380",
+                "name": "Jacek Oracz",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "1138370",
+                "name": "Cezary Pawlik",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072475",
+            "sport_id": "92",
+            "time": "1781916300",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "815345",
+                "name": "Sebastian Krupa",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "918072",
+                "name": "Pawel Adamus",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
             "id": "12068945",
             "sport_id": "92",
             "time": "1781917200",
@@ -1203,6 +780,30 @@
             "bet365_id": "196508537"
         },
         {
+            "id": "12072474",
+            "sport_id": "92",
+            "time": "1781917200",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "994525",
+                "name": "Adrian Fabis",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "817312",
+                "name": "Bartlomiej Wisniewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
             "id": "12068961",
             "sport_id": "92",
             "time": "1781917800",
@@ -1226,6 +827,54 @@
             },
             "ss": null,
             "bet365_id": "196508551"
+        },
+        {
+            "id": "12072492",
+            "sport_id": "92",
+            "time": "1781917800",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "1051287",
+                "name": "Artur Kubiak",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "831918",
+                "name": "Marcin Wozniczka",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
+        },
+        {
+            "id": "12072491",
+            "sport_id": "92",
+            "time": "1781918700",
+            "time_status": "0",
+            "league": {
+                "id": "29128",
+                "name": "TT Elite Series",
+                "cc": null
+            },
+            "home": {
+                "id": "820666",
+                "name": "Milosz Kukawka",
+                "image_id": 0,
+                "cc": null
+            },
+            "away": {
+                "id": "616813",
+                "name": "Mikolaj Lukaszewski",
+                "image_id": 0,
+                "cc": null
+            },
+            "ss": null
         },
         {
             "id": "12063743",
