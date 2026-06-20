@@ -9,12 +9,10 @@
         h1, h2, h3 { color: #00b37e; text-align: center; }
         .container { max-width: 600px; margin: 0 auto; }
         
-        /* Tracker Summary Box */
         .tracker-summary { background-color: #1a1a1e; border: 2px solid #323238; border-radius: 8px; padding: 15px; margin-bottom: 20px; text-align: center; }
         .tracker-grid { display: flex; justify-content: space-around; margin-top: 10px; }
         .tracker-val { font-size: 1.5em; font-weight: bold; }
         
-        /* Pulsanti Filtro Orario */
         .filter-container { display: flex; gap: 8px; margin-bottom: 15px; justify-content: center; }
         .filter-btn { background-color: #202024; border: 1px solid #323238; color: #8d8d99; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85em; font-weight: bold; transition: all 0.2s; }
         .filter-btn.active { background-color: #00b37e; border-color: #00b37e; color: #fff; }
@@ -41,7 +39,6 @@
         .text-yellow { color: #fba94c; }
         .text-red { color: #f75a68; }
         
-        /* Form Oggi UI */
         .form-today-container { display: flex; gap: 10px; margin-bottom: 15px; }
         .form-box { flex: 1; border-radius: 6px; padding: 10px; text-align: center; background-color: #1a1a1e; }
         .form-box.p1 { border: 1px solid #00b37e; }
@@ -51,7 +48,6 @@
         .form-box.p2 .form-title { color: #4ea8de; }
         .form-content { font-size: 0.9em; color: #e1e1e6; }
 
-        /* Storico H2H */
         .history-list { margin-top: 15px; background: #1a1a1e; border-radius: 6px; padding: 10px; border: 1px solid #323238; }
         .history-title { text-align: center; font-weight: bold; color: #8d8d99; margin-bottom: 10px; font-size: 0.9em; }
         .history-item { display: flex; justify-content: space-between; font-size: 0.85em; padding: 8px 0; border-bottom: 1px solid #323238; align-items: center; }
@@ -124,11 +120,7 @@
         let currentFilterMode = 'all'; 
 
         function saveBet(matchId, amount, odds, status) {
-            betsCache[matchId] = {
-                amount: parseFloat(amount) || 0,
-                odds: parseFloat(odds) || 1,
-                status: status
-            };
+            betsCache[matchId] = { amount: parseFloat(amount) || 0, odds: parseFloat(odds) || 1, status: status };
             localStorage.setItem('tt_bets', JSON.stringify(betsCache));
             updateSummary();
             renderBetUI(matchId);
@@ -142,7 +134,7 @@
         }
 
         function clearAllBets() {
-            if(confirm("Sei sicuro di voler cancellare tutto lo storico delle scommesse dal telefono?")) {
+            if(confirm("Sei sicuro di voler cancellare tutto lo storico?")) {
                 betsCache = {};
                 localStorage.removeItem('tt_bets');
                 updateSummary();
@@ -151,21 +143,15 @@
         }
 
         function updateSummary() {
-            let invested = 0;
-            let returned = 0;
-
+            let invested = 0, returned = 0;
             for (const key in betsCache) {
                 const bet = betsCache[key];
                 invested += bet.amount;
-                if (bet.status === 'win') {
-                    returned += (bet.amount * bet.odds);
-                }
+                if (bet.status === 'win') returned += (bet.amount * bet.odds);
             }
-
             const profit = returned - invested;
             document.getElementById('total-invested').innerText = invested.toFixed(2) + " €";
             document.getElementById('total-returned').innerText = returned.toFixed(2) + " €";
-            
             const profitEl = document.getElementById('total-profit');
             profitEl.innerText = (profit > 0 ? "+" : "") + profit.toFixed(2) + " €";
             profitEl.className = "tracker-val " + (profit > 0 ? "text-green" : (profit < 0 ? "text-red" : "text-yellow"));
@@ -179,21 +165,27 @@
         async function loadDashboardData() {
             try {
                 const nocache = new Date().getTime();
+                
                 const upcomingFetch = await fetch(`upcoming.json?v=${nocache}`);
                 const upcomingPayload = await upcomingFetch.json();
                 
                 const h2hFetch = await fetch(`h2h_data.json?v=${nocache}`);
                 const h2hPayload = await h2hFetch.json();
                 
-                renderUpcomingContainer(upcomingPayload.results || [], h2hPayload || {});
+                let todayPayload = [];
+                try {
+                    const todayFetch = await fetch(`today.json?v=${nocache}`);
+                    if(todayFetch.ok) todayPayload = await todayFetch.json();
+                } catch(e) { console.warn("today.json non ancora generato"); }
+                
+                renderUpcomingContainer(upcomingPayload.results || [], h2hPayload || {}, todayPayload);
             } catch (error) {
-                console.error("Data error:", error);
-                document.getElementById('upcoming-list').innerHTML = 
-                    `<div class="error-box">Errore nel caricamento dei dati JSON. Attendi che l'azione su GitHub finisca.</div>`;
+                document.getElementById('upcoming-list').innerHTML = `<div class="error-box">Errore caricamento dati.</div>`;
             }
         }
 
-        function renderUpcomingContainer(upcomingList, h2hDictionary) {
+        function renderUpcomingContainer(upcomingList, h2hDictionary, todayList) {
+            window.todayMatches = todayList || [];
             const listContainer = document.getElementById('upcoming-list');
             if (upcomingList.length === 0) {
                 listContainer.innerHTML = "<p style='text-align:center; color:#8d8d99;'>Nessun match imminente.</p>";
@@ -224,17 +216,14 @@
                         <div id="bet-ui-${matchId}"></div>
                     </div>
                 `;
-                
                 listContainer.appendChild(elementCard);
                 window[`h2h_${matchId}`] = h2hDictionary[matchId] || [];
             });
-
             filterTime(currentFilterMode);
         }
 
         window.filterTime = function(mode) {
             currentFilterMode = mode;
-            
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             if(mode === 'all') document.getElementById('filter-all').classList.add('active');
             if(mode === 1) document.getElementById('filter-1h').classList.add('active');
@@ -245,7 +234,6 @@
 
             cards.forEach(card => {
                 const cardTime = parseInt(card.getAttribute('data-timestamp'));
-                
                 if (mode === 'all') {
                     card.style.display = 'block';
                 } else {
@@ -268,7 +256,6 @@
             } else {
                 document.querySelectorAll('.match-details').forEach(el => el.style.display = 'none');
                 detailsContainer.style.display = 'block';
-                
                 if (statsContainer.innerHTML.trim() === "") {
                     processHeadToHead(homeTeam, awayTeam, window[`h2h_${matchId}`], statsContainer, matchId);
                     renderBetUI(matchId);
@@ -278,64 +265,62 @@
 
         window.processHeadToHead = function(home, away, h2hList, container, matchId) {
             let p1Wins = 0, p2Wins = 0, totalPts = 0, validMatches = 0;
-            
-            // Calcolo mezzanotte di "Oggi" per filtrare lo stato di forma
-            let todayStart = new Date();
-            todayStart.setHours(0,0,0,0);
-            let startOfTodayUnix = Math.floor(todayStart.getTime() / 1000);
-
             let homeTodayWins = 0, homeTodayLosses = 0, homeTodayPlayed = 0;
             let awayTodayWins = 0, awayTodayLosses = 0, awayTodayPlayed = 0;
 
+            // ANALISI "OGGI" CONTRO CHIUNQUE
+            window.todayMatches.forEach(t_match => {
+                if(!t_match.ss) return;
+                let parts = t_match.ss.split('-');
+                if(parts.length !== 2) return;
+                
+                let s1 = parseInt(parts[0]), s2 = parseInt(parts[1]);
+                let homeWonMatch = s1 > s2;
+                
+                let t_home = t_match.home ? t_match.home.name : "";
+                let t_away = t_match.away ? t_match.away.name : "";
+
+                if (t_home === home) {
+                    homeTodayPlayed++;
+                    if (homeWonMatch) homeTodayWins++; else homeTodayLosses++;
+                } else if (t_away === home) {
+                    homeTodayPlayed++;
+                    if (!homeWonMatch) homeTodayWins++; else homeTodayLosses++;
+                }
+
+                if (t_home === away) {
+                    awayTodayPlayed++;
+                    if (homeWonMatch) awayTodayWins++; else awayTodayLosses++;
+                } else if (t_away === away) {
+                    awayTodayPlayed++;
+                    if (!homeWonMatch) awayTodayWins++; else awayTodayLosses++;
+                }
+            });
+
+            // ANALISI STORICO H2H
             let historyHTML = `<div class="history-list"><div class="history-title">Storico ultimi incontri H2H</div>`;
 
             h2hList.forEach(m => {
-                let isToday = m.time && parseInt(m.time) >= startOfTodayUnix;
-                let validScore = false;
                 let matchDate = "N/D";
-                
                 if (m.time) {
                     let d = new Date(parseInt(m.time) * 1000);
                     matchDate = d.toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
                 }
 
-                // Calcolo Vittorie / Sconfitte
                 if(m.ss) {
                     let parts = m.ss.split('-');
                     if(parts.length === 2) {
-                        validScore = true;
                         let s1 = parseInt(parts[0]), s2 = parseInt(parts[1]);
                         let homeWon = s1 > s2;
                         
-                        // Statistiche totali H2H
                         if(m.home && m.home.name === home) {
                             if(homeWon) p1Wins++; else p2Wins++;
                         } else {
                             if(homeWon) p2Wins++; else p1Wins++;
                         }
-
-                        // Statistiche Forma "Oggi"
-                        if(isToday) {
-                            if(m.home && m.home.name === home) {
-                                homeTodayPlayed++;
-                                if(homeWon) homeTodayWins++; else homeTodayLosses++;
-                            } else if (m.away && m.away.name === home) {
-                                homeTodayPlayed++;
-                                if(!homeWon) homeTodayWins++; else homeTodayLosses++;
-                            }
-
-                            if(m.home && m.home.name === away) {
-                                awayTodayPlayed++;
-                                if(homeWon) awayTodayWins++; else awayTodayLosses++;
-                            } else if (m.away && m.away.name === away) {
-                                awayTodayPlayed++;
-                                if(!homeWon) awayTodayWins++; else awayTodayLosses++;
-                            }
-                        }
                     }
                 }
                 
-                // Calcolo punti per la media e per la lista H2H
                 let pts = 0;
                 if(m.scores) {
                     if(Array.isArray(m.scores)) {
@@ -346,7 +331,6 @@
                     if(pts > 0) { totalPts += pts; validMatches++; }
                 }
 
-                // Generazione riga H2H Visiva
                 let scoreStr = m.ss || "N/D";
                 let p1Short = m.home ? m.home.name.split(' ').pop() : ""; 
                 let p2Short = m.away ? m.away.name.split(' ').pop() : "";
@@ -362,7 +346,6 @@
 
             historyHTML += `</div>`;
 
-            // Preparazione Testi per "Oggi"
             let homeShortName = home.split(' ').pop();
             let awayShortName = away.split(' ').pop();
             
@@ -374,7 +357,6 @@
                 ? `<span class="text-green">${awayTodayWins} Vinte</span> / <span class="text-red">${awayTodayLosses} Perse</span>` 
                 : `Nessun match oggi`;
 
-            // HTML dei Box "Oggi"
             let formTodayHTML = `
                 <div class="form-today-container">
                     <div class="form-box p1">
@@ -396,7 +378,6 @@
 
             window[`stats_${matchId}`] = { p1Name: home, p2Name: away, p1WinPct: p1Pct, p2WinPct: p2Pct };
 
-            // Inserimento Finale nel Container
             container.innerHTML = `
                 ${formTodayHTML}
                 <div class="stat-grid">
@@ -420,11 +401,7 @@
         window.handleBetAction = function(matchId, status) {
             const amountInput = document.getElementById(`amount-${matchId}`).value.replace(',', '.');
             const oddsInput = document.getElementById(`odds-${matchId}`).value.replace(',', '.');
-            
-            if(!amountInput || !oddsInput) {
-                alert("Inserisci sia l'importo che la quota prima di salvare!");
-                return;
-            }
+            if(!amountInput || !oddsInput) return alert("Inserisci importo e quota!");
             saveBet(matchId, amountInput, oddsInput, status);
         };
 
@@ -437,22 +414,20 @@
             if (stats) {
                 const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct).toFixed(2) : '-';
                 const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct).toFixed(2) : '-';
-                fairText = `Quote eque H2H: ${stats.p1Name.split(' ').pop()} (<strong>${f1}</strong>) | ${stats.p2Name.split(' ').pop()} (<strong>${f2}</strong>)`;
+                fairText = `Quote eque: ${stats.p1Name.split(' ').pop()} (<strong>${f1}</strong>) | ${stats.p2Name.split(' ').pop()} (<strong>${f2}</strong>)`;
             }
 
             if (existingBet) {
                 const profitText = existingBet.status === 'win' 
                     ? `+ ${((existingBet.amount * existingBet.odds) - existingBet.amount).toFixed(2)} €` 
                     : `- ${existingBet.amount.toFixed(2)} €`;
-                
                 const statusClass = existingBet.status === 'win' ? 'status-win' : 'status-lose';
                 const labelText = existingBet.status === 'win' ? 'SCOMMESSA VINTA' : 'SCOMMESSA PERSA';
 
                 betContainer.innerHTML = `
                     <div class="bet-section">
-                        <div class="bet-status ${statusClass}">
-                            ${labelText}<br>
-                            <span style="font-size:0.8em; font-weight:normal;">Importo: ${existingBet.amount}€ | Quota: ${existingBet.odds} | Netto: ${profitText}</span>
+                        <div class="bet-status ${statusClass}">${labelText}<br>
+                            <span style="font-size:0.8em; font-weight:normal;">Imp: ${existingBet.amount}€ | Q: ${existingBet.odds} | Netto: ${profitText}</span>
                         </div>
                         <button onclick="removeBet('${matchId}')" class="btn btn-reset" style="width:100%; margin-top:10px; padding: 8px;">Annulla / Modifica</button>
                     </div>
@@ -460,20 +435,12 @@
             } else {
                 betContainer.innerHTML = `
                     <div class="bet-section" id="bet-section-wrapper-${matchId}">
-                        <span class="bet-title">Registra Scommessa & Calcola Valore</span>
+                        <span class="bet-title">Registra Scommessa</span>
                         <div class="bet-inputs">
-                            <div class="bet-input-group">
-                                <label>Importo (€)</label>
-                                <input type="number" id="amount-${matchId}" step="0.50" placeholder="Es. 10">
-                            </div>
-                            <div class="bet-input-group">
-                                <label>Quota Bookmaker</label>
-                                <input type="number" id="odds-${matchId}" step="0.01" placeholder="Es. 1.85" oninput="checkFairValue('${matchId}')">
-                            </div>
+                            <div class="bet-input-group"><label>Importo (€)</label><input type="number" id="amount-${matchId}" step="0.50"></div>
+                            <div class="bet-input-group"><label>Quota Bookmaker</label><input type="number" id="odds-${matchId}" step="0.01" oninput="checkFairValue('${matchId}')"></div>
                         </div>
-                        <div id="value-indicator-${matchId}" class="value-indicator" style="color: #8d8d99;">
-                            ${fairText}
-                        </div>
+                        <div id="value-indicator-${matchId}" class="value-indicator" style="color: #8d8d99;">${fairText}</div>
                         <div class="bet-buttons" style="margin-top: 10px;">
                             <button onclick="handleBetAction('${matchId}', 'win')" class="btn btn-win">VINTO</button>
                             <button onclick="handleBetAction('${matchId}', 'lose')" class="btn btn-lose">PERSA</button>
@@ -491,10 +458,8 @@
             const wrapper = document.getElementById(`bet-section-wrapper-${matchId}`);
             
             if (!stats) return;
-
             const f1 = stats.p1WinPct > 0 ? (100 / stats.p1WinPct) : 999;
             const f2 = stats.p2WinPct > 0 ? (100 / stats.p2WinPct) : 999;
-
             wrapper.className = "bet-section";
 
             if (!odds) {
@@ -504,22 +469,18 @@
             }
 
             if (odds > f1 && odds > f2) {
-                indicator.innerHTML = `<span style="color:#fba94c">⚠️ Valore anomalo su entrambi i giocatori</span>`;
+                indicator.innerHTML = `<span style="color:#fba94c">⚠️ Valore anomalo</span>`;
                 wrapper.classList.add("value-medium");
             } else if (odds > f1) {
                 const margin = (((odds - f1) / f1) * 100).toFixed(1);
-                const isHighValue = margin >= 10;
-                
-                indicator.innerHTML = `🔥 <strong>VALUE BET</strong> su <strong>${stats.p1Name.split(' ').pop()}</strong>! Margine: <strong>+${margin}%</strong> (Equa: ${f1.toFixed(2)})`;
-                wrapper.classList.add(isHighValue ? "value-high" : "value-medium");
-                indicator.style.color = isHighValue ? "#00b37e" : "#fba94c";
+                indicator.innerHTML = `🔥 <strong>VALUE BET</strong> su <strong>${stats.p1Name.split(' ').pop()}</strong>! Margine: <strong>+${margin}%</strong>`;
+                wrapper.classList.add(margin >= 10 ? "value-high" : "value-medium");
+                indicator.style.color = margin >= 10 ? "#00b37e" : "#fba94c";
             } else if (odds > f2) {
                 const margin = (((odds - f2) / f2) * 100).toFixed(1);
-                const isHighValue = margin >= 10;
-                
-                indicator.innerHTML = `🔥 <strong>VALUE BET</strong> su <strong>${stats.p2Name.split(' ').pop()}</strong>! Margine: <strong>+${margin}%</strong> (Equa: ${f2.toFixed(2)})`;
-                wrapper.classList.add(isHighValue ? "value-high" : "value-medium");
-                indicator.style.color = isHighValue ? "#00b37e" : "#fba94c";
+                indicator.innerHTML = `🔥 <strong>VALUE BET</strong> su <strong>${stats.p2Name.split(' ').pop()}</strong>! Margine: <strong>+${margin}%</strong>`;
+                wrapper.classList.add(margin >= 10 ? "value-high" : "value-medium");
+                indicator.style.color = margin >= 10 ? "#00b37e" : "#fba94c";
             } else {
                 indicator.innerHTML = `Nessun valore individuato (Quota equa min: ${Math.min(f1, f2).toFixed(2)})`;
                 indicator.style.color = "#8d8d99";
