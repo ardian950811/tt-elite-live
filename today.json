@@ -48,6 +48,30 @@
         "ss": null
     },
     {
+        "id": "12136677",
+        "sport_id": "92",
+        "time": "1782949500",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "824882",
+            "name": "Kamil Klocek",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "707970",
+            "name": "Blazej Warpas",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
         "id": "12133342",
         "sport_id": "92",
         "time": "1782949500",
@@ -72,6 +96,30 @@
         "ss": null
     },
     {
+        "id": "12136678",
+        "sport_id": "92",
+        "time": "1782948900",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "688066",
+            "name": "Mariusz Koczyba",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1195855",
+            "name": "Adrian Burkacki",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
         "id": "12126977",
         "sport_id": "92",
         "time": "1782948900",
@@ -90,6 +138,54 @@
         "away": {
             "id": "319111",
             "name": "Krzysztof Kapik",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
+        "id": "12136679",
+        "sport_id": "92",
+        "time": "1782948600",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "1164846",
+            "name": "Henryk Tkaczyk",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "980063",
+            "name": "Jakub Skorupa",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
+        "id": "12136680",
+        "sport_id": "92",
+        "time": "1782948000",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "994525",
+            "name": "Adrian Fabis",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1116987",
+            "name": "Stanislaw Wnek",
             "image_id": 0,
             "cc": null
         },
@@ -168,6 +264,54 @@
         "ss": null
     },
     {
+        "id": "12136681",
+        "sport_id": "92",
+        "time": "1782947100",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "817197",
+            "name": "Miroslaw Warzecha",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1183159",
+            "name": "Andriej Fomin",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
+        "id": "12136682",
+        "sport_id": "92",
+        "time": "1782946500",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "707970",
+            "name": "Blazej Warpas",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1116987",
+            "name": "Stanislaw Wnek",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
         "id": "12132468",
         "sport_id": "92",
         "time": "1782946500",
@@ -192,10 +336,34 @@
         "ss": null
     },
     {
-        "id": "12126978",
+        "id": "12136889",
         "sport_id": "92",
         "time": "1782946200",
         "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "721855",
+            "name": "Lukasz Bernacki",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1195855",
+            "name": "Adrian Burkacki",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
+        "id": "12126978",
+        "sport_id": "92",
+        "time": "1782946200",
+        "time_status": "1",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -213,13 +381,61 @@
             "image_id": 0,
             "cc": null
         },
+        "ss": "0-0"
+    },
+    {
+        "id": "12136683",
+        "sport_id": "92",
+        "time": "1782945600",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "934089",
+            "name": "Zbigniew Nocun",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "980063",
+            "name": "Jakub Skorupa",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": null
+    },
+    {
+        "id": "12136684",
+        "sport_id": "92",
+        "time": "1782945300",
+        "time_status": "0",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "994525",
+            "name": "Adrian Fabis",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "824882",
+            "name": "Kamil Klocek",
+            "image_id": 0,
+            "cc": null
+        },
         "ss": null
     },
     {
         "id": "12132471",
         "sport_id": "92",
         "time": "1782945300",
-        "time_status": "0",
+        "time_status": "1",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -237,13 +453,27 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "0-0",
+        "scores": {
+            "1": {
+                "home": "17",
+                "away": "15"
+            },
+            "2": {
+                "home": "7",
+                "away": "11"
+            },
+            "3": {
+                "home": "7",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12133165",
         "sport_id": "92",
         "time": "1782945000",
-        "time_status": "0",
+        "time_status": "1",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -261,13 +491,169 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "6-11",
+        "scores": {
+            "1": {
+                "home": "10",
+                "away": "12"
+            },
+            "2": {
+                "home": "11",
+                "away": "7"
+            },
+            "3": {
+                "home": "5",
+                "away": "11"
+            },
+            "4": {
+                "home": "6",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12136685",
+        "sport_id": "92",
+        "time": "1782944700",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "1144340",
+            "name": "Oliver Vincenec",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "688066",
+            "name": "Mariusz Koczyba",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "3-2",
+        "scores": {
+            "1": {
+                "home": "7",
+                "away": "11"
+            },
+            "2": {
+                "home": "10",
+                "away": "12"
+            },
+            "3": {
+                "home": "11",
+                "away": "9"
+            },
+            "4": {
+                "home": "11",
+                "away": "9"
+            },
+            "5": {
+                "home": "11",
+                "away": "5"
+            }
+        }
+    },
+    {
+        "id": "12136686",
+        "sport_id": "92",
+        "time": "1782944400",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "815027",
+            "name": "Slawomir Janus",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1164846",
+            "name": "Henryk Tkaczyk",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "7"
+            },
+            "2": {
+                "home": "11",
+                "away": "9"
+            },
+            "3": {
+                "home": "8",
+                "away": "11"
+            },
+            "4": {
+                "home": "8",
+                "away": "11"
+            },
+            "5": {
+                "home": "5",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12136687",
+        "sport_id": "92",
+        "time": "1782943800",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "1116987",
+            "name": "Stanislaw Wnek",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "824882",
+            "name": "Kamil Klocek",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "8"
+            },
+            "2": {
+                "home": "11",
+                "away": "9"
+            },
+            "3": {
+                "home": "6",
+                "away": "11"
+            },
+            "4": {
+                "home": "14",
+                "away": "16"
+            },
+            "5": {
+                "home": "2",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12132472",
         "sport_id": "92",
         "time": "1782943800",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -285,13 +671,31 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "5",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "9"
+            },
+            "3": {
+                "home": "7",
+                "away": "11"
+            },
+            "4": {
+                "home": "5",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12128548",
         "sport_id": "92",
         "time": "1782943500",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -309,13 +713,27 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-0",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "9"
+            },
+            "2": {
+                "home": "13",
+                "away": "11"
+            },
+            "3": {
+                "home": "11",
+                "away": "9"
+            }
+        }
     },
     {
         "id": "12128659",
         "sport_id": "92",
         "time": "1782943200",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -333,13 +751,115 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "8",
+                "away": "11"
+            },
+            "2": {
+                "home": "2",
+                "away": "11"
+            },
+            "3": {
+                "home": "11",
+                "away": "7"
+            },
+            "4": {
+                "home": "5",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12135956",
+        "sport_id": "92",
+        "time": "1782942900",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "1183159",
+            "name": "Andriej Fomin",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "980063",
+            "name": "Jakub Skorupa",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "0-3",
+        "scores": {
+            "1": {
+                "home": "9",
+                "away": "11"
+            },
+            "2": {
+                "home": "8",
+                "away": "11"
+            },
+            "3": {
+                "home": "8",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12136688",
+        "sport_id": "92",
+        "time": "1782942300",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "994525",
+            "name": "Adrian Fabis",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "707970",
+            "name": "Blazej Warpas",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "6",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "8"
+            },
+            "3": {
+                "home": "6",
+                "away": "11"
+            },
+            "4": {
+                "home": "11",
+                "away": "8"
+            },
+            "5": {
+                "home": "8",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12132469",
         "sport_id": "92",
         "time": "1782942300",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -357,13 +877,27 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-0",
+        "scores": {
+            "1": {
+                "home": "12",
+                "away": "10"
+            },
+            "2": {
+                "home": "11",
+                "away": "4"
+            },
+            "3": {
+                "home": "11",
+                "away": "6"
+            }
+        }
     },
     {
         "id": "12126979",
         "sport_id": "92",
         "time": "1782942300",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -381,13 +915,31 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "14",
+                "away": "12"
+            },
+            "2": {
+                "home": "5",
+                "away": "11"
+            },
+            "3": {
+                "home": "5",
+                "away": "11"
+            },
+            "4": {
+                "home": "6",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12131564",
         "sport_id": "92",
         "time": "1782941700",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -405,13 +957,69 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-0",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "5"
+            },
+            "2": {
+                "home": "11",
+                "away": "7"
+            },
+            "3": {
+                "home": "11",
+                "away": "9"
+            }
+        }
+    },
+    {
+        "id": "12134992",
+        "sport_id": "92",
+        "time": "1782941400",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "817197",
+            "name": "Miroslaw Warzecha",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1164846",
+            "name": "Henryk Tkaczyk",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "8",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "1"
+            },
+            "3": {
+                "home": "12",
+                "away": "14"
+            },
+            "4": {
+                "home": "8",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12132473",
         "sport_id": "92",
         "time": "1782940800",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -429,13 +1037,31 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-1",
+        "scores": {
+            "1": {
+                "home": "7",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "5"
+            },
+            "3": {
+                "home": "12",
+                "away": "10"
+            },
+            "4": {
+                "home": "14",
+                "away": "12"
+            }
+        }
     },
     {
         "id": "12126980",
         "sport_id": "92",
         "time": "1782940800",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -453,13 +1079,35 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "16",
+                "away": "14"
+            },
+            "2": {
+                "home": "7",
+                "away": "11"
+            },
+            "3": {
+                "home": "10",
+                "away": "12"
+            },
+            "4": {
+                "home": "11",
+                "away": "5"
+            },
+            "5": {
+                "home": "2",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12126774",
         "sport_id": "92",
         "time": "1782940800",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -477,13 +1125,27 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-0",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "5"
+            },
+            "2": {
+                "home": "11",
+                "away": "8"
+            },
+            "3": {
+                "home": "11",
+                "away": "7"
+            }
+        }
     },
     {
         "id": "12131780",
         "sport_id": "92",
         "time": "1782940200",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -501,13 +1163,69 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "0-3",
+        "scores": {
+            "1": {
+                "home": "9",
+                "away": "11"
+            },
+            "2": {
+                "home": "10",
+                "away": "12"
+            },
+            "3": {
+                "home": "8",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12134993",
+        "sport_id": "92",
+        "time": "1782939900",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "815027",
+            "name": "Slawomir Janus",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "934089",
+            "name": "Zbigniew Nocun",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "3-1",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "9"
+            },
+            "2": {
+                "home": "11",
+                "away": "5"
+            },
+            "3": {
+                "home": "7",
+                "away": "11"
+            },
+            "4": {
+                "home": "11",
+                "away": "7"
+            }
+        }
     },
     {
         "id": "12132474",
         "sport_id": "92",
         "time": "1782939600",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -525,13 +1243,27 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "0-3",
+        "scores": {
+            "1": {
+                "home": "9",
+                "away": "11"
+            },
+            "2": {
+                "home": "3",
+                "away": "11"
+            },
+            "3": {
+                "home": "7",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12128549",
         "sport_id": "92",
         "time": "1782939600",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -549,13 +1281,35 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "3",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "8"
+            },
+            "3": {
+                "home": "2",
+                "away": "11"
+            },
+            "4": {
+                "home": "14",
+                "away": "12"
+            },
+            "5": {
+                "home": "11",
+                "away": "13"
+            }
+        }
     },
     {
         "id": "12126747",
         "sport_id": "92",
         "time": "1782939600",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -573,13 +1327,77 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "9",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "7"
+            },
+            "3": {
+                "home": "6",
+                "away": "11"
+            },
+            "4": {
+                "home": "5",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12134994",
+        "sport_id": "92",
+        "time": "1782938700",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "1164846",
+            "name": "Henryk Tkaczyk",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "1183159",
+            "name": "Andriej Fomin",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "10",
+                "away": "12"
+            },
+            "2": {
+                "home": "11",
+                "away": "7"
+            },
+            "3": {
+                "home": "11",
+                "away": "9"
+            },
+            "4": {
+                "home": "8",
+                "away": "11"
+            },
+            "5": {
+                "home": "5",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12126981",
         "sport_id": "92",
         "time": "1782938700",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -597,13 +1415,73 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-1",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "9"
+            },
+            "2": {
+                "home": "10",
+                "away": "12"
+            },
+            "3": {
+                "home": "11",
+                "away": "5"
+            },
+            "4": {
+                "home": "13",
+                "away": "11"
+            }
+        }
+    },
+    {
+        "id": "12134995",
+        "sport_id": "92",
+        "time": "1782937800",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "994525",
+            "name": "Adrian Fabis",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "824882",
+            "name": "Kamil Klocek",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "8"
+            },
+            "2": {
+                "home": "8",
+                "away": "11"
+            },
+            "3": {
+                "home": "13",
+                "away": "15"
+            },
+            "4": {
+                "home": "9",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12132336",
         "sport_id": "92",
         "time": "1782937800",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -621,13 +1499,35 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "2-3",
+        "scores": {
+            "1": {
+                "home": "6",
+                "away": "11"
+            },
+            "2": {
+                "home": "9",
+                "away": "11"
+            },
+            "3": {
+                "home": "11",
+                "away": "6"
+            },
+            "4": {
+                "home": "11",
+                "away": "7"
+            },
+            "5": {
+                "home": "6",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12132335",
         "sport_id": "92",
         "time": "1782937800",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -645,13 +1545,69 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "2",
+                "away": "11"
+            },
+            "2": {
+                "home": "16",
+                "away": "14"
+            },
+            "3": {
+                "home": "9",
+                "away": "11"
+            },
+            "4": {
+                "home": "14",
+                "away": "16"
+            }
+        }
+    },
+    {
+        "id": "12134996",
+        "sport_id": "92",
+        "time": "1782937200",
+        "time_status": "3",
+        "league": {
+            "id": "29128",
+            "name": "TT Elite Series",
+            "cc": null
+        },
+        "home": {
+            "id": "817197",
+            "name": "Miroslaw Warzecha",
+            "image_id": 0,
+            "cc": null
+        },
+        "away": {
+            "id": "934089",
+            "name": "Zbigniew Nocun",
+            "image_id": 0,
+            "cc": null
+        },
+        "ss": "0-3",
+        "scores": {
+            "1": {
+                "home": "7",
+                "away": "11"
+            },
+            "2": {
+                "home": "10",
+                "away": "12"
+            },
+            "3": {
+                "home": "10",
+                "away": "12"
+            }
+        }
     },
     {
         "id": "12127180",
         "sport_id": "92",
         "time": "1782937200",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -669,13 +1625,31 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "12",
+                "away": "10"
+            },
+            "2": {
+                "home": "8",
+                "away": "11"
+            },
+            "3": {
+                "home": "8",
+                "away": "11"
+            },
+            "4": {
+                "home": "7",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12133995",
         "sport_id": "92",
         "time": "1782936300",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -693,13 +1667,31 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "3-1",
+        "scores": {
+            "1": {
+                "home": "9",
+                "away": "11"
+            },
+            "2": {
+                "home": "11",
+                "away": "9"
+            },
+            "3": {
+                "home": "14",
+                "away": "12"
+            },
+            "4": {
+                "home": "11",
+                "away": "9"
+            }
+        }
     },
     {
         "id": "12132338",
         "sport_id": "92",
         "time": "1782936300",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -717,13 +1709,31 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
+        "ss": "1-3",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "6"
+            },
+            "2": {
+                "home": "8",
+                "away": "11"
+            },
+            "3": {
+                "home": "10",
+                "away": "12"
+            },
+            "4": {
+                "home": "8",
+                "away": "11"
+            }
+        }
     },
     {
         "id": "12132337",
         "sport_id": "92",
         "time": "1782936300",
-        "time_status": "0",
+        "time_status": "3",
         "league": {
             "id": "29128",
             "name": "TT Elite Series",
@@ -741,462 +1751,24 @@
             "image_id": 0,
             "cc": null
         },
-        "ss": null
-    },
-    {
-        "id": "12127181",
-        "sport_id": "92",
-        "time": "1782936000",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "681303",
-            "name": "Jakub Nowak",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "688066",
-            "name": "Mariusz Koczyba",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133996",
-        "sport_id": "92",
-        "time": "1782935700",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "815027",
-            "name": "Slawomir Janus",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "980063",
-            "name": "Jakub Skorupa",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133997",
-        "sport_id": "92",
-        "time": "1782934800",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "810081",
-            "name": "Krzysztof Kotyl",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "676374",
-            "name": "Piotr Strus",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132379",
-        "sport_id": "92",
-        "time": "1782934800",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "1192910",
-            "name": "Pawel Chojnacki",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1209777",
-            "name": "Aleksander Barton",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132339",
-        "sport_id": "92",
-        "time": "1782934800",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "314356",
-            "name": "Jakub Kuzmicz",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "809294",
-            "name": "Krystian Kolodziej",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12127182",
-        "sport_id": "92",
-        "time": "1782934500",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "721855",
-            "name": "Lukasz Bernacki",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "824684",
-            "name": "Krzysztof Juszczyk",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133998",
-        "sport_id": "92",
-        "time": "1782934200",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "934089",
-            "name": "Zbigniew Nocun",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1183159",
-            "name": "Andriej Fomin",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133999",
-        "sport_id": "92",
-        "time": "1782933600",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "824882",
-            "name": "Kamil Klocek",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "616813",
-            "name": "Mikolaj Lukaszewski",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132357",
-        "sport_id": "92",
-        "time": "1782933600",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "935730",
-            "name": "Jerzy Michalik",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1027765",
-            "name": "Adam Staniczek",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132340",
-        "sport_id": "92",
-        "time": "1782933300",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "721862",
-            "name": "Lukasz Pietraszko",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1013499",
-            "name": "Maciej Nowalinski",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12134000",
-        "sport_id": "92",
-        "time": "1782933000",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "1164846",
-            "name": "Henryk Tkaczyk",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "980063",
-            "name": "Jakub Skorupa",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12126982",
-        "sport_id": "92",
-        "time": "1782933000",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "314228",
-            "name": "Sebastian Szostok",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "688066",
-            "name": "Mariusz Koczyba",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133481",
-        "sport_id": "92",
-        "time": "1782932100",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "994525",
-            "name": "Adrian Fabis",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "676374",
-            "name": "Piotr Strus",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132341",
-        "sport_id": "92",
-        "time": "1782932100",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "1201699",
-            "name": "Kazimierz Rybak",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1209777",
-            "name": "Aleksander Barton",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132392",
-        "sport_id": "92",
-        "time": "1782931800",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "804365",
-            "name": "Dawid Jadam",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "809294",
-            "name": "Krystian Kolodziej",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133482",
-        "sport_id": "92",
-        "time": "1782931500",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "817197",
-            "name": "Miroslaw Warzecha",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "815027",
-            "name": "Slawomir Janus",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12127183",
-        "sport_id": "92",
-        "time": "1782931500",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "681303",
-            "name": "Jakub Nowak",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1132522",
-            "name": "Wojciech Pytlas",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12133483",
-        "sport_id": "92",
-        "time": "1782930600",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "810081",
-            "name": "Krzysztof Kotyl",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "1016923",
-            "name": "Dariusz Szlubowski",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
-    },
-    {
-        "id": "12132343",
-        "sport_id": "92",
-        "time": "1782930600",
-        "time_status": "0",
-        "league": {
-            "id": "29128",
-            "name": "TT Elite Series",
-            "cc": null
-        },
-        "home": {
-            "id": "314356",
-            "name": "Jakub Kuzmicz",
-            "image_id": 0,
-            "cc": null
-        },
-        "away": {
-            "id": "317470",
-            "name": "Artur Daniel",
-            "image_id": 0,
-            "cc": null
-        },
-        "ss": null
+        "ss": "3-1",
+        "scores": {
+            "1": {
+                "home": "11",
+                "away": "8"
+            },
+            "2": {
+                "home": "9",
+                "away": "11"
+            },
+            "3": {
+                "home": "11",
+                "away": "8"
+            },
+            "4": {
+                "home": "11",
+                "away": "7"
+            }
+        }
     }
 ]
